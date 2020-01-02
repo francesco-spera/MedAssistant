@@ -10,11 +10,11 @@ public class MedicalReport {
 		this.idReport = idReport;
 	}
 	
-	public int getDoctor() {
+	public String getDoctor() {
 		return doctor;
 	}
 	
-	public void setDoctor(int doctor) {
+	public void setDoctor(String doctor) {
 		this.doctor = doctor;
 	}
 	
@@ -35,6 +35,6 @@ public class MedicalReport {
 	}
 	
 	
-	private int idReport, doctor;
-	private String object, description;
+	private int idReport;
+	private String object, description, doctor;
 }

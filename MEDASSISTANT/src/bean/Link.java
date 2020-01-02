@@ -2,22 +2,22 @@ package bean;
 
 public class Link {
 	
-	public int getPatient() {
+	public String getPatient() {
 		return patient;
 	}
 
-	public void setPatient(int patient) {
+	public void setPatient(String patient) {
 		this.patient = patient;
 	}
 
-	public int getDoctor() {
+	public String getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(int doctor) {
+	public void setDoctor(String doctor) {
 		this.doctor = doctor;
 	}
 
 	
-	private int patient, doctor;
+	private String patient, doctor;
 }

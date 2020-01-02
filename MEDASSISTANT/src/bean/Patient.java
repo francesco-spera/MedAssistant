@@ -2,14 +2,7 @@ package bean;
 
 public class Patient {
 	
-	public int getIdPatient() {
-		return idPatient;
-	}
-	
-	public void setIdPatient(int idPatient) {
-		this.idPatient = idPatient;
-	}
-	
+		
 	public String getDomicile() {
 		return domicile;
 	}
@@ -43,6 +36,5 @@ public class Patient {
 	}
 	
 	
-	private int idPatient;
 	private String domicile, residence, email, password;
 }

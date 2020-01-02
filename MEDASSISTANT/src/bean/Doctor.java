@@ -2,14 +2,7 @@ package bean;
 
 public class Doctor {
 
-	public int getIdDoctor() {
-		return idDoctor;
-	}
-	
-	public void setIdDoctor(int idDoctor) {
-		this.idDoctor = idDoctor;
-	}
-	
+		
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -58,8 +51,6 @@ public class Doctor {
 		this.password = password;
 	}
 	
-	
-	private int idDoctor;
 	private String phoneNumber, studioAddress, type, email, password;
 	private float avgReviews;
 }

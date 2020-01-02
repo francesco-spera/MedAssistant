@@ -1,7 +1,5 @@
 package bean;
 
-import java.util.GregorianCalendar;
-
 public class Appointment {
 	
 	public int getIdAppointment() {
@@ -12,19 +10,19 @@ public class Appointment {
 		this.idAppointment = idAppointment;
 	}
 	
-	public int getDoctor() {
+	public String getDoctor() {
 		return doctor;
 	}
 	
-	public void setDoctor(int doctor) {
+	public void setDoctor(String doctor) {
 		this.doctor = doctor;
 	}
 	
-	public GregorianCalendar getDate() {
+	public String getDate() {
 		return date;
 	}
 	
-	public void setDate(GregorianCalendar date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
@@ -37,7 +35,6 @@ public class Appointment {
 	}
 	
 	
-	private int idAppointment, doctor;
-	private GregorianCalendar date;
-	private String time;
+	private int idAppointment;
+	private String time, doctor, date;
 }
