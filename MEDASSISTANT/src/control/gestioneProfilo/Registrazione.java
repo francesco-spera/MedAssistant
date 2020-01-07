@@ -1,6 +1,7 @@
 package control.gestioneProfilo;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
 
 import bean.Account;
 import bean.Doctor;
@@ -47,7 +49,14 @@ public class Registrazione extends HttpServlet {
 		user.setSurname(request.getParameter("surname"));
 		user.setBirthDate(request.getParameter("birth"));
 		user.setCf(request.getParameter("cf"));
-		user.setPhoto(request.getParameter("photo"));
+		byte[] buff = request.getParameter("photo").getBytes();
+		Blob blob = null;
+		try {
+			blob = new SerialBlob(buff);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		user.setPhoto(blob);
 		String type = request.getParameter("type");
 		if(type!=null) {
 			user.setDoctor(email);
@@ -57,6 +66,7 @@ public class Registrazione extends HttpServlet {
 			medico.setPhoneNumber(request.getParameter("mobilep"));
 			medico.setStudioAddress(request.getParameter("studioaddr"));
 			medico.setType(type);
+			medico.setMunicipalityAddress(request.getParameter("munddr"));
 			try {
 				if(ProfiloManager.registrazione(user, medico)) {
 					request.getSession().setAttribute("medico", user);

@@ -26,7 +26,7 @@ public class Autenticazione extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("paziente")!=null)
-			request.getRequestDispatcher("presentation/account/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 		String email = request.getParameter("email");
 		String psw = request.getParameter("psw");
@@ -47,7 +47,7 @@ public class Autenticazione extends HttpServlet {
 			request.getSession().setAttribute("paziente", user);
 		else
 			request.getSession().setAttribute("medico", user);
-		request.getRequestDispatcher("presentation/account/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	

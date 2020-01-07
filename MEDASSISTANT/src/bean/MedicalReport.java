@@ -34,7 +34,15 @@ public class MedicalReport {
 		this.description = description;
 	}
 	
+	public String getPatient() {
+		return patient;
+	}
+
+	public void setPatient(String patient) {
+		this.patient = patient;
+	}
+	
 	
 	private int idReport;
-	private String object, description, doctor;
+	private String object, description, doctor, patient;
 }

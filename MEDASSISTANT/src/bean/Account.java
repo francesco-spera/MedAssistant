@@ -1,5 +1,7 @@
 package bean;
 
+import java.sql.Blob;
+
 public class Account {
 	
 	public int getIdAccount() {
@@ -34,11 +36,11 @@ public class Account {
 		this.cf = cf;
 	}
 	
-	public String getPhoto() {
+	public Blob getPhoto() {
 		return photo;
 	}
 	
-	public void setPhoto(String photo) {
+	public void setPhoto(Blob photo) {
 		this.photo = photo;
 	}
 	
@@ -68,5 +70,6 @@ public class Account {
 
 
 	private int idAccount;
-	private String name, surname, cf, photo, patient, doctor, birthDate;
+	private String name, surname, cf, patient, doctor, birthDate;
+	private Blob photo;
 }

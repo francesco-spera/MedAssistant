@@ -51,6 +51,14 @@ public class Doctor {
 		this.password = password;
 	}
 	
-	private String phoneNumber, studioAddress, type, email, password;
+	public String getMunicipalityAddress() {
+		return municipalityAddress;
+	}
+
+	public void setMunicipalityAddress(String municipalityAddress) {
+		this.municipalityAddress = municipalityAddress;
+	}
+
+	private String phoneNumber, studioAddress, municipalityAddress, type, email, password;
 	private float avgReviews;
 }

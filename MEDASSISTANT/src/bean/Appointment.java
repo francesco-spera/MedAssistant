@@ -35,6 +35,20 @@ public class Appointment {
 	}
 	
 	
-	private int idAppointment;
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+
+	private int idAppointment, state;
 	private String time, doctor, date;
+	
+	//state = 0 in attesa
+	//state = 1 confermato
+	//state = 2 completato
+	//state = 3 rinviato
 }

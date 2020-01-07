@@ -35,7 +35,7 @@ public class ProfiloManager {
 					user.setSurname(rs.getString(3));
 					user.setBirthDate(rs.getString(4));
 					user.setCf(rs.getString(5));
-					user.setPhoto(rs.getString(6));
+					user.setPhoto(rs.getBlob(6));
 					user.setPatient(email);
 				}
 			} else {
@@ -57,7 +57,7 @@ public class ProfiloManager {
 						user.setSurname(rs.getString(3));
 						user.setBirthDate(rs.getString(4));
 						user.setCf(rs.getString(5));
-						user.setPhoto(rs.getString(6));
+						user.setPhoto(rs.getBlob(6));
 						user.setDoctor(email);
 					}
 				}
@@ -96,7 +96,7 @@ public class ProfiloManager {
 			ps.setString(2, account.getSurname());
 			ps.setString(3, account.getBirthDate());
 			ps.setString(4, account.getCf());
-			ps.setString(5, account.getPhoto());
+			ps.setBlob(5, account.getPhoto());
 			ps.setString(6, account.getPatient());
 			if (ps.executeUpdate() != 1)
 				return false;
@@ -117,13 +117,14 @@ public class ProfiloManager {
 		Connection con = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO doctor(Email, Password, PhoneNumber, StudioAddress, Type)"
+			ps = con.prepareStatement("INSERT INTO doctor(Email, Password, PhoneNumber, StudioAddress, Type, MunicipalityAddress)"
 					+ "VALUES(?, ?, ?, ?, ?);");
 			ps.setString(1, doctor.getEmail());
 			ps.setString(2, doctor.getPassword());
 			ps.setString(3, doctor.getPhoneNumber());
 			ps.setString(4, doctor.getStudioAddress());
 			ps.setString(5, doctor.getType());
+			ps.setString(6, doctor.getMunicipalityAddress());
 			if (ps.executeUpdate() != 1)
 				return false;
 			ps.close();
@@ -133,7 +134,7 @@ public class ProfiloManager {
 			ps.setString(2, account.getSurname());
 			ps.setString(3, account.getBirthDate());
 			ps.setString(4, account.getCf());
-			ps.setString(5, account.getPhoto());
+			ps.setBlob(5, account.getPhoto());
 			ps.setString(6, account.getDoctor());
 			if (ps.executeUpdate() != 1)
 				return false;
@@ -194,6 +195,7 @@ public class ProfiloManager {
 				doctor.setStudioAddress(rs.getString(4));
 				doctor.setAvgReviews(rs.getFloat(5));
 				doctor.setType(rs.getString(6));
+				doctor.setMunicipalityAddress(rs.getString(7));
 			}
 		} finally {
 			try {
@@ -240,9 +242,9 @@ public class ProfiloManager {
 					return false;				
 			}
 			ps.close();
-			if(account.getPhoto()!=null || !account.getPhoto().isEmpty()) {
+			if(account.getPhoto()!=null) {
 				ps = con.prepareStatement("UPDATE account SET Photo = ?;");
-				ps.setString(1, account.getPhoto());
+				ps.setBlob(1, account.getPhoto());
 				if (ps.executeUpdate() != 1)
 					return false;				
 			}			
@@ -312,9 +314,9 @@ public class ProfiloManager {
 					return false;				
 			}
 			ps.close();
-			if(account.getPhoto()!=null || !account.getPhoto().isEmpty()) {
+			if(account.getPhoto()!=null) {
 				ps = con.prepareStatement("UPDATE account SET Photo = ?;");
-				ps.setString(1, account.getPhoto());
+				ps.setBlob(1, account.getPhoto());
 				if (ps.executeUpdate() != 1)
 					return false;				
 			}			
@@ -343,6 +345,13 @@ public class ProfiloManager {
 			if(doctor.getType()!=null || !doctor.getType().isEmpty()) {
 				ps = con.prepareStatement("UPDATE doctor SET Type = ?;");
 				ps.setString(1, doctor.getType());
+				if (ps.executeUpdate() != 1)
+					return false;				
+			}
+			ps.close();
+			if(doctor.getMunicipalityAddress()!=null || !doctor.getMunicipalityAddress().isEmpty()) {
+				ps = con.prepareStatement("UPDATE doctor SET MunicipalityAddress = ?;");
+				ps.setString(1, doctor.getMunicipalityAddress());
 				if (ps.executeUpdate() != 1)
 					return false;				
 			}
