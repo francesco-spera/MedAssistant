@@ -72,19 +72,25 @@
 	                    	</c:when>
 	                    	<c:otherwise>
 	                    		<c:forEach items="${allDoc}" var="doc">
+	                    		
 	                        	<div class="panel single-accordion">
-									<h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">${doc.email}
+									 <h6><a role="button" class="" aria-expanded="true" aria-controls="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">${doc.email}
 									<span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
 	                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
 	                                </a></h6>
-	                            <div id="collapseOne" class="accordion-content collapse show">
+	                            </div>
+	                            
+	                              <div id="collapseOne" class="accordion-content collapse show">
 									<form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloMedico">
 										<input type="hidden" name="emaildoc" value="${doc.email}">
 										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>									
 									</form>
-	                            </div>
+									
 	                        	</div>
-	                        </c:forEach>
+	                        
+	                        	
+	                        	
+	                        </c:forEach>                   
 	                    	</c:otherwise>
 	                    </c:choose>
 					</div>
@@ -107,6 +113,25 @@
 		});
 	</script>
 
+
+	<script>
+		var acc = document.getElementsByClassName("panel single-accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+  		acc[i].addEventListener("click", function() {
+    	this.classList.toggle("active");
+    	var panel = this.nextElementSibling;
+    	if (panel.style.display === "block") {
+      	panel.style.display = "none";
+    	} else {
+    	 panel.style.display = "block";
+   		 }
+ 		 });
+		}
+	</script>
+		
+		
     <script src="core/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="core/js/popper.min.js"></script>
     <script src="core/js/bootstrap.min.js"></script>

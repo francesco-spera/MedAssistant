@@ -684,7 +684,7 @@ img {
   border-radius: 0;
   font-size: 14px;
   font-style: italic;
-  color: #ffffff;
+  color: #495057;
   margin-bottom: 30px;
   font-weight: 500;
   padding: 0 15px;
@@ -782,7 +782,7 @@ textarea {
     font-size: 30px;
     background-color: #cacaca;
     border-radius: 50%;
-    color: #ffffff;
+    color: #495057;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms; }
   .single-service-area .service-content {
