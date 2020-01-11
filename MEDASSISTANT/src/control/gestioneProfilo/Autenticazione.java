@@ -25,18 +25,21 @@ public class Autenticazione extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("paziente")!=null)
+		if(request.getSession().getAttribute("accPaz")!=null)
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		if(request.getSession().getAttribute("accDoc")!=null)
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 		String email = request.getParameter("email");
 		String psw = request.getParameter("psw");
 		Account user = null;
-		if(email!=null && psw!=null)
+		if(email!=null && psw!=null) {
 			try {
 				user = ProfiloManager.autenticazione(email, psw);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
 		if(user==null) {
 			/*momentaneamente*/
 			System.out.println("problemi con le credenziali");
@@ -44,9 +47,9 @@ public class Autenticazione extends HttpServlet {
 		}
 		
 		if(user.getPatient()!=null)
-			request.getSession().setAttribute("paziente", user);
+			request.getSession().setAttribute("accPaz", user);
 		else
-			request.getSession().setAttribute("medico", user);
+			request.getSession().setAttribute("accDoc", user);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 

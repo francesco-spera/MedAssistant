@@ -1,121 +1,143 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%><%@taglib prefix="c"
 	uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Title  -->
-    <title>Medilife - Health &amp; Medical Template | Elements</title>
-
-    <!-- Favicon  -->
-    <link rel="icon" href="core/img/core-img/favicon.ico">
-
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="style.css">
-
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>MedAssistant</title>
+<link rel="icon" href="core/img/core-img/favicon.ico">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Preloader -->
+
     <div id="preloader">
         <div class="medilife-load"></div>
     </div>
 
     <%@ include file="core/header/header.jsp" %>  
-
-    <!-- ***** Breadcumb Area Start ***** -->
+    
     <section class="breadcumb-area bg-img gradient-background-overlay" style="background-image: url(core/img/bg-img/breadcumb2.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcumb-content">
-                        <h3 class="breadcumb-title" style="margin-left:350px;">I miei pazienti</h3>
+                        <h3 class="breadcumb-title" style="margin-left:350px">I miei pazienti</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ***** Breadcumb Area End ***** -->
+    
+	<section class="elements-area section-padding-100-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="elements-title">
+							<h2>Cerca il tuo paziente</h2>
+                    	</div>
+						<div class="s009">
+							<form action="${pageContext.request.contextPath}/CercarePazienteNome" method="get" name="search">
+        						<div class="inner-form">
+          							<div class="basic-search">
+            							<div class="input-field">
+              								<input name="name" type="text" placeholder="Nome">
+  			 								<input name="surname" type="text" placeholder="Cognome">
+            							</div>
+            						</div>
+  									<div class="input-field">
+                						<div class="group-btn">
+                  							<input type="submit" class="btn-search" value="CERCA">
+                						</div>
+             						</div>
+          						</div>
+         					</form>
+          					<br>
+          				</div>
+          				
+          				<br>
+          				<br>
 
-    <!-- ***** Elements Area Start ***** -->
-    <section class="elements-area section-padding-100-0">
-        <div class="container">
+						<div class="elements-title">
+							<h2>I miei pazienti</h2>
+                    	</div>
+                    	<c:choose>
+	                    	<c:when test="${allPaz==null}">
+	                    		<h2>NESSUN PAZIENTE COLLEGATO</h2>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<c:forEach items="${allPaz}" var="paz">
+	                    		
+	                        	<div class="panel single-accordion">
+									 <h6><a role="button" class="" aria-expanded="true" aria-controls="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+									 <c:out value="${paz.surname}"/> <c:out value="${paz.name}"/>
+									<span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+	                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+	                                </a></h6>
+	                            </div>
+	                            
+	                              <div id="collapseOne" class="accordion-content collapse show">
+									<form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloPaziente">
+										<input type="hidden" name="emailpaz" value="${paz.patient}">
+										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>									
+									</form>
+									
+	                        	</div>
+	                        
+	                        	
+	                        	
+	                        </c:forEach>                   
+	                    	</c:otherwise>
+	                    </c:choose>
+					</div>
+				</div>
+			</div>
+		</div>    
+	</section>
 
-            <div class="row">
-                <!-- ***** Progress Bars & Accordions ***** -->
-                <div class="col-12">
-                    <div class="elements-title">
-                        <h2>I miei pazienti - Lista</h2>
-                    </div>
+    <%@ include file="core/header/footer.jsp" %>
+    
+    
+	<script>
+		$(document).ready(function(){
+			$("#myInput").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#myTable tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+		});
+	</script>
 
 
-                    <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
-                     <div class="inner-form">
-				          <div class="basic-search">
-				            <div class="input-field">
-                   				 <input name="name" id="myInput" type="text" placeholder="Inserisci il nome del medico che cerchi" />
-				            </div>
-				            </div>
-				            
-				         </div>
-                    
-                    <script>
-						$(document).ready(function(){
-						  $("#myInput").on("keyup", function() {
-						    var value = $(this).val().toLowerCase();
-						    $("#myTable tr").filter(function() {
-						      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-						    });
-						  });
-						});
-					</script>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        <!-- single accordian area -->
-                        <c:forEach items="${accounts}" var="account">
-                        <div class="panel single-accordion">
-                            <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">${account.surname} ${account.name}
-                                    <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                    <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                    </a></h6>
-                            <div id="collapseOne" class="accordion-content collapse show">
-                                <p>qua ci va la cartella clinica</p>
-                            </div>
-                        </div>
-                        </c:forEach>
-        </div>
-                </div>
-        
-                </div>
-                </div>
-        
-    </section>
-    <!-- ***** Elements Area End ***** -->
+	<script>
+		var acc = document.getElementsByClassName("panel single-accordion");
+		var i;
 
-    <%@ include file="core/header/footer.jsp" %>  
-
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+		for (i = 0; i < acc.length; i++) {
+  		acc[i].addEventListener("click", function() {
+    	this.classList.toggle("active");
+    	var panel = this.nextElementSibling;
+    	if (panel.style.display === "block") {
+      	panel.style.display = "none";
+    	} else {
+    	 panel.style.display = "block";
+   		 }
+ 		 });
+		}
+	</script>
+		
+		
     <script src="core/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
     <script src="core/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
     <script src="core/js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
     <script src="core/js/plugins.js"></script>
-    <!-- Active js -->
     <script src="core/js/active.js"></script>
+    
 </body>
-
 </html>

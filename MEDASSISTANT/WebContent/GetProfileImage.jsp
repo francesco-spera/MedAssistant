@@ -7,11 +7,17 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%
-    String id = request.getParameter("id");
+	PreparedStatement ps = null;
+    String chiave = request.getParameter("patient");
+	if(chiave==null)
+		chiave = request.getParameter("doctor");
     try {
         Connection con = DriverManagerConnectionPool.getConnection();
-        PreparedStatement ps = con.prepareStatement("select * from account where id=?");
-        ps.setString(1, id);
+        if(request.getSession().getAttribute("accPaz")!=null)
+        	ps = con.prepareStatement("select photo from account where patient=?");
+        else
+        	ps = con.prepareStatement("select photo from account where doctor=?");
+        ps.setString(1, chiave);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             Blob blob = rs.getBlob("photo");

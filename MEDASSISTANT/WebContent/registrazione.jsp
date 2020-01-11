@@ -52,7 +52,7 @@
 							<input type="text"  class="form-control" name="surname" placeholder="cognome">
 							<input type="date"  class="form-control" name="birth" placeholder="data di nascita">
 							<input type="text"  class="form-control" name="cf" placeholder="codice fiscale">
-							<input type="text"  class="form-control" name="photo" placeholder="foto">
+							<input type="file"  class="form-control" name="photo" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 							<input type="text"  class="form-control" name="domicile" placeholder="domicilio">
 							<input type="text"  class="form-control" name="residence" placeholder="residenza">
 							<input type="submit" class="btn btn-primary btn-block" value="Submit">
@@ -75,10 +75,11 @@
 							<input type="text" class="form-control" name="studioaddr" placeholder="indirizzo studio">
 							<input type="text" class="form-control" name="munaddr" placeholder="comune studio">
 							<select name="type">
-							  <option value="cardiologo">Cardiologo</option>
-							  <option value="dermatologo">Dermatologo</option>
-							  <option value="neurologo">Neurologo</option>
-							  <option value="podologo">Podologo</option>
+								<option value="medico di base">Medico di base</option>
+								<option value="cardiologo">Cardiologo</option>
+							  	<option value="dermatologo">Dermatologo</option>
+							  	<option value="neurologo">Neurologo</option>
+							  	<option value="podologo">Podologo</option>
 							</select>
 							<br><br><br><input type="submit" class="btn btn-primary btn-block" value="Submit"><br><br><br>
 							

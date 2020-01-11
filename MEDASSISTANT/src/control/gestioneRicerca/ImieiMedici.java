@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Doctor;
 import bean.Account;
 import model.RicercaManager;
 
@@ -23,9 +22,8 @@ public class ImieiMedici extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Account patient = (Account) request.getSession().getAttribute("paziente");
-		ArrayList<Doctor> doctors = null;
+		ArrayList<Account> doctors = null;
 		try {
 			doctors = RicercaManager.getMedici(patient.getPatient());
 		} catch (SQLException e) {

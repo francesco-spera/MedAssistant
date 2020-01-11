@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MedAssistant | Profilo Medico</title>
+<title>MedAssistant | Profilo Paziente</title>
 <link rel="icon" href="core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" type="text/css" href="core/vendor/animate/animate.css">
@@ -35,13 +35,9 @@
 	</div>
 	
 	<div class="container mt-5">
-	    <h1>Profilo del dott. <c:out value="${accDoc.surname}"/></h1>
-	    <img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
-	    <form method="post" action="${pageContext.request.contextPath}/RichiedereCollegamento">
-		<input type="hidden" name="emaildoc" value="${accDoc.doctor}">
-		<button type="submit" class="btn btn-primary">Richiedi Collegamento</button>					<!-- spostarlo in alto a destra -->						
-		</form>
-	  	<hr>
+	    <h1>Profilo del paziente <c:out value="${accPaz.surname}"/></h1>
+	    <img src="GetProfileImage.jsp?doctor=${accPaz.patient}" width="230px" height="140px"/>
+	    <hr>
 	  	
 		<div class="row">
 	      <div class="col align-self-center personal-info mb-5">
@@ -49,37 +45,37 @@
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Nome</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accDoc.name}" readonly>
+	              <input class="form-control" type="text" value="${accPaz.name}" readonly>
 	            </div>
 	          </div>
 	            <div class="form-group">
-	            <label class="col-lg-3 control-label">Numero di telefono</label>
+	            <label class="col-lg-3 control-label">Data di nascita</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.phoneNumber}" readonly>
+	              <input class="form-control" type="text" value="${accPaz.birthDate}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
-	            <label class="col-lg-3 control-label">Indirizzo Studio</label>
+	            <label class="col-lg-3 control-label">Codice fiscale</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.studioAddress}" readonly>
+	              <input class="form-control" type="text" value="${accPaz.cf}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
-	            <label class="col-lg-3 control-label">Provincia</label>
+	            <label class="col-lg-3 control-label">Email</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.municipalityAddress}" readonly>
+	              <input class="form-control" type="text" value="${infoPaz.email}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
-	          	<label class="col-lg-3 control-label">Specializzazione</label>
+	          	<label class="col-lg-3 control-label">Domicilio</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.type}" readonly>
+	              <input class="form-control" type="text" value="${infoPaz.domicile}" readonly>
 	          </div>
 	          </div>
 	          <div class="form-group">
-	            <label class="col-lg-3 control-label">Ratings</label>
+	            <label class="col-lg-3 control-label">Residenza</label>
 	          <div class="col-lg-8">
-	            <input class="form-control" type="text"  value="${infoDoc.avgReviews}" readonly>
+	            <input class="form-control" type="text"  value="${infoPaz.residence}" readonly>
 	            </div>
 	          </div>
 	      </div>

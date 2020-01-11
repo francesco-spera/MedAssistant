@@ -18,11 +18,11 @@ import bean.Doctor;
 import bean.Patient;
 import model.ProfiloManager;
 
-@WebServlet("/registrazione")
+@WebServlet("/ModificareProfilo")
 @MultipartConfig(maxFileSize = 32354432)//1.5mb 32.354.432 32354432
-public class Registrazione extends HttpServlet {
+public class ModificareProfilo extends HttpServlet {
 
-    public Registrazione() {
+    public ModificareProfilo() {
         super();
     }
     
@@ -32,24 +32,8 @@ public class Registrazione extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("accPaz")!=null)
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		if(request.getSession().getAttribute("accDoc")!=null)
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
-		
-		String email = request.getParameter("email");
-				
-		try {
-			if(ProfiloManager.cercaAccount(email)) {
-				/*momentaneo*/
-				System.out.println("account already esistente");
-				return;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 		Account user = new Account();
+		String email = request.getParameter("email");
 		user.setName(request.getParameter("name"));
 		user.setSurname(request.getParameter("surname"));
 		user.setBirthDate(request.getParameter("birth"));
@@ -57,27 +41,8 @@ public class Registrazione extends HttpServlet {
 		Part part = request.getPart("photo");
 		InputStream is = part.getInputStream();
 		Blob blob = (Blob) is;
-		user.setPhoto(blob);
-		String type = request.getParameter("type");
-		if(type!=null) {
-			user.setDoctor(email);
-			Doctor medico = new Doctor();
-			medico.setEmail(email);
-			medico.setPassword(request.getParameter("psw"));
-			medico.setPhoneNumber(request.getParameter("mobilep"));
-			medico.setStudioAddress(request.getParameter("studioaddr"));
-			medico.setType(type);
-			medico.setMunicipalityAddress(request.getParameter("munaddr"));
-			try {
-				if(ProfiloManager.registrazione(user, medico)) {
-					request.getSession().setAttribute("accDoc", user);
-					request.getSession().setAttribute("infoDoc", medico);
-					request.getRequestDispatcher("index.jsp").forward(request, response);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
+		user.setPhoto(blob);;
+		if(request.getSession().getAttribute("accPaz")!=null) {
 			user.setPatient(email);
 			Patient paziente = new Patient();
 			paziente.setEmail(email);
@@ -85,11 +50,23 @@ public class Registrazione extends HttpServlet {
 			paziente.setDomicile(request.getParameter("domicile"));
 			paziente.setResidence(request.getParameter("residence"));
 			try {
-				if(ProfiloManager.registrazione(user, paziente)) {
-					request.getSession().setAttribute("accPaz", user);
-					request.getSession().setAttribute("infoPaz", paziente);
-					request.getRequestDispatcher("index.jsp").forward(request, response);
-				}
+				if(ProfiloManager.modificaProfilo(user, paziente))
+					request.getRequestDispatcher("visualizzaProfiloPersonale.jsp").forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			user.setDoctor(email);
+			Doctor medico = new Doctor();
+			medico.setEmail(email);
+			medico.setPassword(request.getParameter("psw"));
+			medico.setPhoneNumber(request.getParameter("mobilep"));
+			medico.setStudioAddress(request.getParameter("studioaddr"));
+			medico.setType(request.getParameter("type"));
+			medico.setMunicipalityAddress(request.getParameter("munaddr"));
+			try {
+				if(ProfiloManager.modificaProfilo(user, medico))
+					request.getRequestDispatcher("visualizzaProfiloPersonale.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -97,5 +74,5 @@ public class Registrazione extends HttpServlet {
 	}
 
 	
-	private static final long serialVersionUID = 4L;
+	private static final long serialVersionUID = 1L;
 }

@@ -20,11 +20,8 @@
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 						<div class="collapse navbar-collapse" id="medilifeMenu">
 							<c:choose>
-								<c:when test="${paziente == null && medico == null}">
+								<c:when test="${accPaz == null && accDoc == null}">
 									<ul class="navbar-nav ml-auto">
-										<li class="nav-item">
-											<a class="nav-link" href="#">Servizi</a>
-										</li>
 										<li class="nav-item">
                                             <a class="nav-link" href="${pageContext.request.contextPath}/registrazione.jsp">Registrati</a>
                                         </li>
@@ -33,14 +30,14 @@
 										</li>
                                     </ul>
 								</c:when>
-								<c:when test="${medico!=null}">
+								<c:when test="${accDoc!=null}">
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item">
-                                            <p class="nav-link">Benvenuto, <c:out value="${paziente.name}"/> <c:out value="${paziente.surname}"/></p>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaProfiloPersonale">Benvenuto, <c:out value="${accDoc.name}"/> <c:out value="${accDoc.surname}"/></a>
                                         </li>
 										<li class="nav-item"><h3 class="nav-link" style="visibility:hidden">#######################</h3></li>       
                                         <li class="nav-item">
-                                            <a class="nav-link" href="${pageContext.request.contextPath}/iMieiPazienti.jsp">I miei pazienti</a>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/IMieiPazienti">I miei pazienti</a>
                                         </li>
 									  	<li class="nav-item">
                                             <a class="nav-link" href="${pageContext.request.contextPath}/#">I miei appuntamenti</a>
@@ -50,10 +47,10 @@
                                         </li>
 									</ul>
 								</c:when>
-								<c:when test="${paziente!=null}">
+								<c:when test="${accPaz!=null}">
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item">
-                                            <p class="nav-link">Benvenuto, <c:out value="${paziente.name}"/> <c:out value="${paziente.surname}"/></p>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaProfiloPersonale">Benvenuto, <c:out value="${accPaz.name}"/> <c:out value="${accPaz.surname}"/></a>
                                         </li>
 										<li class="nav-item"><h3 class="nav-link" style="visibility:hidden">#######################</h3></li>
 										<li class="nav-item">

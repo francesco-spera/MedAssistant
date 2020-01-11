@@ -1,7 +1,8 @@
-package control.gestioneProfilo;
+package control.gestioneRicerca;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,41 +11,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
-import bean.Doctor;
 import model.RicercaManager;
 
-@WebServlet("/VisualizzaProfiloMedico")
-public class VisualizzaProfiloMedico extends HttpServlet {
+@WebServlet("/IMieiPazienti")
+public class IMieiPazienti extends HttpServlet {
 
-    public VisualizzaProfiloMedico() {
+    public IMieiPazienti() {
+    	
         super();
     }
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailDoc = request.getParameter("emaildoc");
-		Account account = new Account();
-		Doctor doc = new Doctor();
+		Account doctor = (Account) request.getSession().getAttribute("medico");
+		ArrayList<Account> patients = null;
 		try {
-			account = RicercaManager.cercaAccountMedico(emailDoc);
-			doc = RicercaManager.cercaMedico(emailDoc);
+			patients = RicercaManager.getPazienti(doctor.getDoctor());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println(account.getName() + account.getSurname());
-		
-		request.getSession().setAttribute("infoDoc", doc);
-		request.getSession().setAttribute("accDoc", account);
-		request.getRequestDispatcher("/visualizzaProfiloMed.jsp").forward(request, response);
+		request.getSession().setAttribute("allPaz", patients);
+		request.getRequestDispatcher("/iMieiPazienti.jsp").forward(request, response);		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		doGet(request, response);
 	}
-	
+
 	
 	private static final long serialVersionUID = 1L;
 }

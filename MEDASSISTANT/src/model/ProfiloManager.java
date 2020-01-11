@@ -118,7 +118,7 @@ public class ProfiloManager {
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			ps = con.prepareStatement("INSERT INTO doctor(Email, Password, PhoneNumber, StudioAddress, Type, MunicipalityAddress)"
-					+ "VALUES(?, ?, ?, ?, ?);");
+					+ "VALUES(?, ?, ?, ?, ?, ?);");
 			ps.setString(1, doctor.getEmail());
 			ps.setString(2, doctor.getPassword());
 			ps.setString(3, doctor.getPhoneNumber());
@@ -156,15 +156,14 @@ public class ProfiloManager {
 		Patient patient = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM patient WHERE email = ?;");
+			ps = con.prepareStatement("SELECT email, domicile, residence FROM patient WHERE email = ?;");
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				patient = new Patient();
 				patient.setEmail(rs.getString(1));
-				patient.setPassword(rs.getString(2));
-				patient.setDomicile(rs.getString(3));
-				patient.setResidence(rs.getString(4));
+				patient.setDomicile(rs.getString(2));
+				patient.setResidence(rs.getString(3));
 			}
 		} finally {
 			try {
@@ -178,24 +177,23 @@ public class ProfiloManager {
 		return patient;
 	}
 	
-	public static Doctor visualizzaDottore(String email) throws SQLException {
+	public static Doctor visualizzaMedico(String email) throws SQLException {
 		PreparedStatement ps = null;
 		Connection con = null;
 		Doctor doctor = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM doctor WHERE email = ?;");
+			ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgReviews, type, municipalityaddress FROM doctor WHERE email = ?;");
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				doctor = new Doctor();
 				doctor.setEmail(rs.getString(1));
-				doctor.setPassword(rs.getString(2));
-				doctor.setPhoneNumber(rs.getString(3));
-				doctor.setStudioAddress(rs.getString(4));
-				doctor.setAvgReviews(rs.getFloat(5));
-				doctor.setType(rs.getString(6));
-				doctor.setMunicipalityAddress(rs.getString(7));
+				doctor.setPhoneNumber(rs.getString(2));
+				doctor.setStudioAddress(rs.getString(3));
+				doctor.setAvgReviews(rs.getFloat(4));
+				doctor.setType(rs.getString(5));
+				doctor.setMunicipalityAddress(rs.getString(6));
 			}
 		} finally {
 			try {

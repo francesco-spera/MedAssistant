@@ -37,11 +37,11 @@
 			<div class="table100">
 				<table>
 					<c:choose>
-						<c:when test="${empty infoDoc}">
-							<h1>Nessun dottore trovato.</h1>
+						<c:when test="${empty accPaz}">
+							<h1>Nessun paziente trovato.</h1>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${accDoc}" var="info">
+							<c:forEach items="${accPaz}" var="info">
 								<thead>
 									<tr class="table100-head">
 										<th class="column1">Nome</th>
@@ -55,10 +55,10 @@
 									<tr>
 										<td class="column1">${info.name}</td>  
 										<td class="column2">${info.surname}</td>
-										<td class="column3">${info.doctor}</td>
+										<td class="column3">${info.patient}</td>
 										<td class="column4"><img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
-										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloMedico">
-										<input type="hidden" name="emaildoc" value="${info.doctor}">
+										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloPaziente">
+										<input type="hidden" name="emailpaz" value="${info.patient}">
 										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>											
 										</form></td>
 									</tr>
