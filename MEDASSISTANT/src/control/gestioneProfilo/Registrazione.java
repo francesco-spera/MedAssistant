@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.sql.rowset.serial.SerialBlob;
+
+import org.apache.commons.io.IOUtils;
 
 import bean.Account;
 import bean.Doctor;
@@ -56,7 +59,14 @@ public class Registrazione extends HttpServlet {
 		user.setCf(request.getParameter("cf"));
 		Part part = request.getPart("photo");
 		InputStream is = part.getInputStream();
-		Blob blob = (Blob) is;
+		byte[] content = IOUtils.toByteArray(is);
+		Blob blob = null;
+		try {
+			blob = new SerialBlob(content);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		user.setPhoto(blob);
 		String type = request.getParameter("type");
 		if(type!=null) {

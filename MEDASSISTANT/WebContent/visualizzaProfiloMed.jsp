@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="core/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" type="text/css" href="core/css/table_util.css">
 <link rel="stylesheet" type="text/css" href="core/css/table_main.css">
+<script type="text/javascript" src="js/ajaxsendemail.js"></script>
 </head>
 <body>
     <div id="preloader">
@@ -41,6 +42,12 @@
 		<input type="hidden" name="emaildoc" value="${accDoc.doctor}">
 		<button type="submit" class="btn btn-primary">Richiedi Collegamento</button>					<!-- spostarlo in alto a destra -->						
 		</form>
+		
+		<!--  prova funzione email -->
+		<br>
+		<input type="submit" value="INVIA EMAIL da: ${accPaz.name}" class="btn btn-primary " onclick="ajaxCall('load','<%=request.getContextPath()%>/EmailSender',displayResults(),'r.caccia@outlook.com','prova oggetto','Salve Dottor ${accDoc.surname},\nL\'utente ${accPaz.name} ${accPaz.surname},  email: ${infoPaz.email}\n\nha richiesto di effettuare un collegamento con lei',6000);">
+	    <!--  fine prova -->
+		
 	  	<hr>
 	  	
 		<div class="row">
@@ -98,6 +105,20 @@
     <script src="core/js/bootstrap.min.js"></script>
     <script src="core/js/plugins.js"></script>
     <script src="core/js/active.js"></script>
+    <script>
+	function displayResults(listXML, id) {
+		try { 
+			var obj = document.getElementById(id);		
+			if(obj != null) {
+				var rdfs = listXML.getElementsByTagName("result")[0].firstChild.nodeValue; 
+				obj.innerHTML =rdfs;
+				console.log("Handle results");
+			}
+		} catch(e1) {
+		}
+		 
+	}
+	</script>
 
 </body>
 </html>

@@ -44,7 +44,7 @@
 
 					<div id="regPaz" style="visibility: hidden">
 						<h2>REGISTRAZIONE PAZIENTE</h2>
-						<form action="${pageContext.request.contextPath}/registrazione" method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
+						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
 						   <input type="text"  class="form-control" name="email" placeholder="email">
 							<input type="password"  class="form-control" name="psw" placeholder="password">
 						<h3>INFORMAZIONI PERSONALI</h3>
@@ -62,7 +62,7 @@
 
 					<div id="regMed" style="visibility: hidden">
 						<h2>REGISTRAZIONE MEDICO</h2>
-						<form action="${pageContext.request.contextPath}/registrazione" method="POST" name="regForm" onsubmit="return valRegFormMed(regForm)">
+						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormMed(regForm)">
 							<input type="text" class="form-control" name="email" placeholder="email">
 							<input type="password" class="form-control" name="psw" placeholder="password">
 						<h3>INFORMAZIONI PERSONALI</h3>
