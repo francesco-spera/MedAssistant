@@ -38,7 +38,7 @@
 	<div class="container mt-5">
 	    <h1>Profilo del dott. <c:out value="${accDoc.surname}"/></h1>
 	    <img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
-		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/EmailSender', displayResults(), 'sperafrancesco666@outlook.it','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei',6000)">
+		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(), 'sperafrancesco666@outlook.it','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei',6000)">
 	  	
 		<div class="row">
 	      <div class="col align-self-center personal-info mb-5">

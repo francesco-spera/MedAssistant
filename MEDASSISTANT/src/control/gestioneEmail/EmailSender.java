@@ -1,114 +1,63 @@
 package control.gestioneEmail;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Properties;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
+
+	import java.util.Properties;
+
+	import javax.mail.Message;
+	import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+	import javax.mail.Transport;
+	import javax.mail.internet.InternetAddress;
+	import javax.mail.internet.MimeMessage;
 
 
-@WebServlet("/EmailSender")
-public class EmailSender extends HttpServlet {
+
+	public class EmailSender  {
+		
+		/*
+		 * EMAIL SEGNALAZIONI: ersegnalazioni@gmail.com
+		 * */
+
+		public EmailSender() {
+			// TODO Auto-generated constructor stub
+		}
+
+		
+		public void inviaMailCollegamento(String email, String oggetto, String text) throws MessagingException {
+			EmailSender.send("noreply.medassistant@gmail.com","CiaoCiao123",email, oggetto, text);
+		}
+		
+		
+		public static void send(String from,String password,String to,String sub,String msg){  
+	          //Get properties object    
+	          Properties props = new Properties();    
+	          props.put("mail.smtp.host", "smtp.gmail.com");    
+	          props.put("mail.smtp.socketFactory.port", "465");    
+	          props.put("mail.smtp.socketFactory.class",    
+	                    "javax.net.ssl.SSLSocketFactory");    
+	          props.put("mail.smtp.auth", "true");    
+	          props.put("mail.smtp.port", "465");    
+	          //get Session   
+	          Session session = Session.getDefaultInstance(props,    
+	           new javax.mail.Authenticator() {    
+	           protected PasswordAuthentication getPasswordAuthentication() {    
+	           return new PasswordAuthentication(from,password);  
+	           }    
+	          });    
+	          //compose message    
+	          try {    
+	           MimeMessage message = new MimeMessage(session);    
+	           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+	           message.setSubject(sub);    
+	           message.setText(msg);    
+	           //send message  
+	           Transport.send(message);    
+	           System.out.println("message sent successfully");    
+	          } catch (MessagingException e) {throw new RuntimeException(e);}    
+	             
+	    }  
+	}  
 	
 
-	private static final long serialVersionUID = 1L;
-	private String host;
-    private String port;
-    private String user;
-    private String pass;
 	
-	StringBuffer packed = new StringBuffer();
-    
-    public void init() {
-        // reads SMTP server setting from web.xml file
-        ServletContext context = getServletContext();
-        host = context.getInitParameter("host");
-        port = context.getInitParameter("port");
-        user = context.getInitParameter("user");
-        pass = context.getInitParameter("pass");
-    }
-    
-    public static void sendEmail(String host, String port,
-            final String userName, final String password, String toAddress,
-            String subject, String message) throws AddressException,
-            MessagingException {
- 
-        // sets SMTP server properties
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", port);
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
- 
-        // creates a new session with an authenticator
- 
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-    		protected PasswordAuthentication getPasswordAuthentication() {
-    			return new PasswordAuthentication(userName, password);
-    		}
-    	});
- 
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
- 
-        msg.setFrom(new InternetAddress(userName));
-        InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
-        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setSubject(subject);
-        msg.setSentDate(new Date());
-        msg.setText(message);
- 
-        // sends the e-mail
-        Transport.send(msg);
- 
-    }
- 
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-    	
-    	String email = request.getParameter("email");
-    	String subject = request.getParameter("oggetto");
-    	String content = request.getParameter("text");
-    	
-    	
-        String resultMessage = "";
-
-		 
-		        try {
-		            sendEmail(host, port, user, pass, email, subject,
-		                    content);
-		            System.out.println("email inviata");
-		        } catch (Exception ex) {
-		            ex.printStackTrace();
-		            resultMessage = "0";
-		        } finally {
-					
-		        	resultMessage = "1";
-		        }
-				
-
-    	packed.setLength(0);
-    	packed.append("<result>");
-		packed.append(resultMessage);
-		packed.append("</result>");
-    	try {
-			Thread.sleep(3000);
-		} catch(InterruptedException e) {}
-    	System.out.println(packed.toString());
-		response.getWriter().write(packed.toString());
-        
-    }
-}
