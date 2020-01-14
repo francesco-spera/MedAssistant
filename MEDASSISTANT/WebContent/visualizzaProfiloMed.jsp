@@ -38,9 +38,15 @@
 	<div class="container mt-5">
 	    <h1>Profilo del dott. <c:out value="${accDoc.surname}"/></h1>
 	    <img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
-
-		<button type="submit" class="btn btn-primary" onclick="ajaxCall('load','<%=request.getContextPath()%>/EmailSender',displayResults(),'sperafrancesco666@outlook.it','prova oggetto','Salve Dottor ${accDoc.surname},\nL\'utente ${accPaz.name} ${accPaz.surname},  email: ${infoPaz.email}\n\nha richiesto di effettuare un collegamento con lei',6000);">Richiedi Collegamento</button>					<!-- spostarlo in alto a destra -->						
-
+	    <form method="post" action="${pageContext.request.contextPath}/RichiedereCollegamento">
+		<input type="hidden" name="emaildoc" value="${accDoc.doctor}">
+		<button type="submit" class="btn btn-primary">Richiedi Collegamento</button>					<!-- spostarlo in alto a destra -->						
+		</form>
+		
+		<!--  prova funzione email -->
+		<br>
+		<input type="submit" value="INVIA EMAIL da: ${accPaz.name}" class="btn btn-primary " onclick="ajaxCall('load','<%=request.getContextPath()%>/EmailSender',displayResults(),'r.caccia@outlook.com','prova oggetto','Salve Dottor ${accDoc.surname},\nL\'utente ${accPaz.name} ${accPaz.surname},  email: ${infoPaz.email}\n\nha richiesto di effettuare un collegamento con lei',6000);">
+	    <!--  fine prova -->
 		
 	  	<hr>
 	  	
