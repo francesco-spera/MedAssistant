@@ -54,13 +54,12 @@ public class EmailSender extends HttpServlet {
         properties.put("mail.smtp.starttls.enable", "true");
  
         // creates a new session with an authenticator
-        Authenticator auth = new Authenticator() {
-            public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(userName, password);
-            }
-        };
  
-        Session session = Session.getInstance(properties, auth);
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+    		protected PasswordAuthentication getPasswordAuthentication() {
+    			return new PasswordAuthentication(userName, password);
+    		}
+    	});
  
         // creates a new e-mail message
         Message msg = new MimeMessage(session);
