@@ -23,7 +23,7 @@ public class IMieiPazienti extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Account doctor = (Account) request.getSession().getAttribute("medico");
+		Account doctor = (Account) request.getSession().getAttribute("docLog");
 		ArrayList<Account> patients = null;
 		try {
 			patients = RicercaManager.getPazienti(doctor.getDoctor());

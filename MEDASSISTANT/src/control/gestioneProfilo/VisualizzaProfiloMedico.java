@@ -23,6 +23,7 @@ public class VisualizzaProfiloMedico extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String emailDoc = request.getParameter("emaildoc");
+		System.out.println("PORCO DIO " + emailDoc);
 		Account account = new Account();
 		Doctor doc = new Doctor();
 		try {
@@ -31,8 +32,6 @@ public class VisualizzaProfiloMedico extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(account.getName() + account.getSurname());
 		
 		request.getSession().setAttribute("infoDoc", doc);
 		request.getSession().setAttribute("accDoc", account);

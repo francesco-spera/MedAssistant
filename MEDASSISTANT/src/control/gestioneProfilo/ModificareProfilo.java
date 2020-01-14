@@ -42,7 +42,7 @@ public class ModificareProfilo extends HttpServlet {
 		InputStream is = part.getInputStream();
 		Blob blob = (Blob) is;
 		user.setPhoto(blob);;
-		if(request.getSession().getAttribute("accPaz")!=null) {
+		if(request.getSession().getAttribute("pazLog")!=null) {
 			user.setPatient(email);
 			Patient paziente = new Patient();
 			paziente.setEmail(email);

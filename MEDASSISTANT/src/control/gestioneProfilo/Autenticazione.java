@@ -25,9 +25,9 @@ public class Autenticazione extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("accPaz")!=null)
+		if(request.getSession().getAttribute("pazLog")!=null)
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
-		if(request.getSession().getAttribute("accDoc")!=null)
+		if(request.getSession().getAttribute("docLog")!=null)
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 		String email = request.getParameter("email");
@@ -47,9 +47,9 @@ public class Autenticazione extends HttpServlet {
 		}
 		
 		if(user.getPatient()!=null)
-			request.getSession().setAttribute("accPaz", user);
+			request.getSession().setAttribute("pazLog", user);
 		else
-			request.getSession().setAttribute("accDoc", user);
+			request.getSession().setAttribute("docLog", user);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 

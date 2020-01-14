@@ -21,25 +21,25 @@ public class VisualizzaProfiloPersonale extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("accPaz")!=null) {
-			if(request.getSession().getAttribute("infoPaz")!=null)
+		if(request.getSession().getAttribute("pazLog")!=null) {
+			if(request.getSession().getAttribute("dettPaz")!=null)
 				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
 			else {
-				Account paziente = (Account) request.getSession().getAttribute("accPaz");
+				Account paziente = (Account) request.getSession().getAttribute("pazLog");
 				try {
-					request.getSession().setAttribute("infoPazz", ProfiloManager.visualizzaPaziente(paziente.getPatient()));
+					request.getSession().setAttribute("dettPaz", ProfiloManager.visualizzaPaziente(paziente.getPatient()));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
 			}
 		} else {
-			if(request.getSession().getAttribute("infoDoc")!=null)
+			if(request.getSession().getAttribute("dettDoc")!=null)
 				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
 			else {
-				Account medico = (Account) request.getSession().getAttribute("accDoc");
+				Account medico = (Account) request.getSession().getAttribute("docLog");
 				try {
-					request.getSession().setAttribute("infoDoc", ProfiloManager.visualizzaMedico(medico.getDoctor()));
+					request.getSession().setAttribute("dettDoc", ProfiloManager.visualizzaMedico(medico.getDoctor()));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

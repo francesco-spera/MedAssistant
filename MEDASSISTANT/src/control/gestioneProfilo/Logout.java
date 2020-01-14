@@ -20,10 +20,10 @@ public class Logout extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("paziente")!=null)
-			request.getSession().removeAttribute("paziente");
-		else if(request.getSession().getAttribute("medico")!=null)
-			request.getSession().removeAttribute("medico");
+		if(request.getSession().getAttribute("pazLog")!=null)
+			request.getSession().removeAttribute("pazLog");
+		else if(request.getSession().getAttribute("docLog")!=null)
+			request.getSession().removeAttribute("pazLog");
 		request.getSession().invalidate();
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

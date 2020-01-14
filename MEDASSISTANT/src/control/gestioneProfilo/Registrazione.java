@@ -35,9 +35,9 @@ public class Registrazione extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("accPaz")!=null)
+		if(request.getSession().getAttribute("pazLog")!=null)
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-		if(request.getSession().getAttribute("accDoc")!=null)
+		if(request.getSession().getAttribute("docLog")!=null)
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 		String email = request.getParameter("email");
@@ -64,7 +64,6 @@ public class Registrazione extends HttpServlet {
 		try {
 			blob = new SerialBlob(content);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		user.setPhoto(blob);
@@ -80,8 +79,8 @@ public class Registrazione extends HttpServlet {
 			medico.setMunicipalityAddress(request.getParameter("munaddr"));
 			try {
 				if(ProfiloManager.registrazione(user, medico)) {
-					request.getSession().setAttribute("accDoc", user);
-					request.getSession().setAttribute("infoDoc", medico);
+					request.getSession().setAttribute("docLog", user);
+					request.getSession().setAttribute("dettDoc", medico);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {
@@ -96,8 +95,8 @@ public class Registrazione extends HttpServlet {
 			paziente.setResidence(request.getParameter("residence"));
 			try {
 				if(ProfiloManager.registrazione(user, paziente)) {
-					request.getSession().setAttribute("accPaz", user);
-					request.getSession().setAttribute("infoPaz", paziente);
+					request.getSession().setAttribute("pazLog", user);
+					request.getSession().setAttribute("dettPaz", paziente);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {

@@ -8,23 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import control.gestioneEmail.EmailUtility;
- 
+
 @WebServlet("/EmailSender")
 public class EmailSender extends HttpServlet {
-	
-    /**
-	 *  setting dei dati per l'invio dell'email
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String host;
     private String port;
     private String user;
     private String pass;
- 
-    /**
-     * setting dati per controllo esistenza utente
-     */
 	
 	StringBuffer packed = new StringBuffer();
     

@@ -20,7 +20,7 @@
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 						<div class="collapse navbar-collapse" id="medilifeMenu">
 							<c:choose>
-								<c:when test="${accPaz == null && accDoc == null}">
+								<c:when test="${pazLog == null && docLog == null}">
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item">
                                             <a class="nav-link" href="${pageContext.request.contextPath}/registrazione.jsp">Registrati</a>
@@ -30,10 +30,10 @@
 										</li>
                                     </ul>
 								</c:when>
-								<c:when test="${accDoc!=null}">
+								<c:when test="${docLog!=null}">
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item">
-                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaProfiloPersonale">Benvenuto, <c:out value="${accDoc.name}"/> <c:out value="${accDoc.surname}"/></a>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaProfiloPersonale">Benvenuto, <c:out value="${docLog.name}"/> <c:out value="${docLog.surname}"/></a>
                                         </li>
 										<li class="nav-item"><h3 class="nav-link" style="visibility:hidden">#######################</h3></li>       
                                         <li class="nav-item">
@@ -47,10 +47,10 @@
                                         </li>
 									</ul>
 								</c:when>
-								<c:when test="${accPaz!=null}">
+								<c:when test="${pazLog!=null}">
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item">
-                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaProfiloPersonale">Benvenuto, <c:out value="${accPaz.name}"/> <c:out value="${accPaz.surname}"/></a>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaProfiloPersonale">Benvenuto, <c:out value="${pazLog.name}"/> <c:out value="${pazLog.surname}"/></a>
                                         </li>
 										<li class="nav-item"><h3 class="nav-link" style="visibility:hidden">#######################</h3></li>
 										<li class="nav-item">
