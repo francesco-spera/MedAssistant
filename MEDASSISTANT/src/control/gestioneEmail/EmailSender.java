@@ -24,8 +24,13 @@ import javax.mail.Session;
 		}
 
 		
+<<<<<<< HEAD
 		public void inviaMailCollegamento(String email, String oggetto, String text) throws MessagingException {
 			EmailSender.send("noreply.medassistant@gmail.com","CiaoCiao123",email, oggetto, text);
+=======
+		public void inviaMailCollegamento(String email) throws MessagingException {
+			EmailSender.send("noreply.medassistant@gmail.com","CiaoCiao123",email, "te arrivat?!", "\norcodi!");
+>>>>>>> dad03b4f92ab5d470414e4ef1408d1170dbc6345
 		}
 		
 		
