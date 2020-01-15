@@ -2603,6 +2603,21 @@ legend {
     width: 100%;
     margin-bottom: 20px;
   }
+  
+  <!-- Voting -->
+ 
+ .animated {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
+}
+
+.rating-header {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
 }
 
  
