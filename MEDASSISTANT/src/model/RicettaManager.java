@@ -13,7 +13,14 @@ import connectionPool.DriverManagerConnectionPool;
 
 public class RicettaManager {
 
-	//Inserire tupla in Prescription
+	/*
+	 * 
+	 * @param r la prescrizione del medico 
+	 * @return false se la prescrizione non è stata salvata con successo o true se la prescrizione è stata salvata correttamente
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static boolean doSave(Prescription r) throws SQLException {
 
 		PreparedStatement ps = null;
@@ -41,8 +48,14 @@ public class RicettaManager {
 			}
 		}
 
-		
-	//Stampare la lista delle prescizioni dato un referto
+	/*
+	 * 
+	 * @param r il referto di cui si vogliono visualizzare le prescrizioni 
+	 * @return null se non è stato trovato alcun referto o ricette che mostra la lista delle prescrizioni dato il referto inserito
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public ArrayList<Prescription> visualizzaRicetteDatoReferto(MedicalReport r){
 
 		PreparedStatement ps = null;
@@ -63,8 +76,15 @@ public class RicettaManager {
 				throw new RuntimeException(e);
 		}
 	}
+	
+	/*
+	 * 
+	 * @param m il medico di cui si vogliono visualizzare le prescrizioni effettuate
+	 * @return null se non è stato trovato alcun referto o ricette che mostra la lista delle prescrizioni dato il medico 
+	 * @throws SQLException
+	 * 
+	 * */
 
-	//Stampare la lista delle prescrizioni dato un medico
 	public ArrayList<Prescription> visualizzaRicetteDatoMedico(Doctor m){
 		
 		PreparedStatement ps = null;

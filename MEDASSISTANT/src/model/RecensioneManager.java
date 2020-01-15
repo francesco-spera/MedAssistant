@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,37 +14,55 @@ import connectionPool.DriverManagerConnectionPool;
 
 public class RecensioneManager {
 
-	//Inserire tupla in Review
-	public static boolean doSave(Voting v) throws SQLException {
+	/*
+	 * 
+	 * @param date la data da aggiungere
+	 * @param vote la votazione da aggiungere
+	 * @param patient il paziente che effettua la votazione da aggiungere
+	 * @param doctor il dottore che riceve la votazione da aggiungere
+	 * @return false se la votazione non è stata aggiunta correttamente o true se la votazione è stata aggiunta correttamente
+	 * @throws SQLException
+	 * 
+	 * */
 	
-		PreparedStatement ps = null;
-		Connection con = null;
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO Review (Date, Ratings, Patient, Doctor) VALUES(?,?,?,?)");
-			ps.setString(1, v.getDate());
-			ps.setFloat(2, v.getVote());
-			ps.setString(3, v.getPatient());
-			ps.setString(4, v.getDoctor());
-			if (ps.executeUpdate() != 1) 
-				throw new RuntimeException("INSERT error.");
-				else
-				return true;
-			}
-			finally {
-				try {
-					if(ps!= null) {
-						ps.close();
-						return false;
-					}
-					}
-				finally {
-					DriverManagerConnectionPool.releaseConnection(con);
-				}
-			}
-		}
+	public static boolean doSave(Date date, int vote, String patient, String doctor ) throws SQLException {
+		  
+	    PreparedStatement ps = null;
+	    Connection con = null;
+	    try {
+	      con = DriverManagerConnectionPool.getConnection();
+	      ps = con.prepareStatement("INSERT INTO voting (Date, Vote, Patient, Doctor) VALUES(?,?,?,?)");
+	      ps.setDate(1, date);
+	      ps.setFloat(2, vote);
+	      ps.setString(3, patient);
+	      ps.setString(4, doctor);
+	      if (ps.executeUpdate() != 1) 
+	        throw new RuntimeException("INSERT error.");
+	        else
+	        return true;
+	      }
+	      finally {
+	        try {
+	          if(ps!= null) {
+	            ps.close();
+	            return false;
+	          }
+	          }
+	        finally {
+	          DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	      }
+	    }
+	
+	/*
+	 * 
+	 * @param p il paziente che ha effettuato le votazioni
+	 * @return null se il paziente non ha effettuato alcuna votazione o recensioni che stampa la lista di votazioni effettuate dal paziente
+	 * @throws SQLException
+	 * 
+	 * 
+	 * */
 
-	//Stampare la lista di recensioni dato un paziente
 	public ArrayList<Voting> VisualizzaVotazioniPaziente(Patient p){
 		
 		PreparedStatement ps = null;
@@ -67,8 +86,15 @@ public class RecensioneManager {
 
 
 	}
+	
+	/*
+	 * 
+	 * @param m il medico che ha ricevuto le votazioni
+	 * @return null se il medico non ha ricevuto alcuna votazione o recensioni che stampa la lista di votazioni ricevute dal medico
+	 * @throws SQLException
+	 * 
+	 * */
 
-	//Stampare la lista di recensioni dato un medico
 	public ArrayList<Voting> VisualizzaVotiMedico(Doctor m){
 				
 		PreparedStatement ps = null;

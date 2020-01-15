@@ -13,10 +13,17 @@ import connectionPool.DriverManagerConnectionPool;
 public class RefertoManager {
 	
 
-	//Inserire tupla in MedicalReport
+	/*
+	 * 
+	 * @param r referto da salvare
+	 * @param d il dottore che ha compilato il referto
+	 * @return false se il salvataggio non è avvenuto con successo o true  se il salvataggio è avvenuto correttamente
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public boolean doSave(MedicalReport r, Doctor d) throws SQLException {
-		//INSERT INTO MedicalReport(Object, Description, Doctor)
-		//VALUES(?, ?, ?)
+	
 
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -42,12 +49,16 @@ public class RefertoManager {
 		}
 	}
 
-	//Stampare la lista dei referti dato un paziente
+	/*
+	 * 
+	 * @param email l'email del paziente
+	 * @return null se non è stato trovato alcun paziente o medrep che mostra la lista dei referti del paziente
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public ArrayList<MedicalReport> doRetrieveByPaziente(String email) throws SQLException{
-		//SELECT *
-		//FROM Patient P, Link L, MedicalReport M
-		//WHERE P.IDPatient = L.Patient AND L.Doctor = M.Doctor;
-
+		
 		PreparedStatement ps = null;
 		Connection con = null;
 		MedicalReport m = null;
@@ -80,11 +91,16 @@ public class RefertoManager {
 
 	}
 
-	//Stampare la lista dei referti dato un medico
+	/*
+	 * 
+	 * @param email l'email del medico
+	 * @return null se non è stato trovato alcun medico o medrep che mostra la lista dei referti dato un medico
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public ArrayList<MedicalReport> doRetrieveByMedico(String email) throws SQLException{
-		//SELECT *
-		//FROM Doctor D, MedicalReport M
-		//WHERE D.IDDoctor = M.Doctor;
+		
 		PreparedStatement ps = null;
 		Connection con = null;
 		MedicalReport m = null;

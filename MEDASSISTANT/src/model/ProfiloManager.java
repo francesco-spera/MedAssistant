@@ -12,6 +12,18 @@ import connectionPool.DriverManagerConnectionPool;
 
 public class ProfiloManager {
 
+	
+	
+	/*
+	 * 
+	 * @param email l'email da autenticare
+	 * @param password la password dell'account che serve per l'autenticazione
+	 * @return null se l'autenticazione non è andata a buon fine o user se l'account è stato autenticato con successo
+	 * @throws SQLException
+	 * 
+	 * */
+	
+	
 	public static Account autenticazione(String email, String password) throws SQLException {
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -76,6 +88,16 @@ public class ProfiloManager {
 		return  user;
 	}
 	
+	
+	/*
+	 * 
+	 * @param account l'account da registrare
+	 * @param patient il paziente da associare all'account da registrare
+	 * @return false se la registrazione non è andata a buon fine o true se la registrazione è avvenuta correttamente
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static boolean registrazione(Account account, Patient patient) throws SQLException {
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -111,6 +133,15 @@ public class ProfiloManager {
 			}
 		}
 	}
+	
+	/*
+	 * 
+	 * @param account l'account da registrare
+	 * @param patient il medico da associare all'account da registrare
+	 * @return false se la registrazione non è andata a buon fine o true se la registrazione è avvenuta correttamente
+	 * @throws SQLException 
+	 * 
+	 * */
 	
 	public static boolean registrazione(Account account, Doctor doctor) throws SQLException {
 		PreparedStatement ps = null;
@@ -150,6 +181,15 @@ public class ProfiloManager {
 		}
 	}
 	
+	/*
+	 * 
+	 * @param email l'email del paziente da visualizzare
+	 * @return null se la visualizzazione delle informazioni del paziente non è andata a buon fine o true se la visualizzazione delle informazioni del paziente è avvenuta con successo
+	 * @throws SQLException
+	 * 
+	 * 
+	 * */
+	
 	public static Patient visualizzaPaziente(String email) throws SQLException {
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -176,6 +216,14 @@ public class ProfiloManager {
 		}
 		return patient;
 	}
+	
+	/*
+	 * 
+	 * @param email l'email del medico da visualizzare
+	 * @return null se la visualizzazione delle informazioni del medico non è andata a buon fine o true se la visualizzazione delle informazioni del medico è avvenuta con successo
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	public static Doctor visualizzaMedico(String email) throws SQLException {
 		PreparedStatement ps = null;
@@ -206,6 +254,15 @@ public class ProfiloManager {
 		}
 		return doctor;
 	}
+	
+	/*
+	 * 
+	 * @param account l'account associato al paziente 
+	 * @param pazient il paziente di cui si vogliono modificare delle informazioni personali
+	 * @return null se la modifica delle informazioni del paziente non è andata a buon fine o true se la modifica delle informazioni del paziente è avvenuta con successo
+	 * @throws SQLException 
+	 * 
+	 * */
 	
 	public static boolean modificaProfilo(Account account, Patient patient) throws SQLException {
 		PreparedStatement ps = null;
@@ -278,6 +335,16 @@ public class ProfiloManager {
 			}
 		}
 	}
+	
+	/*
+	 * 
+	 * @param account l'account associato al medico 
+	 * @param doctor il medico di cui si vogliono modificare delle informazioni personali
+	 * @return null se la modifica delle informazioni del medico non è andata a buon fine o true se la modifica delle informazioni del medico è avvenuta con successo
+	 * @throws SQLException 
+	 * 
+	 * 
+	 * */
 	
 	public static boolean modificaProfilo(Account account, Doctor doctor) throws SQLException {
 		PreparedStatement ps = null;
@@ -364,6 +431,14 @@ public class ProfiloManager {
 			}
 		}
 	}
+	
+	/*
+	 * 
+	 * @param email l'email dell'account cercare
+	 * @return null se la ricerca è andata a buon fine o true se la ricerca è avvenuta con successo
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	public static boolean cercaAccount(String email) throws SQLException {
 		PreparedStatement ps = null;

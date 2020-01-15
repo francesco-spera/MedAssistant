@@ -14,7 +14,15 @@ public class CollegamentoManager {
 
 
 
-	//Stampare il paziente collegato ad un account
+	/*
+	 * 
+	 * @param email del paziente collegato ad un account
+	 * @return null se non esiste alcun account associato all' email o il paziente se ha trovato l'account associato
+	 * @throws SQLException
+	 * 
+	 * 
+	 * */
+	
 	public static Patient doRetrieveByPazienteCollegato(String email) throws SQLException {
 
 
@@ -47,8 +55,15 @@ public class CollegamentoManager {
 
 
 	}
-
-	//Stampare il medico collegato ad un account
+	
+	/*
+	 * 
+	 * @param email del medico collegato ad un account
+	 * @return null se non esiste alcun account associato all' email o il medico se ha trovato l'account associato
+	 * @throws SQLException 
+	 * 
+	 * */
+	
 	public static Doctor doRetrieveByMedicoCollegato(String email) throws SQLException {
 
 	
@@ -83,7 +98,15 @@ public class CollegamentoManager {
 
 	}
 
-	//Stampare la lista dei medici collegati ad un paziente
+	
+	/*
+	 * 
+	 * @param email del paziente di cui si vuole visualizzare la lista dei medici collegati
+	 * @return null se non esiste alcun paziente o medici che mostra la lista dei medici se esiste il paziente collegato
+	 * @throws SQLException 
+	 * 
+	 * */
+	
 
 	public static ArrayList<Doctor> doRetrieveAll(String email) throws SQLException {
 
@@ -124,7 +147,16 @@ public class CollegamentoManager {
 
 
 
-	//Creare collegamento paziente medico
+	/*
+	 * 
+	 * @param paziente il paziente da collegare al medico
+	 * @param medico il medico da collegare al paziente
+	 * @param state 
+	 * @return false se non crea un collegamento o true se il collegamento viene creato correttamente
+	 * @throws SQLException 
+	 * 
+	 * */
+	
 
 	public static boolean creaCollegamento(String paziente, String medico, int state) throws SQLException {
 
@@ -156,7 +188,19 @@ public class CollegamentoManager {
 	}
 	
 	
-	//modifica stato collegamento
+	/*
+	 * 
+	 * 
+	 * @param paziente il paziente da collegare al medico
+	 * @param medico il medico da collegare al paziente
+	 * @param state 
+	 * @return false se il collegamento non è stato modificato correttamente o true se il collegamento viene modificato correttamente
+	 * @throws SQLException 
+	 * 
+	 * 
+	 * */
+	
+	
 	public static boolean modificaStatoCollegamento(String paziente, String medico, int state) throws SQLException {
 
 		
