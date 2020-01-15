@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Account;
 import control.gestioneEmail.EmailSender;
 
 
@@ -28,8 +29,8 @@ public class RichiedereCollegamento extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("accPaz")==null)
-			request.getRequestDispatcher("presentation/account/login.jsp").forward(request, response);
+		if(request.getSession().getAttribute("pazLog")==null)
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		
 		
 		
@@ -38,6 +39,11 @@ public class RichiedereCollegamento extends HttpServlet {
 		String emailmed = request.getParameter("email");
 		String oggetto = request.getParameter("oggetto");
 		String text = request.getParameter("text");
+		Account patient = (Account) request.getSession().getAttribute("pazLog");
+		System.out.println(patient.getPatient());
+		text=text.concat(patient.getPatient());
+		
+		//fare query per ricavare email paziente che richiede collegamento e aggiungerlo a text
 
 		try {
 			
