@@ -38,7 +38,7 @@
 	<div class="container mt-5">
 	    <h1>Profilo del dott. <c:out value="${accDoc.surname}"/></h1>
 	    <img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
-		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(), 'sperafrancesco666@outlook.it','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei',6000)">
+		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(),'${infoDoc.email}','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei: http://localhost:8080/MEDASSISTANT/visualizzaCollegamento.jsp?email=',6000)">
 
 <div class="container">
 <div class="row" style="margin-top:40px;">
@@ -55,7 +55,7 @@
           <span class="field-label-header">Indica un valore da 1 a 5:</span><br>
           <span class="field-label-info"></span>
           <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
-          <input type="hidden" name="emaildoc" value="${accDoc.doctor}">
+          <input type="hidden" id="emaildoc" name="emaildoc" value="${infoDoc.email}">
           </label>
           <h2 class="bold rating-header" style="">
           <span class="selected-rating">0</span><small> / 5</small>
