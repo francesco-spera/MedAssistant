@@ -27,34 +27,63 @@
 
 	<%@ include file="core/header/header.jsp" %>
 
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+
 	<div>
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
+	
+	
+	
 	</div>
 
-   <h6>Richiesta di collegamento</h6>
-
+	<div class="text-center">
+   <h3>Richiesta di collegamento</h3>
+	</div>
     <hr>
     
-		<div class="container">
+		<div class="container text-center">
 		<form method="get" action="${pageContext.request.contextPath}/RispostaCollegamento">
-			  <div class="form-group">
-			    <h6>Hai ricevuto una nuova richiesta di collegamento da: <%=request.getParameter("email") %></h6>
+			  <div class="form-group text-center">
+			    <h5>Hai ricevuto una nuova richiesta di collegamento da: <%=request.getParameter("email") %></h5>
 			  </div>
-			  <div class="form-group">
+			  <br>
+			  <div class="form-group text-center">
 			    <label>Vuoi accettare o rifiutare il collegamento?</label>
 			  </div>
+			  <br>
 		<input type="hidden" id="response" name="response" value="" required="required">
-		<button type="button" class="btnresponse btn btn-default btn-lg" data-attr="1" id="rating-star-1"> Accetta</button>
-        <button type="button" class="btnresponse btn btn-default btn-lg" data-attr="2" id="rating-star-2">Rifiuta</button>
+		<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="1" id="rating-star-1"> Accetta</button>
+        <button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="rating-star-2">Rifiuta</button>
         <input type="hidden" id="email" name="email" value="<%=request.getParameter("email") %>" required="required">
-		<input type="submit" class="btn btn-primary" value="Salva" >
 		
 		</form>
 	  	</div>
+	
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	
 
 

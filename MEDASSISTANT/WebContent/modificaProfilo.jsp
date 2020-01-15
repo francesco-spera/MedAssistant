@@ -37,18 +37,18 @@
 	<div class="container" style="margin-bottom: 16px;">
 		<div class="row mx-auto">
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-				<h1>Profilo personale</h1>
+				<h2>Profilo personale</h2>
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<h5 class="card-title text-center">Modifica il profilo</h5>
+						<h5 class="card-title text-center">Modifica il profilo</h5><hr>
 							<c:choose>
 	    					<c:when test="${accDoc!=null}">
 							<form action="${pageContext.request.contextPath}/ModificareProfilo" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
-								<h1>Informazioni generali</h1>
+								<h4>Informazioni generali</h4> <br><br>
 								<div class="form-label-group">
 									<label for="inputEmail">Email</label>
 									<input type="email" id="inputEmail" name="email" class="form-control" placeholder="${infoDoc.email}">
-								</div>
+								</div>								
 								<div class="form-label-group">
 									<label for="inputPassword">Password</label>
 									<input type="password" id="inputPassword" name="psw" class="form-control" placeholder="${infoDoc.password}">
@@ -73,7 +73,7 @@
 									<label>Foto</label>
 									<input type="file" name="photo" class="form-control" placeholder="${accDoc.photo}" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 								</div>
-								<h3>Informazioni specifiche account</h3>
+								<h3>Informazioni specifiche account</h3> <br><br>
 								<div class="form-label-group">
 									<label>Numero di telefono</label>
 									<input type="number" name="mobilep" class="form-control" placeholder="${infoDoc.phoneNumber}">
@@ -95,7 +95,7 @@
                     		</c:when>
                     		<c:otherwise>
                     		<form action="${pageContext.request.contextPath}/ModificareProfilo" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
-								<h1>Informazioni generali</h1>
+								<h4>Informazioni generali</h4><br><br>
 								<div class="form-label-group">
 									<label for="inputEmail">Email</label>
 									<input type="email" id="inputEmail" name="email" class="form-control" placeholder="${infoPaz.email}">
@@ -124,7 +124,7 @@
 									<label>Foto</label>
 									<input type="file" name="photo" class="form-control" placeholder="${accPaz.photo}" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 								</div>
-								<h3>Informazioni specifiche account</h3>
+								<h4>Informazioni specifiche account</h4><br><br>
 								<div class="form-label-group">
 									<label>Residenza</label>
 									<input type="text" name="residence" class="form-control" placeholder="${infoPaz.residence}">
