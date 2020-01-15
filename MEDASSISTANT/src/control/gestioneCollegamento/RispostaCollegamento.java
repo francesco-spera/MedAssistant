@@ -54,8 +54,9 @@ public class RispostaCollegamento extends HttpServlet {
 			String oggettoRifiuto = "Collegamento rifiutato dal medico";
 			String textRifiuto = "Attenzione, questo è un avviso di rifiuto di collegamento da parte di un medico.";
 			try {
+				CollegamentoManager.modificaStatoCollegamento(request.getParameter("email"), doc.getDoctor(), 2);
 				email.inviaMailCollegamento(emailPaz, oggettoRifiuto, textRifiuto);
-			} catch (MessagingException e) {
+			} catch (MessagingException | SQLException e) {
 				e.printStackTrace();
 			}
 			
