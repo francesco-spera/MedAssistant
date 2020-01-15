@@ -36,41 +36,72 @@
           <div class="row mx-auto">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card card-signin my-5">
-                <div class="card-body">
-                  <h5 class="card-title text-center"style="color:dark blue;">Crea un nuovo account</h5>	
-
-					<input type="radio" name="gender" value="accType" onclick="document.getElementById('regPaz').style.visibility='visible'">Paziente
-					<input type="radio" name="gender" value="accType" onclick="document.getElementById('regMed').style.visibility='visible'">Medico
-
-					<div id="regPaz" style="visibility: hidden">
-						<h2>REGISTRAZIONE PAZIENTE</h2>
+                <div class="card-body" >
+                  <h3 class="card-title text-center"style="color:dark blue;">Crea un nuovo account</h3>	
+                  <hr>
+                  <br>
+                  
+                  
+                  
+                  <div class="container">
+                         
+	                  <div class="row">   
+	                    
+	                    <div class="col-1">
+	                  	   
+	                  	</div>  
+	                  	
+	                  	<div class="col-md-3">
+	                  	   
+	                  	     <label>Paziente</label> 
+	                  	</div>  
+	                  
+	                  	<div class="col-md-3">   
+	                  	
+			                  <label class="switch">
+						      <input  type="checkbox"  onclick="SwapDivsWithClick(regPaz,regMed)">
+						        <span class="slider round"  ></span>
+						     </label>
+						     
+						</div>
+					
+						<div class="col-md-3">   
+	                  	     <label>Medico</label> 
+	                  	</div>  
+					     
+				     </div>
+			     </div>
+			    <br><br>
+					
+				
+					<div id="regPaz" >
+						<h4>Registrazione paziente</h4>
 						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
 						   <input type="text"  class="form-control" name="email" placeholder="email">
 							<input type="password"  class="form-control" name="psw" placeholder="password">
-						<h3>INFORMAZIONI PERSONALI</h3>
+						<h4>Informazioni personali</h4>
 							<input type="text"  class="form-control" name="name" placeholder="nome">
 							<input type="text"  class="form-control" name="surname" placeholder="cognome">
 							<input type="date"  class="form-control" name="birth" placeholder="data di nascita">
 							<input type="text"  class="form-control" name="cf" placeholder="codice fiscale">
-							<input type="file"  class="form-control" name="photo" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
+							<input id="img" type="file"  class="form-control" name="photo" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 							<input type="text"  class="form-control" name="domicile" placeholder="domicilio">
 							<input type="text"  class="form-control" name="residence" placeholder="residenza">
 							<input type="submit" class="btn btn-primary btn-block" value="Submit">
 						</form>
 					</div>
-					<br>
-
-					<div id="regMed" style="visibility: hidden">
-						<h2>REGISTRAZIONE MEDICO</h2>
+														
+					<div id="regMed" style="display:none;">
+						<h4>Registrazione medico</h4>
 						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormMed(regForm)">
 							<input type="text" class="form-control" name="email" placeholder="email">
 							<input type="password" class="form-control" name="psw" placeholder="password">
-						<h3>INFORMAZIONI PERSONALI</h3>
+						<h4>Informazioni personali</h4>
 							<input type="text" class="form-control" name="name" placeholder="nome">
 							<input type="text" class="form-control" name="surname" placeholder="cognome">
 							<input type="date" class="form-control" name="birth" placeholder="data di nascita">
 							<input type="text" class="form-control" name="cf" placeholder="codice fiscale">
-							<input type="text" class="form-control" name="photo" placeholder="foto">
+							<input id="img" type="file"  class="form-control" name="photo" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 							<input type="tel" class="form-control" name="mobilep" placeholder="mobilephone">
 							<input type="text" class="form-control" name="studioaddr" placeholder="indirizzo studio">
 							<input type="text" class="form-control" name="munaddr" placeholder="comune studio">
@@ -88,7 +119,7 @@
 						</form>
 					</div> 
 					<br>
-						<p class="text-center" style="color:dark blue">Hai già un account? <a href="login.jsp" style="color:light blue;">Accedi</a> </p>
+						<p class="text-center" style="color:#081f3e">Hai già un account? <a  href="login.jsp" style="color:#68b3fd; " >Accedi</a> </p>
 				</div>
 			</div>
 		</div>
@@ -105,6 +136,26 @@
 <br>
 <br>
 <br>
+
+
+<script type="text/javascript">
+function SwapDivsWithClick(div1,div2)
+{
+   d1 = document.getElementById("regPaz");
+   d2 = document.getElementById("regMed");
+   if( d2.style.display == "none" )
+   {
+      d1.style.display = "none";
+      d2.style.display = "block";
+   }
+   else
+   {
+      d1.style.display = "block";
+      d2.style.display = "none";
+   }
+}
+</script>
+
 
 
 <%@ include file="core/header/footer.jsp" %>  

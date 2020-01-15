@@ -49,7 +49,7 @@
   padding: 0; }
 
 body {
-  font-family: "Roboto", sans-serif; }
+  font-family: "", ; }
 
 h1,
 h2,
@@ -221,7 +221,7 @@ img {
   height: 800px !important; }
 
 #scrollUp {
-  background-color: #006cff;
+  background-color:#68b3fd;
   border-radius: 50%;
   bottom: 60px;
   right: 60px;
@@ -235,7 +235,10 @@ img {
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms; }
   #scrollUp:hover {
-    background-color: #081f3e; }
+    background-color: #e9ecef;
+    color: #081f3e; 
+    border-radius: 50%;
+    }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     #scrollUp {
       bottom: 30px;
@@ -285,9 +288,11 @@ img {
     margin-bottom: 0; }
 
 .btn {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0 2px 5px rgb(1, 3, 68); 
+  background-color : #68b3fd; }
   .btn:hover, .btn:focus {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); }
+    box-shadow: 0 5px 20px rgb(1, 3, 68);
+    background-color : #68b3fd; }
 
 .medilife-btn {
   display: inline-block;
@@ -322,15 +327,15 @@ img {
     color: #ffffff; }
   .medilife-btn:hover span, .medilife-btn:focus span {
     color: #ffffff;
-    background-color: #006cff; }
+    background-color: #68b3fd; }
   .medilife-btn.btn-2 {
     background-color: #081f3e;
     color: #ffffff; }
     .medilife-btn.btn-2 span {
       color: #ffffff;
-      background-color: #006cff; }
+      background-color: #68b3fd; }
     .medilife-btn.btn-2:hover, .medilife-btn.btn-2:focus {
-      background-color: #006cff;
+      background-color: #68b3fd;
       color: #ffffff; }
     .medilife-btn.btn-2:hover span, .medilife-btn.btn-2:focus span {
       color: #ffffff;
@@ -339,7 +344,7 @@ img {
     background-color: #ffffff;
     color: #081f3e;
     border: 2px solid;
-    border-color: #006cff; }
+    border-color: #68b3fd; }
     .medilife-btn.btn-3 span {
       top: -2px;
       right: -2px; }
@@ -347,9 +352,9 @@ img {
     background-color: #ffffff;
     color: #081f3e;
     border: 2px solid;
-    border-color: #006cff; }
+    border-color: #68b3fd; }
     .medilife-btn.btn-4 span {
-      background-color: #006cff;
+      background-color: #68b3fd;
       top: -2px;
       right: -2px; }
 
@@ -394,7 +399,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #006cff;
+    background-color: #081f3e;
     opacity: 0.85;
     content: ''; }
 
@@ -687,8 +692,20 @@ img {
   color: #495057;
   margin-bottom: 30px;
   font-weight: 500;
-  padding: 0 15px;
-  border: 2px solid #536174; }
+ }
+ 
+ #img {
+  background-color: transparent;
+  width: 100%;
+  height: 38px;
+  border-radius: 0;
+  border:none;
+  font-size: 14px;
+  font-style: italic;
+  color: #495057;
+  margin-bottom: 30px;
+  font-weight: 500;
+ }
   .form-control:hover, .form-control:focus {
     background-color: transparent;
     box-shadow: none; }
@@ -896,7 +913,7 @@ textarea {
 
 /* :: 12.0 Footer Area CSS */
 .footer-area {
-  background-color: #020f20;
+  background-color: #081f3e;
   padding-left: 45px;
   padding-right: 45px; }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -935,7 +952,7 @@ textarea {
     display: inline-block; }
 .footer-widget-area .widget-title h6 {
   font-size: 18px;
-  color: #006cff;
+  color: #68b3fd;
   margin-bottom: 50px;
   text-transform: capitalize; }
 .footer-widget-area .widget-single-blog-post {
@@ -956,7 +973,7 @@ textarea {
   .footer-widget-area .widget-single-blog-post .widget-post-content p {
     font-size: 12px; }
 .footer-widget-area .footer-contact-form {
-  background-color: #081f3e;
+  background-color: #000000;
   padding: 30px 40px; }
   @media only screen and (max-width: 767px) {
     .footer-widget-area .footer-contact-form {
@@ -1559,7 +1576,7 @@ textarea {
   margin-bottom: 0;
   text-transform: uppercase; }
   .single-accordion h6 a {
-    background-color: #1d1d1d;
+    background-color: #081f3e;
     border-radius: 0;
     color: #ffffff;
     display: block;
@@ -1580,8 +1597,8 @@ textarea {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         filter: alpha(opacity=0); }
     .single-accordion h6 a.collapsed {
-      background-color: #006cff;
-      color: #ffffff; }
+      background-color: #68b3fd;
+      color: #fff; }
       .single-accordion h6 a.collapsed span.accor-close {
         opacity: 0;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -2276,7 +2293,6 @@ legend {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  background: #d9eff5;
   padding: 15px;
   font-family: 'Lato', sans-serif;
 }
@@ -2337,7 +2353,7 @@ legend {
   min-width: 100px;
   height: 40px;
   padding: 0 15px;
-  background: #00bbec;
+  background: #081f3e;
   white-space: nowrap;
   border-radius: 0;
   font-size: 14px;
@@ -2350,7 +2366,10 @@ legend {
 }
 
 .s009 form .inner-form .input-field .btn-search:hover, .s009 form .inner-form .input-field .btn-search:focus {
-  background: #00a7d3;
+  background: #68b3fd;
+  color: #081f3e;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+  
 }
 
 .s009 form .inner-form .input-field .btn-delete {
@@ -2376,7 +2395,7 @@ legend {
 
 .s009 form .inner-form .basic-search {
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  border-bottom: 2px solid #00bbec;
+  border-bottom: 2px solid #fff;
 }
 
 .s009 form .inner-form .basic-search .input-field {
@@ -2620,4 +2639,83 @@ legend {
 
 }
 
- 
+.btn-primary {
+    border-style: none; 
+}
+
+.btnrating{
+	
+	background-color: #fff;
+	color: #081f3e;
+}
+
+
+.btn.btn-success.btn-green{
+	
+	    border-style: none; 
+	
+}
+
+/*SWITCH REGISTRAZIONE*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #081f3e;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #68b3fd;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #68b3fd;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+

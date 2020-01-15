@@ -55,7 +55,7 @@
           <span class="field-label-header">Indica un valore da 1 a 5:</span><br>
           <span class="field-label-info"></span>
           <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
-          <input type="hidden" id="emaildoc" name="emaildoc" value="${infoDoc.email}">
+          <input type="hidden" name="emaildoc" value="${accDoc.doctor}">
           </label>
           <h2 class="bold rating-header" style="">
           <span class="selected-rating">0</span><small> / 5</small>
