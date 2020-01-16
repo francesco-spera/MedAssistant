@@ -119,8 +119,8 @@ public class RicercaManager {
 					  ps.setString(1,"%"+surname+ "%") ;
 				  }
 				  else {
-					ps = con.prepareStatement("SELECT email, domicile, residence FROM patient p, account a WHERE p.email = a.patient AND CONCAT( name,  ' ', surname ) LIKE ?;");
-					  ps.setString(1,"%" + name + " "+surname+ "%") ; //%name surname%
+					ps = con.prepareStatement("SELECT email, domicile, residence FROM patient p, account a, link l, doctor d WHERE p.email = a.patient AND l.state=1 AND l.patient=p.email AND l.doctor=? AND CONCAT( name,  ' ', surname ) LIKE ?;");
+					ps.setString(1,"%" + name + " "+surname+ "%") ; //%name surname%
 				  }
 					  		 
 				ResultSet rs = ps.executeQuery();
