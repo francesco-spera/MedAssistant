@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,18 +27,18 @@ public class CercarePazienteNome extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
 		try {
 			ArrayList<Patient> patient = RicercaManager.cercaPazienteNome(request.getParameter("name"), request.getParameter("surname"));
+			request.setAttribute("infoPaz", patient);
 			ArrayList<Account> account = new ArrayList<Account>();
 			for(Patient pat: patient) {
 				 account.add(RicercaManager.cercaAccountPaziente(pat.getEmail()));
 			}
-			if(patient==null) {
-				//momentaneo
-				System.out.println("paziente non trovato");
-			}
-			request.getSession().setAttribute("accPaz", account);
-			request.getRequestDispatcher("/risultatiCercaPaziente.jsp").forward(request, response);			
+			request.setAttribute("accPaz", account);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/risultatiCercaPaziente.jsp");
+			requestDispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
