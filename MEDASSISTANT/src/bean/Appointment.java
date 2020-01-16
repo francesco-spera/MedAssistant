@@ -18,6 +18,14 @@ public class Appointment {
 		this.doctor = doctor;
 	}
 	
+	public String getPatient() {
+		return patient;
+	}
+	
+	public void setPatient(String patient) {
+		this.patient = patient;
+	}
+	
 	public String getDate() {
 		return date;
 	}
@@ -45,7 +53,7 @@ public class Appointment {
 
 
 	private int idAppointment, state;
-	private String time, doctor, date;
+	private String time, doctor, patient, date;
 	
 	//state = 0 in attesa
 	//state = 1 confermato

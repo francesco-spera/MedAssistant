@@ -1,3 +1,4 @@
+<%@page import="model.RicercaManager"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c"
@@ -9,6 +10,8 @@
 <html>
 <%@ page contentType="text/html; charset=ISO-8859-1"
 	import="java.util.*,bean.Appointment"%>
+	<%@ page contentType="text/html; charset=ISO-8859-1"
+	import="java.util.*,bean.Account"%>
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="">
@@ -140,7 +143,6 @@
 
 			events: [
 				{
-					title: 'All Day Event',
 					start: new Date(y, m, 1)
 				}
 					<%
@@ -148,9 +150,10 @@
 					while (it.hasNext()) {
 						Appointment bean = (Appointment) it.next();
 						String[] date = bean.getDate().split("-");
+						Account pat = RicercaManager.cercaAccountPaziente(bean.getPatient());
 					%>
 				
-					<%= ", { title: ' APPUNTAMENTI SENZA NOME',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", 10, 0), allDay: false, className: 'success'}" %>
+					<%= ", { title: '"+pat.getName()+" "+pat.getSurname()+"',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", 10, 0), allDay: false, className: 'success'}" %>
 					<%}%>
 				
 
