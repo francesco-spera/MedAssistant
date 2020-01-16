@@ -58,19 +58,21 @@ public class RicercaManager {
 	 * 
 	 * @param name il nome del medico che si vuole cercare
 	 * @param surname  il cognome del medico che si vuole cercare
+	 * @param emailpaz la mail del paziente a cui è associato il medico da cercare
 	 * @return null se non è stato trovato alcun medico o doc che mostra le informazioni del medico cercato
 	 * @throws SQLException
 	 * 
 	 * */
 	
-	public static ArrayList<Doctor> cercaMedicoNome(String name, String surname) throws SQLException{
+	public static ArrayList<Doctor> cercaMedicoNome(String name, String surname, String emailpaz) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ArrayList<Doctor> doc = new ArrayList<Doctor>();
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d, account a WHERE d.email = a.doctor AND CONCAT( name,  ' ', surname ) LIKE ?;");
-			ps.setString(1,"%" + name + " " +surname+ "%") ;
+			ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d, account a, link l WHERE d.email = a.doctor AND l.state = 1 AND l.doctor = d.email AND l.patient = ?  AND CONCAT( name,  ' ', surname ) LIKE ?;");
+			ps.setString(1, emailpaz);
+			ps.setString(2,"%" + name + " " +surname+ "%") ;
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Doctor m = new Doctor();
@@ -230,7 +232,7 @@ public class RicercaManager {
 		Account m = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT name, surname, birthdate, photo FROM account a WHERE a.doctor = ?;");
+			ps = con.prepareStatement("SELECT name, surname, birthdate, photo, doctor FROM account a WHERE a.doctor = ?;");
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
@@ -239,6 +241,7 @@ public class RicercaManager {
 				m.setSurname(rs.getString(2));
 				m.setBirthDate(rs.getString(3));
 				m.setPhoto(rs.getBlob(4));
+				m.setDoctor(rs.getString(5));
 			}
 		} finally {
 			try {
