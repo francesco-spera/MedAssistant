@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Account;
 import bean.Appointment;
 import model.AppuntamentoManager;
+import model.RicercaManager;
 
 /**
  * Servlet implementation class VisualizzareAppuntamento
@@ -31,13 +33,17 @@ public class VisualizzareAppuntamento extends HttpServlet {
 		
 		int AppointmentID = Integer.parseInt(request.getParameter("id"));
 		Appointment app = new Appointment();
+		Account pat = new Account();
 		try {
 			app = AppuntamentoManager.visualizzaAppuntamento(AppointmentID);
+			pat = RicercaManager.cercaAccountPaziente(app.getPatient());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		
+		request.getSession().setAttribute("AppointmentPat", pat);
 		request.getSession().setAttribute("Appointment", app);
 		request.getRequestDispatcher("/visualizzaAppuntamento.jsp").forward(request, response);
 		
