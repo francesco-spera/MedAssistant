@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
-import model.RecensioneManager;
+import model.VotazioneManager;
 
 @WebServlet("/VotaMedico")
 public class VotaMedico extends HttpServlet {
@@ -41,7 +41,7 @@ public class VotaMedico extends HttpServlet {
 			try {
 
 					
-					RecensioneManager.doSave(sqlDate, voto, patient.getPatient(),emaildoc);
+					VotazioneManager.doSave(sqlDate, voto, patient.getPatient(),emaildoc);
 					
 			
 				} catch (SQLException e) {

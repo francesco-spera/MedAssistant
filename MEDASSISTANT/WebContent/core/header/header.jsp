@@ -40,7 +40,7 @@
                                             <a class="nav-link" href="${pageContext.request.contextPath}/IMieiPazienti">I miei pazienti</a>
                                         </li>
 									  	<li class="nav-item">
-                                            <a class="nav-link" href="${pageContext.request.contextPath}/#">I miei appuntamenti</a>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/VisualizzaAgenda">I miei appuntamenti</a>
                                         </li>
                                         <li class="nav-item">
                                         	<a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
