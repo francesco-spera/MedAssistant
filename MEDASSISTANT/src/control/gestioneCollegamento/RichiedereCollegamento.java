@@ -1,6 +1,7 @@
 package control.gestioneCollegamento;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
 import control.gestioneEmail.EmailSender;
+import model.CollegamentoManager;
 
 
 @WebServlet("/RichiedereCollegamento")
@@ -49,10 +51,11 @@ public class RichiedereCollegamento extends HttpServlet {
 			
 			EmailSender email = new EmailSender();
 			email.inviaMailCollegamento(emailmed, oggetto, text);
+			CollegamentoManager.creaCollegamento(patient.getPatient(), emailmed, 0);
 			
 			
 		
-		} catch (MessagingException e) {
+		} catch (MessagingException | SQLException e) {
 			e.printStackTrace();
 		}
 		
