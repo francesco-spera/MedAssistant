@@ -1,8 +1,7 @@
-package control.gestioneAgenda;
+package control.gestioneAppuntamento;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,38 +9,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Account;
 import bean.Appointment;
 import model.AppuntamentoManager;
 
 /**
- * Servlet implementation class visualizzaAgenda
+ * Servlet implementation class VisualizzareAppuntamento
  */
-@WebServlet("/VisualizzaAgenda")
-public class VisualizzaAgenda extends HttpServlet {
+@WebServlet("/VisualizzareAppuntamento")
+public class VisualizzareAppuntamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-    public VisualizzaAgenda() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public VisualizzareAppuntamento() {
         super();
-
+        // TODO Auto-generated constructor stub
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Account doctor = (Account) request.getSession().getAttribute("docLog");
-		ArrayList<Appointment> app = new ArrayList<Appointment>();
-		System.out.println(doctor.getDoctor());
+		
+		int AppointmentID = Integer.parseInt(request.getParameter("id"));
+		Appointment app = new Appointment();
 		try {
-			app = AppuntamentoManager.visualizzaAPPmedico(doctor.getDoctor());
+			app = AppuntamentoManager.visualizzaAppuntamento(AppointmentID);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		request.getSession().setAttribute("allApp", app);
-		request.getRequestDispatcher("/visualizzaAgendaMed.jsp").forward(request, response);	
+		request.getSession().setAttribute("Appointment", app);
+		request.getRequestDispatcher("/visualizzaAppuntamento.jsp").forward(request, response);
+		
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

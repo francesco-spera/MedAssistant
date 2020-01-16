@@ -45,6 +45,39 @@ public class AppuntamentoManager {
 		
 	}
 	
+	public static Appointment visualizzaAppuntamento(int id) throws SQLException {
+		
+		PreparedStatement ps = null;
+		Connection con = null;
+		Appointment app = new Appointment();
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("SELECT * FROM appointment WHERE IDAppointment = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				app.setIdAppointment(rs.getInt(1));
+			    app.setDate(rs.getString(2));
+				app.setTime(rs.getString(3));
+				app.setDoctor(rs.getString(4));
+				app.setPatient(rs.getString(5));
+				app.setState(rs.getInt(6));
+
+			}
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		return app;
+		
+
+	}
+	
 	
 	
 

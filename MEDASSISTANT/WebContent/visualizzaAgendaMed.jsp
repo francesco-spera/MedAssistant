@@ -17,7 +17,7 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MedAssistant | Profilo Medico</title>
+<title>MedAssistant | Agenda Appuntamenti</title>
 <link rel="icon" href="core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="style.css">
 
@@ -153,7 +153,7 @@
 						Account pat = RicercaManager.cercaAccountPaziente(bean.getPatient());
 					%>
 				
-					<%= ", { title: '"+pat.getName()+" "+pat.getSurname()+"',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", 10, 0), allDay: false, className: 'success'}" %>
+					<%= ", { title: '"+pat.getName()+" "+pat.getSurname()+"',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", 10, 0), allDay: false, url: '"+request.getContextPath()+"/VisualizzareAppuntamento?id="+bean.getIdAppointment()+"', className: 'success'}" %>
 					<%}%>
 				
 
@@ -232,7 +232,6 @@
 	<%@ include file="core/header/header.jsp" %>
 
 	<div>
-	<br>
 	<br>
 	<br>
 	<br>
