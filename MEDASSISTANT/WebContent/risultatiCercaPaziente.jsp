@@ -35,15 +35,17 @@
     <div class="container-table100">
 		<div class="wrap-table100">
 			<div class="table100">
-				<table>
+				<table >
 					<c:choose>
 						<c:when test="${empty accPaz}">
+						<br><br><br><br>
 							<h1>Nessun paziente trovato.</h1>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${accPaz}" var="info">
 								<thead>
-									<tr class="table100-head">
+									<tr class="table100-head" style="background-color: #081f3e">
 										<th class="column1">Nome</th>
 										<th class="column2">Cognome</th>
 										<th class="column3">Email</th>
@@ -56,7 +58,7 @@
 										<td class="column1">${info.name}</td>  
 										<td class="column2">${info.surname}</td>
 										<td class="column3">${info.patient}</td>
-										<td class="column4"><img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
+										<td class="column4"><img src="GetProfileImage.jsp?patient=${info.patient}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
 										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloPaziente">
 										<input type="hidden" name="emailpaz" value="${info.patient}">
 										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>											
