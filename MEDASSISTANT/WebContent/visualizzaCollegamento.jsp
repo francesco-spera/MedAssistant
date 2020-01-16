@@ -48,30 +48,37 @@
 	
 	
 	</div>
-
-	<div class="text-center">
-   <h3>Richiesta di collegamento</h3>
-	</div>
-    <hr>
-    
-		<div class="container text-center">
-		<form method="get" action="${pageContext.request.contextPath}/RispostaCollegamento">
-			  <div class="form-group text-center">
-			    <h5>Hai ricevuto una nuova richiesta di collegamento da: <%=request.getParameter("email") %></h5>
-			  </div>
-			  <br>
-			  <div class="form-group text-center">
-			    <label>Vuoi accettare o rifiutare il collegamento?</label>
-			  </div>
-			  <br>
-		<input type="hidden" id="response" name="response" value="" required="required">
-		<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="1" id="rating-star-1"> Accetta</button>
-        <button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="rating-star-2">Rifiuta</button>
-        <input type="hidden" id="email" name="email" value="<%=request.getParameter("email") %>" required="required">
-		
-		</form>
-	  	</div>
 	
+	
+	<c:choose>
+	
+		<c:when test="${docLog==null}"> Fare Accesso! </c:when>
+
+			<c:otherwise>
+				<div class="text-center">
+			   <h3>Richiesta di collegamento</h3>
+				</div>
+			    <hr>
+			    
+					<div class="container text-center">
+					<form method="get" action="${pageContext.request.contextPath}/RispostaCollegamento">
+						  <div class="form-group text-center">
+						    <h5>Hai ricevuto una nuova richiesta di collegamento da: <%=request.getParameter("email") %></h5>
+						  </div>
+						  <br>
+						  <div class="form-group text-center">
+						    <label>Vuoi accettare o rifiutare il collegamento?</label>
+						  </div>
+						  <br>
+					<input type="hidden" id="response" name="response" value="" required="required">
+					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="1" id="Accettabtn"> Accetta</button>
+			        <button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="Rifiutabtn">Rifiuta</button>
+			        <input type="hidden" id="email" name="email" value="<%=request.getParameter("email") %>" required="required">
+					
+					</form>
+				  	</div>
+		    </c:otherwise>
+	</c:choose>
 	
 	<br>
 	<br>

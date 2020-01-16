@@ -38,12 +38,14 @@
 				<table>
 					<c:choose>
 						<c:when test="${empty infoDoc}">
+						  <br><br><br><br>
 							<h1>Nessun dottore trovato.</h1>
+						 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${accDoc}" var="info">
 								<thead>
-									<tr class="table100-head">
+									<tr class="table100-head" style="background-color: #081f3e">
 										<th class="column1">Nome</th>
 										<th class="column2">Cognome</th>
 										<th class="column3">Email</th>
