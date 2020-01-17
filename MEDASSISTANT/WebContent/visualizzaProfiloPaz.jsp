@@ -41,9 +41,23 @@
 	</div>
 	
 	<div class="container mt-5">
-	    <h1>Profilo del paziente <c:out value="${accPaz.surname}"/></h1>
+	    
 	    <img src="GetProfileImage.jsp?patient=${accPaz.patient}" width="230px" height="140px"/>
-	    <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/cartellaClinica">Cartella clinica</a>
+	   <br><br>
+	    
+	    <div class="row">
+			    <div class="form-group">
+		           <div class="col-lg-12">
+		           <h1>Profilo del paziente <c:out value="${accPaz.surname}"/></h1>
+		           </div>
+		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+						 <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/cartellaClinica">Cartella clinica</a>
+		           </div>
+		         </div>
+		    </div>
+	    
 	    <hr>
 	  	
 		<div class="row">

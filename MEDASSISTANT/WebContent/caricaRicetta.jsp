@@ -53,10 +53,11 @@
 						<h5 class="card-title text-center">Compila i campi</h5><hr>
 							
                     		<form action="${pageContext.request.contextPath}/caricareRicetta" enctype='multipart/form-data' method="POST">
-                    			<input type="hidden" name="id" value="<%=request.getParameter("idReferto") %>">
+                    			<input type="hidden" name="res" value="<%=request.getParameter("response") %>">
+                    			<input type="hidden" name="id" value="<%=request.getParameter("reportid") %>">
 								<div class="form-label-group">
 									<label>Paziente</label>
-									<input class="form-control" type="text" value="${accPaz.patient}" name="patient" readonly>
+									<input class="form-control" type="text" value="<%=request.getParameter("email") %>" name="patient" readonly>
 								</div>
 								<div class="form-label-group">
 									<label>Data</label>

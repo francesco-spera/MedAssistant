@@ -1,6 +1,8 @@
 package control.gestioneRicetta;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
@@ -52,7 +54,7 @@ public class richiedereRicetta extends HttpServlet {
 		text=text.concat(patient.getPatient());
 		
 		MedicalReport report = (MedicalReport) request.getSession().getAttribute("medRep");
-		text=text.concat("&repobj="+report.getObject()+"&desc="+report.getDescription()+"&idReport="+report.getIdReport());
+		text=text.concat("&repobj="+report.getObject()+"&desc="+URLEncoder.encode(report.getDescription(), StandardCharsets.UTF_8.toString())+"&idReport="+report.getIdReport());
 		
 try {
 			

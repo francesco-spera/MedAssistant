@@ -1,6 +1,7 @@
 package model;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +83,7 @@ public class RicettaManager {
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("UPDATE prescription SET state = ? WHERE ID = ?)");
+			ps = con.prepareStatement("UPDATE prescription SET state = ? WHERE ID = ?");
 			ps.setInt(1, stato);
 			ps.setInt(2, id);
 			
@@ -102,8 +103,64 @@ public class RicettaManager {
 		}
 	}
 	
+	public static int ritornoID(int report, String doctor, String patient, int state) throws SQLException{
+		PreparedStatement ps = null;
+		Connection con = null;
+		int ret = 0;
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ? AND doctor = ? AND patient = ? AND state = ?");
+			ps.setInt(1, report);
+			ps.setString(2, doctor);
+			ps.setString(3, patient);
+			ps.setInt(4, state);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				
+				ret = rs.getInt(1);
+			
+			}
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		
+		return ret;
+		
+	}
 	
+	
+	public static boolean updatericetta(int id, Blob ricetta, String date) throws SQLException{
+		PreparedStatement ps = null;
+		Connection con = null;
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("UPDATE prescription SET state = -1, prescription = ?,date = ? WHERE ID = ?");
+			ps.setBlob(1, ricetta);
+			ps.setString(2, date);
+			ps.setInt(3, id);
+			
 
+			if (ps.executeUpdate() != 1)
+				return false;
+			return true;
+			
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	}
 
 
 }

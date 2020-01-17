@@ -42,17 +42,27 @@ public class RispostaRicetta extends HttpServlet {
 		if(resp==1) {
 			
 			
+			try {
+				email.inviaMailRicetta(emailPaz, oggetto, text);
+			}catch (MessagingException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("idReferto", reportid);
+			request.getRequestDispatcher("/caricaRicetta.jsp").forward(request, response);
 			
 		}else {
 			//rifiuta
 			String oggettoRifiuto = "Caricamento rifiutato";
 			String textRifiuto = "Attenzione, questo è un avviso di rifiuto per il caricamento della ricetta, ti consigliamo di prendere un appuntamento";
 			try {
-				RicettaManager.modificastato(2, reportid);
+				RicettaManager.modificastato(2, RicettaManager.ritornoID(reportid, doc.getDoctor(), emailPaz, 0));
 				email.inviaMailRicetta(emailPaz, oggettoRifiuto, textRifiuto);
 			} catch (MessagingException | SQLException e) {
 				e.printStackTrace();
 			}
+			
+
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
 

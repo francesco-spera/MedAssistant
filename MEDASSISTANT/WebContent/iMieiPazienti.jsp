@@ -62,12 +62,8 @@
              						</div>
           						</div>
          					</form>
-          					<br>
           				</div>
           				
-          				<br>
-          				<br>
-
 						<div class="elements-title">
 							<h2>I miei pazienti</h2>
                     	</div>

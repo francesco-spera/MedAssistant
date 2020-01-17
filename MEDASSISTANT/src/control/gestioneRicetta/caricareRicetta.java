@@ -40,12 +40,13 @@ public class caricareRicetta extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int resp = Integer.parseInt(request.getParameter("res"));
 		Prescription ricetta = new Prescription();
 		ricetta.setMedicalreport(Integer.parseInt(request.getParameter("id")));
 		ricetta.setDate(request.getParameter("date"));
 		ricetta.setDoctor(request.getParameter("doctor"));
 		ricetta.setPatient(request.getParameter("patient"));
-		
+		ricetta.setState(-1);
 		Part part = request.getPart("image");
 		InputStream is = part.getInputStream();
 		byte[] content = IOUtils.toByteArray(is);
@@ -58,7 +59,13 @@ public class caricareRicetta extends HttpServlet {
 		ricetta.setPrescription(blob);
 		
 		try {
-			RicettaManager.caricareRicetta(ricetta);
+			if (resp==0) {
+				RicettaManager.caricareRicetta(ricetta);	
+			}else {
+				System.out.println("qui ci va update");
+				RicettaManager.updatericetta(RicettaManager.ritornoID(ricetta.getMedicalreport(), ricetta.getDoctor(), ricetta.getPatient(), 0), ricetta.getPrescription(), ricetta.getDate());
+			}
+			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
