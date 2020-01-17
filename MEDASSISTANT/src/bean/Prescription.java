@@ -1,24 +1,50 @@
 package bean;
 
+import java.sql.Blob;
+
 public class Prescription {
-	
-	public String getPath() {
-		return path;
+
+	public String getDoctor() {
+		return doctor;
 	}
 	
-	public void setPath(String path) {
-		this.path = path;
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
 	}
 	
-	public int getMedicalReport() {
-		return medicalReport;
+	public String getPatient() {
+		return patient;
 	}
 	
-	public void setMedicalReport(int medicalReport) {
-		this.medicalReport = medicalReport;
+	public void setPatient(String patient) {
+		this.patient = patient;
 	}
 	
+	public int getID() {
+		return ID;
+	}
 	
-	private String path;
-	private int medicalReport;
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	public int getMedicalreport() {
+		return medicalreport;
+	}
+	
+	public void setMedicalreport(int medicalreport) {
+		this.medicalreport = medicalreport;
+	}
+	
+	public Blob getPrescription() {
+		return prescription;
+	}
+	
+	public void setPrescription(Blob prescription) {
+		this.prescription = prescription;
+	}
+	
+	private String doctor,patient;
+	private int ID, medicalreport;
+	private Blob prescription;
 }

@@ -3,6 +3,11 @@
 <%@taglib prefix="c" 
 	uri="http://java.sun.com/jsp/jstl/core"%>
 
+<% if(request.getSession().getAttribute("Pres")==null && request.getAttribute("read")!="true"){
+			request.getRequestDispatcher("/verificaRicetta").forward(request, response);
+		}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,14 +45,17 @@
 		<div class="row">
 	      <div class="col align-self-center personal-info mb-5">
 	      <c:choose>
-	      	<c:when test="${tipoDoc=='medico di base'}">
-	      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
+	      	<c:when test="${Pres==null}">
+	      		<c:choose>
+	      		<c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
+		      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
+		      	</c:when>
+	      		</c:choose>
 	      	</c:when>
-	      	<c:when test="${dettDoc.type=='medico di base'}">
-	      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
+	      	<c:when test="${Pres!=null}">
+	      		<a type="submit" class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/GetPdf.jsp?id=${Pres.ID}">Visualizza ricetta</a>
 	      	</c:when>
 	      </c:choose>
-	      <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Visualizza ricetta</a>  
 	      <br><br>  
 	        <h3>Informazioni</h3>
 	          <div class="form-group">
