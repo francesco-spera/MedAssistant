@@ -3,7 +3,8 @@
 <%@taglib prefix="c" 
 	uri="http://java.sun.com/jsp/jstl/core"%>
 
-<% if(request.getSession().getAttribute("Pres")==null && request.getAttribute("read")!="true"){
+<% 
+if(request.getSession().getAttribute("Pres")==null && request.getAttribute("read")!="true"){
 			request.getRequestDispatcher("/verificaRicetta").forward(request, response);
 		}
 %>
@@ -47,6 +48,9 @@
 	      <c:choose>
 	      	<c:when test="${Pres==null}">
 	      		<c:choose>
+	      		<c:when test="${pazLog!=null}">
+		      		<a type="submit" class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/#">Richiedi ricetta</a>
+		      	</c:when>
 	      		<c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
 		      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
 		      	</c:when>

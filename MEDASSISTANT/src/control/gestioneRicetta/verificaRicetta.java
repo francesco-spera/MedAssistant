@@ -30,17 +30,18 @@ public class verificaRicetta extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MedicalReport medrep = (MedicalReport) request.getSession().getAttribute("medRep");
+		int idReport = Integer.parseInt(request.getParameter("idReport"));
 		Prescription ricetta = new Prescription();
+		System.out.println(idReport);
 		try {
-			ricetta = RicettaManager.ricercaRicettabyID(medrep.getIdReport());
+			ricetta = RicettaManager.ricercaRicettabyID(idReport);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("read", "true");
 		request.getSession().setAttribute("Pres", ricetta);
-		request.getRequestDispatcher("/visualizzaReferto.jsp?idReport"+medrep.getIdReport()).forward(request, response);
+		request.getRequestDispatcher("/visualizzaReferto.jsp?idReport"+idReport).forward(request, response);
 		
 	}
 
