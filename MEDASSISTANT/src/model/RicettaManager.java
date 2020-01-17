@@ -4,27 +4,33 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import bean.Prescription;
 import connectionPool.DriverManagerConnectionPool;
 
 public class RicettaManager {
 
-	public static Prescription ricercaRicettabyID(int id) throws SQLException{
+	public static ArrayList<Prescription> ricercaRicettabyID(int id) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
-		Prescription ricetta = null;
+		ArrayList<Prescription> ricetta = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
+			ricetta = new ArrayList<Prescription>();
 			while(rs.next()) {
-				ricetta = new Prescription();
-				ricetta.setID(rs.getInt(1));
-				ricetta.setMedicalreport((rs.getInt(2)));
-				ricetta.setPrescription(rs.getBlob(3));
-				ricetta.setDoctor(rs.getString(4));
-				ricetta.setPatient(rs.getString(5));
+				
+				Prescription ric = new Prescription();
+				ric.setID(rs.getInt(1));
+				ric.setMedicalreport((rs.getInt(2)));
+				ric.setPrescription(rs.getBlob(3));
+				ric.setDate(rs.getString(4));
+				ric.setDoctor(rs.getString(5));
+				ric.setPatient(rs.getString(6));
+				ricetta.add(ric);
 			}
 		}finally {
 			try {

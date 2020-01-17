@@ -39,30 +39,16 @@ request.removeAttribute("read");
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
 	</div>
 	
 	<div class="container mt-5">
 		<div class="row">
 	      <div class="col align-self-center personal-info mb-5">
-	      <c:choose>
-	      	<c:when test="${Pres==null}">
-	      		<c:choose>
-	      		<c:when test="${pazLog!=null}">
-		      		<a type="submit" class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/#">Richiedi ricetta</a>
-		      	</c:when>
-	      		<c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
-		      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
-		      	</c:when>
-	      		</c:choose>
-	      	</c:when>
-	      	<c:when test="${Pres!=null}">
-	      		<a type="submit" class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/GetPdf.jsp?id=${Pres.ID}">Visualizza ricetta</a>
-	      	</c:when>
-	      </c:choose>
+
+
 	      <br><br>  
 	        <h3>Informazioni</h3>
+	        <hr>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Oggetto</label>
 	            <div class="col-lg-8">
@@ -83,8 +69,62 @@ request.removeAttribute("read");
 	          </div>
 	      </div>
 	  </div>
+	  
+	  <div class="row">
+	      <div class="col align-self-center personal-info mb-5">
+	      
+	      <div class="row">
+			    <div class="form-group">
+		           <div class="col-lg-12">
+		          		<h3>Lista ricette</h3>
+		           </div>
+		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+					<c:choose>
+		      		<c:when test="${pazLog!=null}">
+			      		<a type="submit" class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/#">Richiedi ricetta</a>
+			      	</c:when>
+		      		</c:choose>
+		           </div>
+		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+		           <c:choose>
+		           <c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
+			      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
+			      	</c:when>
+			      </c:choose>
+		           </div>
+		         </div>
+		    </div>
+		<hr>
+	  <table>
+		<thead>
+			<tr class="table100-head" style="background-color: #081f3e">
+				<th class="column1">Data ricetta</th>
+				<th class="column1">Azioni</th>
+			</tr>
+		</thead>
+		<c:choose>
+			<c:when test="${empty Pres}">
+			<td colspan="2">NESSUNA RICETTA RICHIESTA</td>
+			</c:when>
+			<c:otherwise>
+			<c:forEach items="${Pres}" var="presc">
+			<td>${presc.date}</td>
+			<td><form target="_blank" action="${pageContext.request.contextPath}/GetPdf.jsp" method="GET">
+				<input type="hidden" name="id" value="${presc.ID}">
+				<button type="submit" class="btn btn-primary">Visualizza ricetta</button>											
+				</form></td>
+			</c:forEach>
+			
+			</c:otherwise>
+		</c:choose>
+	  </table>
 	</div>
-    
+    </div>
+    </div>
 
 
 	<%@ include file="core/header/footer.jsp" %> 

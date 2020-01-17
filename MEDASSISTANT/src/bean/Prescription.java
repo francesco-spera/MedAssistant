@@ -44,7 +44,15 @@ public class Prescription {
 		this.prescription = prescription;
 	}
 	
-	private String doctor,patient;
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	private String doctor,patient,date;
 	private int ID, medicalreport;
 	private Blob prescription;
 }

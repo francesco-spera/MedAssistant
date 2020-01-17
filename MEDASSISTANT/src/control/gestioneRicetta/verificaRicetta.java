@@ -2,6 +2,7 @@ package control.gestioneRicetta;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Account;
-import bean.MedicalReport;
 import bean.Prescription;
 import model.RicettaManager;
 
@@ -31,16 +30,16 @@ public class verificaRicetta extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idReport = Integer.parseInt(request.getParameter("idReport"));
-		Prescription ricetta = new Prescription();
+		ArrayList<Prescription> ricette = new ArrayList<Prescription>();
 		System.out.println(idReport);
 		try {
-			ricetta = RicettaManager.ricercaRicettabyID(idReport);
+			ricette = RicettaManager.ricercaRicettabyID(idReport);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("read", "true");
-		request.setAttribute("Pres", ricetta);
+		request.setAttribute("Pres", ricette);
 		request.getRequestDispatcher("/visualizzaReferto.jsp?idReport"+idReport).forward(request, response);
 		
 	}
