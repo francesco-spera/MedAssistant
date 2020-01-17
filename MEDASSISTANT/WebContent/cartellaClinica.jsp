@@ -20,10 +20,7 @@
 </head>
 <body>
    
-   	<% if(request.getSession().getAttribute("docLog")==null){
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
-	%>
+   	
    
     <div id="preloader">
         <div class="medilife-load"></div>
@@ -40,7 +37,12 @@
     <div class="container-table100">
 		<div class="wrap-table100">
 			<div class="table100">
+			<c:choose>
+	   		 <c:when test="${docLog!=null}">
 			<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/caricaReferto.jsp">Carica Referto</a>
+			</c:when>
+			</c:choose>
+			
 			<br><br>											
 				<table>
 					<c:choose>

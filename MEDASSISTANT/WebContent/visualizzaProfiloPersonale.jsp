@@ -36,7 +36,12 @@
 	
 	<div class="container mt-5">
 	    <h1>Profilo personale</h1>
-	    <a href="${pageContext.request.contextPath}/modificaProfilo.jsp" class="btn btn-primary">Modifica profilo</a>						
+	    <a href="${pageContext.request.contextPath}/modificaProfilo.jsp" class="btn btn-primary">Modifica profilo</a>
+	   	<c:choose>
+	    <c:when test="${pazLog!=null}">
+	   	<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/cartellaClinica">Cartella clinica</a>	
+	   	</c:when>
+	   	</c:choose>			
 	  	<hr>
 	    <c:choose>
 	    <c:when test="${docLog!=null}">

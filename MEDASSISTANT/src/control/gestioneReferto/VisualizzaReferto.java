@@ -31,8 +31,8 @@ public class VisualizzaReferto extends HttpServlet {
 		Account medico = null;
 		try {
 			medRep = RefertoManager.getRefertoById(idReport);
-			if(request.getSession().getAttribute("dettDoc")==null) {
-				medico = (Account) request.getSession().getAttribute("docLog");
+			medico = (Account) request.getSession().getAttribute("docLog");
+			if(request.getSession().getAttribute("dettDoc")==null && medico!=null) {
 				d = ProfiloManager.visualizzaMedico(medico.getDoctor());
 				request.getSession().setAttribute("tipoDoc", d.getType());
 			}

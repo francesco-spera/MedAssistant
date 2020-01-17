@@ -21,10 +21,6 @@
 </head>
 <body>
 
-	<% if(request.getSession().getAttribute("docLog")==null){
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
-	%>
 	
     <div id="preloader">
         <div class="medilife-load"></div>
@@ -69,7 +65,7 @@
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Prescritta da</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${nameDoc.name}" value="${nameDoc.surname}" readonly>
+	              <input class="form-control" type="text" value="${nameDoc.name} ${nameDoc.surname}" readonly>
 	            </div>
 	          </div>
 	      </div>

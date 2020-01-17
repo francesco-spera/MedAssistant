@@ -24,6 +24,9 @@ public class CartellaClinica extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Account paziente = (Account) request.getSession().getAttribute("accPaz");
+		if (paziente==null) {
+			paziente = (Account) request.getSession().getAttribute("pazLog");
+		}
 		ArrayList<MedicalReport> medReps = null;
 		try {
 			medReps = RefertoManager.getRefertoByPaziente(paziente.getPatient());
