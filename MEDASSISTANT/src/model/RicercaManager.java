@@ -25,7 +25,7 @@ public class RicercaManager {
 	public static ArrayList<Doctor> cercaMedicoZonaTipo(String zona, String tipo) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
-		ArrayList<Doctor> doc = null;
+		ArrayList<Doctor> doc = null; 
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ? AND d.municipalityAddress = ?;");
@@ -99,47 +99,39 @@ public class RicercaManager {
 	 * 
 	 * @param name il nome del paziente che si vuole cercare
 	 * @param surname  il cognome del paziente che si vuole cercare
+	 * @param emailmed la mail del medico a cui è associato il paziente da cercare
 	 * @return null se non è stato trovato alcun paziente o pat che mostra le informazioni del paziente cercato
 	 * @throws SQLException
 	 * 
 	 * */
 	
-	public static ArrayList<Patient> cercaPazienteNome(String name, String surname) throws SQLException{
+	public static ArrayList<Patient> cercaPazienteNome(String name, String surname,String emaildoc) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
-		Patient p = null;
-		ArrayList<Patient> pat = null;
+		ArrayList<Patient> pat = new ArrayList<Patient>();
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			if(surname.isEmpty()) {
-				ps = con.prepareStatement("SELECT email FROM patient p, account a WHERE p.email = a.patient AND name LIKE ?;");
-				ps.setString(1,"%"+name+ "%") ;
-			} else if(name.isEmpty()) {
-					  ps = con.prepareStatement("SELECT email FROM patient p, account a WHERE p.email = a.patient AND surname LIKE ?;");
-					  ps.setString(1,"%"+surname+ "%") ;
-				  }
-				  else {
-					ps = con.prepareStatement("SELECT email, domicile, residence FROM patient p, account a, link l, doctor d WHERE p.email = a.patient AND l.state=1 AND l.patient=p.email AND l.doctor=? AND CONCAT( name,  ' ', surname ) LIKE ?;");
-					ps.setString(1,"%" + name + " "+surname+ "%") ; //%name surname%
-				  }
-					  		 
-				ResultSet rs = ps.executeQuery();
-				pat = new ArrayList<>();
-				while(rs.next()) {
-					p = new Patient();
-					p.setEmail(rs.getString(1));
-					pat.add(p);
+			ps = con.prepareStatement("SELECT email, domicile, residence FROM patient p, account a, link l WHERE p.email = a.patient AND l.state = 1 AND l.patient = p.email AND l.doctor = ?  AND CONCAT( name,  ' ', surname ) LIKE ?;");
+			ps.setString(1, emaildoc);
+			ps.setString(2,"%" + name + " " +surname+ "%") ;
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Patient p = new Patient();
+				p.setEmail(rs.getString(1));
+				p.setDomicile(rs.getString(2));
+				p.setResidence(rs.getString(3));
+				pat.add(p);
+			}
+		} finally {
+			try {
+				if(ps!= null) {
+					ps.close();
 				}
 			} finally {
-				try {
-					if(ps!= null) {
-						ps.close();
-					}
-				} finally {
-					DriverManagerConnectionPool.releaseConnection(con);
-				}
+				DriverManagerConnectionPool.releaseConnection(con);
 			}
-			return pat;
+		}
+		return pat;
 	}
 	
 	/*
