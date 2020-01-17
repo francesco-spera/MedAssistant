@@ -28,9 +28,10 @@ public class CercarePazienteNome extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
+		Account doctor = (Account) request.getSession().getAttribute("docLog");
+ 
 		try {
-			ArrayList<Patient> patient = RicercaManager.cercaPazienteNome(request.getParameter("name"), request.getParameter("surname"));
+			ArrayList<Patient> patient = RicercaManager.cercaPazienteNome(request.getParameter("name"), request.getParameter("surname"),doctor.getDoctor());
 			request.setAttribute("infoPaz", patient);
 			ArrayList<Account> account = new ArrayList<Account>();
 			for(Patient pat: patient) {
