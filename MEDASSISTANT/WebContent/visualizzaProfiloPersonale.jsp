@@ -140,7 +140,7 @@
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Email</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${pazLog.email}" readonly>
+	              <input class="form-control" type="text" value="${dettPaz.email}" readonly>
 	            </div>
 	          </div>
 	          <h3>Informazioni specifiche account</h3>
