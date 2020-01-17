@@ -19,7 +19,12 @@
 <link rel="stylesheet" type="text/css" href="core/css/table_main.css">	
 </head>
 <body>
-    
+   
+   	<% if(request.getSession().getAttribute("pazLog")==null){
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	%>
+   
     <div id="preloader">
         <div class="medilife-load"></div>
     </div>
@@ -43,12 +48,12 @@
 						 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${accDoc}" var="info">
+							<c:forEach items="${accDoc}" var="info" varStatus="status">
 								<thead>
 									<tr class="table100-head" style="background-color: #081f3e">
 										<th class="column1">Nome</th>
 										<th class="column2">Cognome</th>
-										<th class="column3">Email</th>
+										<th class="column3">Media recensioni</th>
 										<th class="column4">Foto</th>
 										<th class="column5"></th>
 									</tr>
@@ -57,7 +62,7 @@
 									<tr>
 										<td class="column1">${info.name}</td>  
 										<td class="column2">${info.surname}</td>
-										<td class="column3">${info.doctor}</td>
+										<td class="column3">${infoDoc[status.index].avgReviews}</td>
 										<td class="column4"><img src="GetProfileImage.jsp?doctor=${info.doctor}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
 										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloMedico">
 										<input type="hidden" name="emaildoc" value="${info.doctor}">

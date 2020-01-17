@@ -1,7 +1,8 @@
-package control.gestioneProfilo;
+package control.gestioneReferto;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,40 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
-import bean.Doctor;
-import model.RicercaManager;
+import bean.MedicalReport;
+import model.RefertoManager;
 
-@WebServlet("/VisualizzaProfiloMedico")
-public class VisualizzaProfiloMedico extends HttpServlet {
+@WebServlet("/cartellaClinica")
+public class CartellaClinica extends HttpServlet {
 
-    public VisualizzaProfiloMedico() {
+    public CartellaClinica() {
         super();
     }
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailDoc = request.getParameter("emaildoc");
-		System.out.println("PORCO DIO " + emailDoc);
-		Account account = new Account();
-		Doctor doc = new Doctor();
+		Account paziente = (Account) request.getSession().getAttribute("accPaz");
+		ArrayList<MedicalReport> medReps = null;
 		try {
-			account = RicercaManager.cercaAccountMedico(emailDoc);
-			doc = RicercaManager.cercaMedico(emailDoc);
+			medReps = RefertoManager.getRefertoByPaziente(paziente.getPatient());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		request.getSession().setAttribute("infoDoc", doc);
-		request.getSession().setAttribute("accDoc", account);
-		request.getRequestDispatcher("/visualizzaProfiloMed.jsp").forward(request, response);
+		request.getSession().setAttribute("medReps", medReps);
+		request.getRequestDispatcher("/cartellaClinica.jsp").forward(request, response);
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
-	
+
 	
 	private static final long serialVersionUID = 1L;
 }

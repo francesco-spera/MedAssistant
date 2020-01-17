@@ -39,121 +39,121 @@
 	    <a href="${pageContext.request.contextPath}/modificaProfilo.jsp" class="btn btn-primary">Modifica profilo</a>						
 	  	<hr>
 	    <c:choose>
-	    <c:when test="${accDoc!=null}">
-	    <img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
+	    <c:when test="${docLog!=null}">
+	    <img src="GetProfileImage.jsp?doctor=${docLog.doctor}" width="230px" height="140px"/>
 		<div class="row">
 	      <div class="col align-self-center personal-info mb-5">
 	        <h3>Informazioni generali</h3>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Nome</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accDoc.name}" readonly>
+	              <input class="form-control" type="text" value="${docLog.name}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Cognome</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accDoc.surname}" readonly>
+	              <input class="form-control" type="text" value="${docLog.surname}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Data di nascita</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accDoc.birthDate}" readonly>
+	              <input class="form-control" type="text" value="${docLog.birthDate}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Codice fiscale</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accDoc.cf}" readonly>
+	              <input class="form-control" type="text" value="${docLog.cf}" readonly>
 	            </div>
 	          </div>
 	           <div class="form-group">
 	            <label class="col-lg-3 control-label">Email</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.email}" readonly>
+	              <input class="form-control" type="text" value="${dettDoc.email}" readonly>
 	            </div>
 	          </div>
 	          <h3>Informazioni speifiche account</h3>
 	            <div class="form-group">
 	            <label class="col-lg-3 control-label">Numero di telefono</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.phoneNumber}" readonly>
+	              <input class="form-control" type="text" value="${dettDoc.phoneNumber}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Indirizzo Studio</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.studioAddress}" readonly>
+	              <input class="form-control" type="text" value="${dettDoc.studioAddress}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Provincia</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.municipalityAddress}" readonly>
+	              <input class="form-control" type="text" value="${dettDoc.municipalityAddress}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	          	<label class="col-lg-3 control-label">Specializzazione</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoDoc.type}" readonly>
+	              <input class="form-control" type="text" value="${dettDoc.type}" readonly>
 	          </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Ratings</label>
 	          <div class="col-lg-8">
-	            <input class="form-control" type="text"  value="${infoDoc.avgReviews}" readonly>
+	            <input class="form-control" type="text"  value="${dettDoc.avgReviews}" readonly>
 	            </div>
 	          </div>
 	      </div>
 	  </div>
 	    </c:when>
 	    <c:otherwise>
-	    <img src="GetProfileImage.jsp?patient=${accPaz.patient}" width="230px" height="140px"/>
+	    <img src="GetProfileImage.jsp?patient=${pazLog.patient}" width="230px" height="140px"/>
 	    	<div class="row">
 	      <div class="col align-self-center personal-info mb-5">
 	        <h3>Informazioni generali</h3>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Nome</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accPaz.name}" readonly>
+	              <input class="form-control" type="text" value="${pazLog.name}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Cognome</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accPaz.surname}" readonly>
+	              <input class="form-control" type="text" value="${pazLog.surname}" readonly>
 	            </div>
 	          </div>
 	            <div class="form-group">
 	            <label class="col-lg-3 control-label">Data di nascita</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accPaz.birthDate}" readonly>
+	              <input class="form-control" type="text" value="${pazLog.birthDate}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Codice fiscale</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${accPaz.cf}" readonly>
+	              <input class="form-control" type="text" value="${pazLog.cf}" readonly>
 	            </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Email</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoPaz.email}" readonly>
+	              <input class="form-control" type="text" value="${pazLog.email}" readonly>
 	            </div>
 	          </div>
 	          <h3>Informazioni specifiche account</h3>
 	          <div class="form-group">
 	          	<label class="col-lg-3 control-label">Domicilio</label>
 	            <div class="col-lg-8">
-	              <input class="form-control" type="text" value="${infoPaz.domicile}" readonly>
+	              <input class="form-control" type="text" value="${dettPaz.domicile}" readonly>
 	          </div>
 	          </div>
 	          <div class="form-group">
 	            <label class="col-lg-3 control-label">Residenza</label>
 	          <div class="col-lg-8">
-	            <input class="form-control" type="text"  value="${infoPaz.residence}" readonly>
+	            <input class="form-control" type="text"  value="${dettPaz.residence}" readonly>
 	            </div>
 	          </div>
 	      </div>

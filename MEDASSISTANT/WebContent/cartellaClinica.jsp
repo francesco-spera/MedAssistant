@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MedAssistant | Ricerca</title>
+<title>MedAssistant | Cartella clinica</title>
 <link rel="icon" href="core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" type="text/css" href="core/vendor/animate/animate.css">
@@ -19,12 +19,12 @@
 <link rel="stylesheet" type="text/css" href="core/css/table_main.css">	
 </head>
 <body>
-    
-    	<% if(request.getSession().getAttribute("docLog")==null){
+   
+   	<% if(request.getSession().getAttribute("docLog")==null){
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	%>
-    
+   
     <div id="preloader">
         <div class="medilife-load"></div>
     </div>
@@ -40,33 +40,31 @@
     <div class="container-table100">
 		<div class="wrap-table100">
 			<div class="table100">
-				<table >
+			<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/caricaReferto.jsp">Carica Referto</a>
+			<br><br>											
+				<table>
 					<c:choose>
-						<c:when test="${empty accPaz}">
-						<br><br><br><br>
-							<h1>Nessun paziente trovato.</h1>
-						<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+						<c:when test="${empty medReps}">
+						  <br><br><br><br>
+							<h1>Nessun referto trovato.</h1>
+						 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${accPaz}" var="info">
+							<c:forEach items="${medReps}" var="rep">
 								<thead>
 									<tr class="table100-head" style="background-color: #081f3e">
-										<th class="column1">Nome</th>
-										<th class="column2">Cognome</th>
-										<th class="column3">Data di nascita</th>
-										<th class="column4">Foto</th>
+										<th class="column1">Oggetto</th>
+										<th class="column2">Data</th>
 										<th class="column5"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="column1">${info.name}</td>  
-										<td class="column2">${info.surname}</td>
-										<td class="column3">${info.birthDate}</td>
-										<td class="column4"><img src="GetProfileImage.jsp?patient=${info.patient}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
-										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloPaziente">
-										<input type="hidden" name="emailpaz" value="${info.patient}">
-										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>											
+										<td class="column1">${rep.object}</td>  
+										<td class="column2">${rep.date}</td>
+										<td><form action="${pageContext.request.contextPath}/visualizzaReferto" method="GET">
+										<input type="hidden" name="idReport" value="${rep.idReport}">
+										<button type="submit" class="btn btn-primary">Visualizza Referto</button>											
 										</form></td>
 									</tr>
 								</tbody>

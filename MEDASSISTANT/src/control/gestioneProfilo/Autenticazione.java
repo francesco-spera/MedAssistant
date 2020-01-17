@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Account;
 import model.ProfiloManager;
@@ -46,10 +47,13 @@ public class Autenticazione extends HttpServlet {
 			return;
 		}
 		
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(20*60);
+		
 		if(user.getPatient()!=null)
-			request.getSession().setAttribute("pazLog", user);
+			session.setAttribute("pazLog", user);
 		else
-			request.getSession().setAttribute("docLog", user);
+			session.setAttribute("docLog", user);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 

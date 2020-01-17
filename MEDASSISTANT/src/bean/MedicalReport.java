@@ -42,7 +42,15 @@ public class MedicalReport {
 		this.patient = patient;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	
 	private int idReport;
-	private String object, description, doctor, patient;
+	private String object, description, doctor, patient, date;
 }

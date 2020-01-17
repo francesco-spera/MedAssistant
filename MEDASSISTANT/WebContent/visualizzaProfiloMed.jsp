@@ -21,6 +21,12 @@
 <script type="text/javascript" src="js/ajaxsendemail.js"></script>
 </head>
 <body>
+
+	<% if(request.getSession().getAttribute("pazLog")==null){
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	%>
+
     <div id="preloader">
         <div class="medilife-load"></div>
     </div>

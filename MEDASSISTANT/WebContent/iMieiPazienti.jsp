@@ -15,6 +15,11 @@
 </head>
 <body>
 
+	<% if(request.getSession().getAttribute("docLog")==null){
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	%>
+
     <div id="preloader">
         <div class="medilife-load"></div>
     </div>
@@ -67,7 +72,7 @@
 							<h2>I miei pazienti</h2>
                     	</div>
                     	<c:choose>
-	                    	<c:when test="${allPaz==null}">
+	                    	<c:when test="${empty allPaz}">
 	                    		<h2>NESSUN PAZIENTE COLLEGATO</h2>
 	                    	</c:when>
 	                    	<c:otherwise>
@@ -75,7 +80,7 @@
 	                    		
 	                        	<div class="panel single-accordion">
 									 <h6><a role="button" class="" aria-expanded="true" aria-controls="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-									 <c:out value="${paz.surname}"/> <c:out value="${paz.name}"/>
+									 <c:out value="${paz.surname}"/> <c:out value="${paz.name}"/> <c:out value="Data di nascita:"/> <c:out value="${paz.birthDate}"/>
 									<span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
 	                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
 	                                </a></h6>

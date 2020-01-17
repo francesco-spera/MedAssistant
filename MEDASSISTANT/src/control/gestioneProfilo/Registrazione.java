@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -52,6 +53,9 @@ public class Registrazione extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(20*60);
+		
 		Account user = new Account();
 		user.setName(request.getParameter("name"));
 		user.setSurname(request.getParameter("surname"));
@@ -79,8 +83,8 @@ public class Registrazione extends HttpServlet {
 			medico.setMunicipalityAddress(request.getParameter("munaddr"));
 			try {
 				if(ProfiloManager.registrazione(user, medico)) {
-					request.getSession().setAttribute("docLog", user);
-					request.getSession().setAttribute("dettDoc", medico);
+					session.setAttribute("docLog", user);
+					session.setAttribute("dettDoc", medico);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {
@@ -95,8 +99,8 @@ public class Registrazione extends HttpServlet {
 			paziente.setResidence(request.getParameter("residence"));
 			try {
 				if(ProfiloManager.registrazione(user, paziente)) {
-					request.getSession().setAttribute("pazLog", user);
-					request.getSession().setAttribute("dettPaz", paziente);
+					session.setAttribute("pazLog", user);
+					session.setAttribute("dettPaz", paziente);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {

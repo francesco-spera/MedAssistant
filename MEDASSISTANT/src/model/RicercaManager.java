@@ -193,7 +193,7 @@ public class RicercaManager {
 		ArrayList<Account> pat = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT name, surname, patient FROM account a WHERE a.patient = (SELECT patient FROM link l WHERE l.doctor = ?);");
+			ps = con.prepareStatement("SELECT name, surname, patient, birthdate FROM account a WHERE a.patient = (SELECT patient FROM link l WHERE l.doctor = ?);");
 			ps.setString(1, email);
 			ps.executeQuery();
 			ResultSet rs = ps.executeQuery();
@@ -203,6 +203,7 @@ public class RicercaManager {
 				p.setName(rs.getString(1));
 				p.setSurname(rs.getString(2));
 				p.setPatient(rs.getString(3));
+				p.setBirthDate(rs.getString(4));
 				pat.add(p);
 			}
 		} finally {

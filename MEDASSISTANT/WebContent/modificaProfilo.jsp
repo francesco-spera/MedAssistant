@@ -42,53 +42,53 @@
 					<div class="card-body">
 						<h5 class="card-title text-center">Modifica il profilo</h5><hr>
 							<c:choose>
-	    					<c:when test="${accDoc!=null}">
+	    					<c:when test="${docLog!=null}">
 							<form action="${pageContext.request.contextPath}/ModificareProfilo" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
 								<h4>Informazioni generali</h4> <br><br>
 								<div class="form-label-group">
 									<label for="inputEmail">Email</label>
-									<input type="email" id="inputEmail" name="email" class="form-control" placeholder="${infoDoc.email}">
+									<input type="email" id="inputEmail" name="email" class="form-control" placeholder="${dettDoc.email}">
 								</div>								
 								<div class="form-label-group">
 									<label for="inputPassword">Password</label>
-									<input type="password" id="inputPassword" name="psw" class="form-control" placeholder="${infoDoc.password}">
+									<input type="password" id="inputPassword" name="psw" class="form-control" placeholder="${dettDoc.password}">
 								</div>
 								<div class="form-label-group">
 									<label>Nome</label>
-									<input type="text" name="name" class="form-control" placeholder="${accDoc.name}">
+									<input type="text" name="name" class="form-control" placeholder="${docLog.name}">
 								</div>
 								<div class="form-label-group">
 									<label>Cognome</label>
-									<input type="text" name="surname" class="form-control" placeholder="${accDoc.surname}">
+									<input type="text" name="surname" class="form-control" placeholder="${docLog.surname}">
 								</div>
 								<div class="form-label-group">
 									<label>Data di nascita</label>
-									<input type="date" name="birth" class="form-control" placeholder="${accDoc.birthDate}">
+									<input type="date" name="birth" class="form-control" placeholder="${docLog.birthDate}">
 								</div>
 								<div class="form-label-group">
 									<label>Codice fiscale</label>
-									<input type="text" name="cf" class="form-control" placeholder="${accDoc.cf}">
+									<input type="text" name="cf" class="form-control" placeholder="${docLog.cf}">
 								</div>
 								<div class="form-label-group">
 									<label>Foto</label>
-									<input type="file" name="photo" class="form-control" placeholder="${accDoc.photo}" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
+									<input type="file" name="photo" class="form-control" placeholder="${docLog.photo}" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 								</div>
 								<h3>Informazioni specifiche account</h3> <br><br>
 								<div class="form-label-group">
 									<label>Numero di telefono</label>
-									<input type="number" name="mobilep" class="form-control" placeholder="${infoDoc.phoneNumber}">
+									<input type="text" name="mobilep" class="form-control" placeholder="${dettDoc.phoneNumber}">
 								</div>
 								<div class="form-label-group">
 									<label>Indirizzo Studio</label>
-									<input type="text" name="studioaddr" class="form-control" placeholder="${infoDoc.studioAddress}">
+									<input type="text" name="studioaddr" class="form-control" placeholder="${dettDoc.studioAddress}">
 								</div>
 								<div class="form-label-group">
 									<label>Provincia</label>
-									<input type="text" name="munaddr" class="form-control" placeholder="${infoDoc.municipalityAddress}">
+									<input type="text" name="munaddr" class="form-control" placeholder="${dettDoc.municipalityAddress}">
 								</div>
 								<div class="form-label-group">
 									<label>Specializzazione</label>
-									<input type="text" name="type" class="form-control" placeholder="${infoDoc.type}">
+									<input type="text" name="type" class="form-control" placeholder="${dettDoc.type}">
 								</div>
                     			<button class="btn btn-lg btn-primary btn-block text-uppercase" id="btn_signin" type="submit">Conferma</button>
                     		</form>
@@ -98,40 +98,40 @@
 								<h4>Informazioni generali</h4><br><br>
 								<div class="form-label-group">
 									<label for="inputEmail">Email</label>
-									<input type="email" id="inputEmail" name="email" class="form-control" placeholder="${infoPaz.email}">
+									<input type="email" id="inputEmail" name="email" class="form-control" placeholder="${dettPaz.email}">
 								</div>
 								<div class="form-label-group">
 									<label for="inputPassword">Password</label>
-									<input type="password" id="inputPassword" name="psw" class="form-control" placeholder="${infoPaz.password}">
+									<input type="password" id="inputPassword" name="psw" class="form-control" placeholder="${dettPaz.password}">
 								</div>
 								<div class="form-label-group">
 									<label>Nome</label>
-									<input type="text" name="name" class="form-control" placeholder="${accPaz.name}">
+									<input type="text" name="name" class="form-control" placeholder="${pazLog.name}">
 								</div>
 								<div class="form-label-group">
 									<label>Cognome</label>
-									<input type="text" name="surname" class="form-control" placeholder="${accPaz.surname}">
+									<input type="text" name="surname" class="form-control" placeholder="${pazLog.surname}">
 								</div>
 								<div class="form-label-group">
 									<label>Data di nascita</label>
-									<input type="date" name="birth" class="form-control" placeholder="${accPaz.birthDate}">
+									<input type="date" name="birth" class="form-control" placeholder="${pazLog.birthDate}">
 								</div>
 								<div class="form-label-group">
 									<label>Codice fiscale</label>
-									<input type="text" name="cf" class="form-control" placeholder="${accPaz.cf}">
+									<input type="text" name="cf" class="form-control" placeholder="${pazLog.cf}">
 								</div>
 								<div class="form-label-group">
 									<label>Foto</label>
-									<input type="file" name="photo" class="form-control" placeholder="${accPaz.photo}" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
+									<input type="file" name="photo" class="form-control" placeholder="${pazLog.photo}" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 								</div>
 								<h4>Informazioni specifiche account</h4><br><br>
 								<div class="form-label-group">
 									<label>Residenza</label>
-									<input type="text" name="residence" class="form-control" placeholder="${infoPaz.residence}">
+									<input type="text" name="residence" class="form-control" placeholder="${pazLog.residence}">
 								</div>
 								<div class="form-label-group">
 									<label>Domicilio</label>
-									<input type="text" name="domicile" class="form-control" placeholder="${accPaz.domicile}">
+									<input type="text" name="domicile" class="form-control" placeholder="${pazLog.domicile}">
 								</div>
                     			<button class="btn btn-lg btn-primary btn-block text-uppercase" id="btn_signin" type="submit">Conferma</button>
                     		</form>
