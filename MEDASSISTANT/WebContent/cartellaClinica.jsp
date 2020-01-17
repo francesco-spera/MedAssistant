@@ -52,7 +52,6 @@
 						 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${medReps}" var="rep">
 								<thead>
 									<tr class="table100-head" style="background-color: #081f3e">
 										<th class="column1">Oggetto</th>
@@ -60,6 +59,7 @@
 										<th class="column5"></th>
 									</tr>
 								</thead>
+							<c:forEach items="${medReps}" var="rep">
 								<tbody>
 									<tr>
 										<td class="column1">${rep.object}</td>  

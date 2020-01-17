@@ -4,9 +4,10 @@
 	uri="http://java.sun.com/jsp/jstl/core"%>
 
 <% 
-if(request.getSession().getAttribute("Pres")==null && request.getAttribute("read")!="true"){
+if(request.getAttribute("Pres")==null && request.getAttribute("read")!="true"){
 			request.getRequestDispatcher("/verificaRicetta").forward(request, response);
 		}
+request.removeAttribute("read");
 %>
 
 <!DOCTYPE html>
