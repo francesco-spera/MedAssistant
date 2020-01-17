@@ -12,6 +12,7 @@
 <title>MedAssistant | Login </title>
 <link rel="icon" href="core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="style.css">
+<script src="core/js/jquery/jquery-2.2.4.min.js"></script>
 </head>
 <body>
 
@@ -19,7 +20,7 @@
 	<div class="medilife-load"></div>
 </div>
 
-	<%@ include file="core/header/header.jsp" %>  
+	<!--  <%@ include file="core/header/header.jsp" %>  -->
 
 <br>
 <br>
@@ -34,17 +35,22 @@
 			<div class="card card-signin my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Accedi</h5>
-						<form action="${pageContext.request.contextPath}/autenticazione" method="POST" name="loginForm" onsubmit="return validateLoginForm(loginForm)">
+						<form method="POST" name="loginForm" onsubmit="return canAccess()">
 							<div class="form-label-group">
 								<label for="inputEmail">Email</label>
-								<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required autofocus>
+								<input type="email" id="email" name="email" class="form-control" placeholder="Email">
+								<p id="outEmail" style="color: red"></p>
 							</div>
 							<div class="form-label-group">
 								<label for="inputPassword">Password</label>
-								<input type="password" id="inputPassword" name="psw" class="form-control" placeholder="Password" required>
+								<input type="password" id="psw" name="psw" class="form-control" placeholder="Password">
+								<p id="outPsw" style="color: red"></p>
 							</div>
-                    		<button class="btn btn-lg btn-primary btn-block text-uppercase" id="btn_signin" type="submit">Accedi</button>
+                    		<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttLogin">Controlla credenziali</button>
                     	</form>
+                    	<form action="index.jsp" method="GET">
+                    		<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttLogin2" style="display: none">Accedi</button>
+						</form>
                 </div>
 			</div>
 		</div>
@@ -53,9 +59,8 @@
 
 
 <%@ include file="core/header/footer.jsp" %>  
-	
+
 <script src="js/validatingForm.js"></script>
-<script src="core/js/jquery/jquery-2.2.4.min.js"></script>
 <script src="core/js/popper.min.js"></script>
 <script src="core/js/bootstrap.min.js"></script>
 <script src="core/js/plugins.js"></script>

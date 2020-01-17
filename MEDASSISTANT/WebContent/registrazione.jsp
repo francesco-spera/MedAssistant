@@ -13,6 +13,7 @@
 <title>MedAssistant | Registrazione</title>
 <link rel="icon" href="core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="style.css">
+<script src="core/js/jquery/jquery-2.2.4.min.js"></script>
 </head>
 <body>
 
@@ -37,98 +38,102 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card card-signin my-5">
                 <div class="card-body" >
-                  <h3 class="card-title text-center"style="color:dark blue;">Crea un nuovo account</h3>	
+                  <h3 class="card-title text-center"style="color:dark blue">Crea un nuovo account</h3>	
                   <hr>
-                  <br>
-                  
-                  
-                  
+                  <br>       
+               
                   <div class="container">
-                         
 	                  <div class="row">   
-	                    
 	                    <div class="col-1">
-	                  	   
 	                  	</div>  
-	                  	
 	                  	<div class="col-md-3">
-	                  	   
 	                  	     <label>Paziente</label> 
 	                  	</div>  
-	                  
 	                  	<div class="col-md-3">   
-	                  	
 			                  <label class="switch">
 						      <input  type="checkbox"  onclick="SwapDivsWithClick(regPaz,regMed)">
 						        <span class="slider round"  ></span>
 						     </label>
-						     
 						</div>
-					
 						<div class="col-md-3">   
 	                  	     <label>Medico</label> 
 	                  	</div>  
-					     
 				     </div>
 			     </div>
 			    <br><br>
-					
-				
-					<div id="regPaz" >
+			    
+					<div id="regPaz">
 						<h4>Registrazione paziente</h4>
-						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormPaz(regForm)">
-						   <input type="text"  class="form-control" name="email" placeholder="email">
-							<input type="password"  class="form-control" name="psw" placeholder="password">
+						<form enctype='multipart/form-data' method="POST" name="regForm" id="regForm" onsubmit="return canRegister()">
+						   	<input type="text" id="email" class="form-control" name="email" placeholder="Email">
+						   	<p id="outEmail" style="color: red"></p>
+							<input type="password"  class="form-control" name="psw" id="psw" placeholder="Password">
+							<p id="outPsw" style="color: red"></p>
 						<h4>Informazioni personali</h4>
-							<input type="text"  class="form-control" name="name" placeholder="nome">
-							<input type="text"  class="form-control" name="surname" placeholder="cognome">
-							<input type="date"  class="form-control" name="birth" placeholder="data di nascita">
-							<input type="text"  class="form-control" name="cf" placeholder="codice fiscale">
-							<input id="img" type="file"  class="form-control" name="photo" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
-							<input type="text"  class="form-control" name="domicile" placeholder="domicilio">
-							<input type="text"  class="form-control" name="residence" placeholder="residenza">
-							<input type="submit" class="btn btn-primary btn-block" value="Submit">
+							<input type="text"  class="form-control" name="name" id="name" placeholder="Nome">
+							<p id="outName" style="color: red"></p>
+							<input type="text"  class="form-control" name="surname" id="surname" placeholder="Cognome">
+							<p id="outSurname" style="color: red"></p>
+							<input type="date"  class="form-control" name="birth" id="birth" placeholder="Data di nascita">
+							<input type="text"  class="form-control" name="cf" id="cf" placeholder="Codice fiscale">
+							<p id="outCf" style="color: red"></p>
+							<input id="img" type="file" class="form-control" name="photo" placeholder="Foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
+							<input type="text"  class="form-control" name="domicile" id="domicile" placeholder="Domicilio">
+							<p id="outDom" style="color: red"></p>
+							<input type="text"  class="form-control" name="residence" id="residence" placeholder="Residenza">
+							<p id="outRes" style="color: red"></p>
+							<p id="outCred" style="color: red"></p>
+							<input type="submit" class="btn btn-primary btn-block" id="buttRegister" value="Crea account">
+						</form>
+						<form action="index.jsp" method="GET">
+                    		<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegister2" style="display: none">Accedi</button>
 						</form>
 					</div>
 														
-					<div id="regMed" style="display:none;">
+					<div id="regMed" style="display:none">
 						<h4>Registrazione medico</h4>
-						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" name="regForm" onsubmit="return valRegFormMed(regForm)">
-							<input type="text" class="form-control" name="email" placeholder="email">
-							<input type="password" class="form-control" name="psw" placeholder="password">
+						<form enctype='multipart/form-data' method="POST" name="regFormM" onsubmit="return canRegisterM()">
+							<input type="text" id="emailM" class="form-control" name="email" placeholder="email">
+							<p id="outEmailM" style="color: red"></p>
+							<input type="password" class="form-control" name="psw" id="pswM" placeholder="password">
+							<p id="outPswM" style="color: red"></p>
 						<h4>Informazioni personali</h4>
-							<input type="text" class="form-control" name="name" placeholder="nome">
-							<input type="text" class="form-control" name="surname" placeholder="cognome">
-							<input type="date" class="form-control" name="birth" placeholder="data di nascita">
-							<input type="text" class="form-control" name="cf" placeholder="codice fiscale">
-							<input id="img" type="file"  class="form-control" name="photo" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
-							<input type="tel" class="form-control" name="mobilep" placeholder="mobilephone">
-							<input type="text" class="form-control" name="studioaddr" placeholder="indirizzo studio">
-							<input type="text" class="form-control" name="munaddr" placeholder="comune studio">
-							<select name="type">
+							<input type="text" class="form-control" name="name" id="nameM" placeholder="nome">
+							<p id="outNameM" style="color: red"></p>
+							<input type="text" class="form-control" name="surname" id="surnameM" placeholder="cognome">
+							<p id="outSurnameM" style="color: red"></p>
+							<input type="date" class="form-control" name="birth" id="birthM" placeholder="data di nascita">
+							<input type="text" class="form-control" name="cf" id="cfM" placeholder="codice fiscale">
+							<p id="outCfM" style="color: red"></p>
+							<input id="imgM" type="file"  class="form-control" name="photoM" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
+							<input type="tel" class="form-control" name="mobilep" id="mobilep" placeholder="mobilephone">
+							<p id="outMobile" style="color: red"></p>
+							<input type="text" class="form-control" name="studioaddr" id="studioaddr" placeholder="indirizzo studio">
+							<p id="outStudio" style="color: red"></p>
+							<input type="text" class="form-control" name="munaddr" id="munaddr" placeholder="comune studio">
+							<p id="outMun" style="color: red"></p>
+							<select name="type" id="type">
 								<option value="medico di base">Medico di base</option>
 								<option value="cardiologo">Cardiologo</option>
 							  	<option value="dermatologo">Dermatologo</option>
 							  	<option value="neurologo">Neurologo</option>
 							  	<option value="podologo">Podologo</option>
 							</select>
-							<br><br><br><input type="submit" class="btn btn-primary btn-block" value="Submit"><br><br><br>
-							
-                      
-							
+							<p id="outCredM" style="color: red"></p>
+							<br><br><br><input type="submit" class="btn btn-primary btn-block" id="buttRegisterM" value="Crea account"><br><br><br>
+						</form>
+						<form action="index.jsp" method="GET">
+                    		<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegister2M" style="display: none">Accedi</button>
 						</form>
 					</div> 
 					<br>
-						<p class="text-center" style="color:#081f3e">Hai già un account? <a  href="login.jsp" style="color:#68b3fd; " >Accedi</a> </p>
+						<p class="text-center" style="color:#081f3e">Hai già un account? <a  href="login.jsp" style="color:#68b3fd">Accedi</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-<script src="js/validatingForm.js"></script>
-
 <br>
 <br>
 <br>
@@ -137,45 +142,32 @@
 <br>
 <br>
 
-
-<script type="text/javascript">
-function SwapDivsWithClick(div1,div2)
-{
-   d1 = document.getElementById("regPaz");
-   d2 = document.getElementById("regMed");
-   if( d2.style.display == "none" )
-   {
-      d1.style.display = "none";
-      d2.style.display = "block";
-   }
-   else
-   {
-      d1.style.display = "block";
-      d2.style.display = "none";
-   }
-}
-</script>
-
-
-
-<%@ include file="core/header/footer.jsp" %>  
+	<%@ include file="core/header/footer.jsp" %>  
+	<script src="js/validatingForm.js"></script>
 	
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="core/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+	<script type="text/javascript">
+		function SwapDivsWithClick(div1,div2)
+		{
+		   d1 = document.getElementById("regPaz");
+		   d2 = document.getElementById("regMed");
+		   if( d2.style.display == "none" )
+		   {
+		      d1.style.display = "none";
+		      d2.style.display = "block";
+		   }
+		   else
+		   {
+		      d1.style.display = "block";
+		      d2.style.display = "none";
+		   }
+		}
+	</script>
+
+	
     <script src="core/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
     <script src="core/js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
     <script src="core/js/plugins.js"></script>
-    <!-- Active js -->
     <script src="core/js/active.js"></script>
-    
-    
     
 </body>
 </html>
-
-
-
-

@@ -445,20 +445,14 @@ public class ProfiloManager {
 		Connection con = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM doctor WHERE email = ?;");
+			ps = con.prepareStatement("SELECT name FROM account WHERE patient = ? OR doctor = ?;");
 			ps.setString(1, email);
+			ps.setString(2, email);
 			ResultSet rs = ps.executeQuery();
-			if(!rs.next()) {
-				ps.close();
-				ps = con.prepareStatement("SELECT * FROM patient WHERE email = ?;");
-				ps.setString(1, email);
-				rs = ps.executeQuery();
-				if(rs.next())
-					return true;
-				else
-					return false;
-			} else
+			if(rs.next())
 				return true;
+			else
+				return false;
 		} finally {
 			try {
 				if(ps!= null) {

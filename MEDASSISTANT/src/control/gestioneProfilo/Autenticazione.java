@@ -1,6 +1,7 @@
 package control.gestioneProfilo;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -31,30 +32,28 @@ public class Autenticazione extends HttpServlet {
 		if(request.getSession().getAttribute("docLog")!=null)
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
+		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String psw = request.getParameter("psw");
 		Account user = null;
-		if(email!=null && psw!=null) {
-			try {
-				user = ProfiloManager.autenticazione(email, psw);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		if(user==null) {
-			/*momentaneamente*/
-			System.out.println("problemi con le credenziali");
-			return;
+		try {
+			user = ProfiloManager.autenticazione(email, psw);
+			if(user!=null)
+				out.write("true");
+			else
+				out.write("false");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(20*60);
+		session.setMaxInactiveInterval(30*60);
 		
 		if(user.getPatient()!=null)
 			session.setAttribute("pazLog", user);
 		else
 			session.setAttribute("docLog", user);
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		out.close();
 	}
 
 	
