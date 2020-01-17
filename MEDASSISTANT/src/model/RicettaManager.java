@@ -18,7 +18,7 @@ public class RicettaManager {
 		ArrayList<Prescription> ricetta = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ?");
+			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ? ORDER BY ID DESC");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			ricetta = new ArrayList<Prescription>();
@@ -31,6 +31,7 @@ public class RicettaManager {
 				ric.setDate(rs.getString(4));
 				ric.setDoctor(rs.getString(5));
 				ric.setPatient(rs.getString(6));
+				ric.setState(rs.getInt(7));
 				ricetta.add(ric);
 			}
 		}finally {
@@ -53,12 +54,39 @@ public class RicettaManager {
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO prescription (MedicalReport, prescription,date,Doctor,Patient) VALUES (?,?,?,?,?)");
+			ps = con.prepareStatement("INSERT INTO prescription (MedicalReport, prescription,date,Doctor,Patient,state) VALUES (?,?,?,?,?,?)");
 			ps.setInt(1,ricetta.getMedicalreport());
 			ps.setBlob(2, ricetta.getPrescription());
 			ps.setString(3, ricetta.getDate());
 			ps.setString(4, ricetta.getDoctor());
 			ps.setString(5, ricetta.getPatient());
+			ps.setInt(6, ricetta.getState());
+			if (ps.executeUpdate() != 1)
+				return false;
+			return true;
+			
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	}
+	
+	public static boolean modificastato(int stato, int id) throws SQLException{
+		PreparedStatement ps = null;
+		Connection con = null;
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("UPDATE prescription SET state = ? WHERE ID = ?)");
+			ps.setInt(1, stato);
+			ps.setInt(2, id);
+			
+
 			if (ps.executeUpdate() != 1)
 				return false;
 			return true;

@@ -52,7 +52,15 @@ public class Prescription {
 		this.date = date;
 	}
 	
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	private String doctor,patient,date;
-	private int ID, medicalreport;
+	private int ID, medicalreport,state;
 	private Blob prescription;
 }

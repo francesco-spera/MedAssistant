@@ -35,13 +35,31 @@
 	</div>
 	
 	<div class="container mt-5">
-	    <h1>Profilo personale</h1>
-	    <a href="${pageContext.request.contextPath}/modificaProfilo.jsp" class="btn btn-primary">Modifica profilo</a>
-	   	<c:choose>
-	    <c:when test="${pazLog!=null}">
-	   	<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/cartellaClinica">Cartella clinica</a>	
-	   	</c:when>
-	   	</c:choose>			
+	
+		<div class="row">
+			    <div class="form-group">
+		           <div class="col-lg-12">
+		           <h2>Profilo personale</h2>
+		           </div>
+		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+	  				  <a href="${pageContext.request.contextPath}/modificaProfilo.jsp" class="btn btn-primary">Modifica profilo</a>
+		           </div>
+		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+						<c:choose>
+				   		 <c:when test="${pazLog!=null}">
+							 <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/cartellaClinica">Cartella clinica</a>	
+						</c:when>
+						</c:choose>
+		           </div>
+		         </div>
+		    </div>
+	
+
+		
 	  	<hr>
 	    <c:choose>
 	    <c:when test="${docLog!=null}">

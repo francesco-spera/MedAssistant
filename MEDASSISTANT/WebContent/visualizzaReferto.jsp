@@ -25,6 +25,7 @@ request.removeAttribute("read");
 <link rel="stylesheet" type="text/css" href="core/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" type="text/css" href="core/css/table_util.css">
 <link rel="stylesheet" type="text/css" href="core/css/table_main.css">
+<script type="text/javascript" src="js/ajaxsendemail.js"></script>
 </head>
 <body>
 
@@ -83,7 +84,7 @@ request.removeAttribute("read");
 		           <div class="col-lg-9">
 					<c:choose>
 		      		<c:when test="${pazLog!=null}">
-			      		<a type="submit" class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/#">Richiedi ricetta</a>
+			      		<a type="submit" class="btn btn-primary" onclick="ajaxCall('load','<%=request.getContextPath()%>/richiedereRicetta', displayResults(),'r.caccia@outlook.com','Richiesta Ricetta','Salve Dottor,\nL\'utente, email: \n\nha richiesto l\'invio di una ricetta: http://localhost:8080/MEDASSISTANT/visualizzaRicRicetta.jsp?email=',6000)">Richiedi ricetta</a>
 			      	</c:when>
 		      		</c:choose>
 		           </div>
@@ -130,15 +131,28 @@ request.removeAttribute("read");
 
 
 	<%@ include file="core/header/footer.jsp" %> 
-	
+	    <script src="core/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="core/vendor/bootstrap/js/popper.js"></script>
 	<script src="core/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="core/vendor/select2/select2.min.js"></script>
-    <script src="core/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="core/js/popper.min.js"></script>
     <script src="core/js/bootstrap.min.js"></script>
     <script src="core/js/plugins.js"></script>
     <script src="core/js/active.js"></script>
+    <script>
+    function displayResults(listXML, id) {
+		try {
+			var obj = document.getElementById(id);
+			if(obj != null) {
+				var rdfs = listXML.getElementsByTagName("result")[0].firstChild.nodeValue;
+				obj.innerHTML =rdfs;
+				console.log("Handle results");
+			}
+		} catch(e1) {
+		}
+
+	}
+    </script>
 
 </body>
 </html>
