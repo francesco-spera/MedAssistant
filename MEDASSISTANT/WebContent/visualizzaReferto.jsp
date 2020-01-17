@@ -92,7 +92,7 @@ request.removeAttribute("read");
 		           <div class="col-lg-9">
 		           <c:choose>
 		           <c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
-			      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/#">Carica ricetta</a>
+			      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/caricaRicetta.jsp?idReferto=${medRep.idReport}">Carica ricetta</a>
 			      	</c:when>
 			      </c:choose>
 		           </div>
@@ -103,7 +103,7 @@ request.removeAttribute("read");
 		<thead>
 			<tr class="table100-head" style="background-color: #081f3e">
 				<th class="column1">Data ricetta</th>
-				<th class="column1">Azioni</th>
+				<th class="column1"></th>
 			</tr>
 		</thead>
 		<c:choose>
@@ -112,11 +112,13 @@ request.removeAttribute("read");
 			</c:when>
 			<c:otherwise>
 			<c:forEach items="${Pres}" var="presc">
+			<tr>
 			<td>${presc.date}</td>
 			<td><form target="_blank" action="${pageContext.request.contextPath}/GetPdf.jsp" method="GET">
 				<input type="hidden" name="id" value="${presc.ID}">
 				<button type="submit" class="btn btn-primary">Visualizza ricetta</button>											
 				</form></td>
+			</tr>
 			</c:forEach>
 			
 			</c:otherwise>

@@ -37,13 +37,26 @@
     <div class="container-table100">
 		<div class="wrap-table100">
 			<div class="table100">
-			<c:choose>
-	   		 <c:when test="${docLog!=null}">
-			<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/caricaReferto.jsp">Carica Referto</a>
-			</c:when>
-			</c:choose>
 			
-			<br><br>											
+			<div class="row">
+			    <div class="form-group">
+		           <div class="col-lg-12">
+		           <h2>Referti</h2>
+		           </div>
+		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+								<c:choose>
+						   		 <c:when test="${docLog!=null}">
+								<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/caricaReferto.jsp">Carica Referto</a>
+								</c:when>
+								</c:choose>
+		           </div>
+		         </div>
+		    </div>
+	
+			<hr>
+			<br>											
 				<table>
 					<c:choose>
 						<c:when test="${empty medReps}">
