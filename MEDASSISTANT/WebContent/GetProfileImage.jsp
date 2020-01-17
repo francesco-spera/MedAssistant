@@ -13,11 +13,9 @@
 		chiave = request.getParameter("doctor");
     try {
         Connection con = DriverManagerConnectionPool.getConnection();
-        if(request.getSession().getAttribute("accPaz")!=null)
-        	ps = con.prepareStatement("select photo from account where patient=?");
-        else
-        	ps = con.prepareStatement("select photo from account where doctor=?");
+        	ps = con.prepareStatement("select photo from account where patient=? OR doctor=?");
         ps.setString(1, chiave);
+        ps.setString(2, chiave);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             Blob blob = rs.getBlob("photo");
