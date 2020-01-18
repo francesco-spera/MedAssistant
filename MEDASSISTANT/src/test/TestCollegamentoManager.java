@@ -9,9 +9,23 @@ import bean.Patient;
 import junit.framework.TestCase;
 import model.CollegamentoManager;
 
-class TestCollegamentoManager extends TestCase {
+public class TestCollegamentoManager extends TestCase {
 
+
+
+	@Override
+	protected void setUp() throws Exception {
+	}
 	
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+	
+	
+	
+	
+	/*
 	public void testdoRetrieveByPazienteCollegato() throws SQLException{
 		
 		
@@ -34,7 +48,7 @@ class TestCollegamentoManager extends TestCase {
 		assertNotNull(p.getPassword());
 		
 		
-	}
+	}*/
 	
 	
 	public void testdoRetrieveAll() throws SQLException{

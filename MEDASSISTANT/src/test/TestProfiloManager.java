@@ -6,18 +6,21 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 import bean.Account;
-import bean.Patient;
 import junit.framework.TestCase;
 import model.ProfiloManager;
 
 public class TestProfiloManager extends TestCase {
 
-	
-	
 
 	@Override
 	protected void setUp() throws Exception {
 	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+
 	
 	public void TestAutenticazione() throws SQLException {
 		
