@@ -16,7 +16,21 @@
 <link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style type="text/css">
+ .scrollable{
+   overflow-y: auto;
+   overflow-x: none;
+   height: 100px;
+ }
+ .scrollable select{
+   border: none;
+   outline: none;
+ }
+ 
 
+ 
+</style>
 </head>
 <body>
     <div id="preloader">
@@ -82,18 +96,59 @@
 		<hr>
 		<h4>Informazioni generali appuntamento</h4>
 		<div class="row">
+			    <form action="${pageContext.request.contextPath}/ModificareAppuntamento" method="POST">
+		<input type="hidden" name="doctor" value="${accDoc.doctor}">
+		<input type="hidden" name="patient" value="${Appointment.patient}">
+		<input type="hidden" name="appId" value="${Appointment.idAppointment}">
+		<div class="row">
 			    <div class="form-group">
 		           <label class="col-lg-3 control-label">Data</label>
 		           <div class="col-lg-12">
-		             <input id="date" class="form-control" type="date" value="${Appointment.date}" />
+		             <input id="date" name="date" class="form-control" type="date" value="${Appointment.date}" required/>
 		           </div>
 		         </div>
 		         <div class="form-group">
 		           <label class="col-lg-3 control-label">Ora</label>
 		           <div class="col-lg-12">
-		             <input class="form-control" type="text" value="${Appointment.time}" >
+		           <div class="scrollable">
+		            <select name="time" class="form-control" required>
+					  <option value="08:00">08:00</option>
+					  <option value="08:30">08:30</option>
+					  <option value="09:00">09:00</option>
+					  <option value="09:30">09:30</option>
+					  <option value="10:00">10:00</option>
+					  <option value="10:30">10:30</option>
+					  <option value="11:00">11:00</option>
+					  <option value="11:30">11:30</option>
+					  <option value="12:00">12:00</option>
+					  <option value="12:30">12:30</option>
+					  <option value="13:00">13:00</option>
+					  <option value="13:30">13:30</option>
+					  <option value="14:00">14:00</option>
+					  <option value="14:30">14:30</option>
+					  <option value="15:00">15:00</option>
+					  <option value="15:30">15:30</option>
+					  <option value="16:00">16:00</option>
+					  <option value="16:30">16:30</option>
+					  <option value="17:00">17:00</option>
+					  <option value="17:30">17:30</option>
+					  <option value="18:00">18:00</option>
+					  <option value="18:30">18:30</option>
+					  <option value="19:00">19:00</option>
+					  <option value="19:30">19:30</option>
+					</select>
+					</div>
 		           </div>
 		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-12">
+		           <br>
+		             <input type="submit" id="date" class="btn btn-primary" value="Modifica"/>
+		             <% if(request.getAttribute("error")!=null) { %> <a>&nbsp&nbsp<%=request.getAttribute("error")  %></a> <%} %>
+		           </div>
+		         </div>
+		    </div>
+		    </form>
 		    </div>
 		</div>
 		</div>

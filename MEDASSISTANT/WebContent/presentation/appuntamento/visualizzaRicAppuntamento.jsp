@@ -56,25 +56,33 @@
 
 			<c:otherwise>
 				<div class="text-center">
-			   <h3>Richiesta di collegamento</h3>
+			   <h3>Richiesta di appuntamento</h3>
 				</div>
 			    <hr>
 			    
 					<div class="container text-center">
-					<form method="get" action="${pageContext.request.contextPath}/RispostaCollegamento">
+					<form method="get" action="${pageContext.request.contextPath}/RispostaAppuntamento">
 						  <div class="form-group text-center">
 						    <h5>Hai ricevuto una nuova richiesta di appuntamento da: <%=request.getParameter("patient") %></h5>
 						  </div>
+						  <br>
+						  
+						  <div class="form-group text-center">
+						    <label>Data: <%=request.getParameter("date")%> Ora: <%=request.getParameter("time")%></label>
+						  </div>
+						  
 						  <br>
 						  <div class="form-group text-center">
 						    <label>Vuoi accettare , modificare o rifiutare l'appuntamento?</label>
 						  </div>
 						  <br>
 					<input type="hidden" id="response" name="response" value="" required="required">
+					<input type="hidden" id="response" name="appId" value="<%=request.getParameter("appId") %>" required="required">
+					<input type="hidden" id="response" name="date" value="<%=request.getParameter("date")%>" required="required">
+					<input type="hidden" id="response" name="time" value="<%=request.getParameter("time")%>" required="required">
 					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="1" id="Accettabtn"> Accetta</button>
-					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="Accettabtn"> Modifica</button>
-			        <button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="3" id="Rifiutabtn">Rifiuta</button>
-			        <input type="hidden" id="email" name="email" value="<%=request.getParameter("email") %>" required="required">
+					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="modificabtn"> Modifica</button>
+			        <input type="hidden" id="email" name="email" value="<%=request.getParameter("patient") %>" required="required">
 					
 					</form>
 				  	</div>

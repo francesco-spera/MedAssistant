@@ -65,6 +65,7 @@ public class prenotaAppuntamento extends HttpServlet {
 		}
 		
 		if(risp) {
+
 			System.out.println("presente");
 			request.setAttribute("error", "Orario non disponibile");
 			request.getRequestDispatcher("presentation/appuntamento/prenotaAppuntamento.jsp").forward(request, response);
@@ -72,9 +73,11 @@ public class prenotaAppuntamento extends HttpServlet {
 			System.out.println("non presente");
 			
 			try {
+				AppuntamentoManager.inserisciApp(app);
+				int id = AppuntamentoManager.ritornoID(emailmed, emailpat, date, 0);
+				text=text.concat("&appId="+id);
 				EmailSender email = new EmailSender();
 				email.inviaMailAppuntamento("r.caccia@outlook.com", oggetto, text);
-				AppuntamentoManager.inserisciApp(app);
 				request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 				
 			} catch (MessagingException | SQLException e) {

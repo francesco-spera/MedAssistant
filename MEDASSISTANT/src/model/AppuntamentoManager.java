@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -147,25 +148,54 @@ public class AppuntamentoManager {
 	}
 	
 	
-public static boolean inserisciApp(Appointment appuntamento) throws SQLException {
-		
+	public static boolean inserisciApp(Appointment appuntamento) throws SQLException {
+			
+			PreparedStatement ps = null;
+			Connection con = null;
+			try {
+				con = DriverManagerConnectionPool.getConnection();
+				ps = con.prepareStatement("INSERT INTO appointment (Date,Time,Doctor,Patient,State) VALUES (?,?,?,?,?)");
+				ps.setString(1, appuntamento.getDate());
+				ps.setString(2, appuntamento.getTime());
+				ps.setString(3, appuntamento.getDoctor());
+				ps.setString(4, appuntamento.getPatient());
+				ps.setInt(5, appuntamento.getState());
+	
+				
+				if (ps.executeUpdate() != 1)
+					return false;
+				return true;
+					
+			
+			}finally {
+				try {
+					if(ps!= null) {
+						ps.close();
+					}
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(con);
+				}
+			}
+	
+		}
+
+	public static int ritornoID(String doctor, String patient, String date, int state) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
+		int ret = 0;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO appointment (Date,Time,Doctor,Patient,State) VALUES (?,?,?,?,?)");
-			ps.setString(1, appuntamento.getDate());
-			ps.setString(2, appuntamento.getTime());
-			ps.setString(3, appuntamento.getDoctor());
-			ps.setString(4, appuntamento.getPatient());
-			ps.setInt(5, appuntamento.getState());
-
-			
-			if (ps.executeUpdate() != 1)
-				return false;
-			return true;
+			ps = con.prepareStatement("SELECT * FROM appointment WHERE Date = ? AND Doctor = ? AND Patient = ? AND state = ?");
+			ps.setString(1, date);
+			ps.setString(2, doctor);
+			ps.setString(3, patient);
+			ps.setInt(4, state);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
 				
-		
+				ret = rs.getInt(1);
+			
+			}
 		}finally {
 			try {
 				if(ps!= null) {
@@ -175,10 +205,66 @@ public static boolean inserisciApp(Appointment appuntamento) throws SQLException
 				DriverManagerConnectionPool.releaseConnection(con);
 			}
 		}
-
+		
+		return ret;
+		
 	}
 	
+	public static boolean updateAppuntamentoState(int state,int id) throws SQLException{
+		PreparedStatement ps = null;
+		Connection con = null;
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("UPDATE appointment SET state = ? WHERE IDAppointment =?");
+
+			ps.setInt(1, state);
+			ps.setInt(2, id);
+			
+
+			if (ps.executeUpdate() != 1)
+				return false;
+			return true;
+			
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	}
 	
+	public static boolean modificaAppuntamento(int state,int id, String date, String time) throws SQLException{
+		PreparedStatement ps = null;
+		Connection con = null;
+		System.out.println("new state:"+state);
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("UPDATE appointment SET Date =?, Time=?,State = ? WHERE IDAppointment =?");
+			ps.setString(1, date);
+			ps.setString(2, time);
+			ps.setInt(3, state);
+			ps.setInt(4, id);
+
+			
+
+			if (ps.executeUpdate() != 1)
+				return false;
+			return true;
+			
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	}
 
 	
 }

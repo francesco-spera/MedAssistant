@@ -153,10 +153,13 @@
 						
 						String[] ora = bean.getTime().split(":");
 						
+						if (bean.getState()!=0 && bean.getState()!= 2) {
 					%>
 				
 					<%= ", { title: '"+pat.getName()+" "+pat.getSurname()+"',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", "+ ora[0]+", "+ ora[1]+"), allDay: false, url: '"+request.getContextPath()+"/VisualizzareAppuntamento?id="+bean.getIdAppointment()+"', className: 'success'}" %>
-					<%}%>
+					<%
+						}
+						}%>
 				
 
 			],
