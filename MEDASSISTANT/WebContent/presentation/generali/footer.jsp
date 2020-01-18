@@ -24,7 +24,7 @@
                     <div class="col-12 col-sm-6 col-xl-3">
                         <div class="footer-widget-area">
                             <div class="footer-logo">
-                                <img src="../../core/img/core-img/medassistantlogo.png" alt="" class="img-responsive" style="width:280px;">
+                                <img src="<%=request.getContextPath()%>/core/img/core-img/medassistantlogo.png" alt="" class="img-responsive" style="width:280px;">
                             </div>
                             <p>MedAssistant è una piattaforma che permette un interazione smart tra paziente e medico.</p>
 						</div>

@@ -10,9 +10,10 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>MedAssistant | Login </title>
-<link rel="icon" href="../../core/img/core-img/favicon.ico">
-<link rel="stylesheet" href="../../core/css/style.css">
-<script src="../../core/js/jquery/jquery-2.2.4.min.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
+<script src="${pageContext.request.contextPath}/core/js/jquery/jquery-2.2.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/core/js/validatingForm.js"></script>
 </head>
 <body>
 
@@ -58,11 +59,11 @@
 
 	<%@ include file="../generali/footer.jsp" %>    
  
-    <script src="../../core/js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="../../core/js/popper.min.js"></script>
-    <script src="../../core/js/bootstrap.min.js"></script>
-    <script src="../../core/js/plugins.js"></script>
-    <script src="../../core/js/active.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/active.js"></script>
 
 
 </body>

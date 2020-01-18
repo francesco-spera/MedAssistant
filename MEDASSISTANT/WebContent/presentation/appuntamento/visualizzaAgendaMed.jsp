@@ -18,16 +18,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>MedAssistant | Agenda Appuntamenti</title>
-<link rel="icon" href="../../core/img/core-img/favicon.ico">
-<link rel="stylesheet" href="../../core/css/style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
 
 
-<link href='../../core/css/fullcalendar.css' rel='stylesheet' />
-<link href='../../core/css/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src='../../core/js/jquery-1.10.2.js' type="text/javascript"></script>
-<script src='../../core/js/jquery-ui.custom.min.js' type="text/javascript"></script>
-<script src='../../core/js/fullcalendar.js' type="text/javascript"></script>
-<script src='../../core/js/it.js' type="text/javascript"></script>
+<link href='${pageContext.request.contextPath}/core/css/fullcalendar.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/core/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='${pageContext.request.contextPath}/core/js/jquery-1.10.2.js' type="text/javascript"></script>
+<script src='${pageContext.request.contextPath}/core/js/jquery-ui.custom.min.js' type="text/javascript"></script>
+<script src='${pageContext.request.contextPath}/core/js/fullcalendar.js' type="text/javascript"></script>
 
 <script>
 
@@ -259,14 +258,17 @@
 	<br>
 
 	<%@ include file="../generali/footer.jsp" %>
+	
+	
 
-	<script src="../../core/vendor/bootstrap/js/popper.js"></script>
-	<script src="../../core/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../../core/vendor/select2/select2.min.js"></script>
-	<script src="../../core/js/popper.min.js"></script>
-    <script src="../../core/js/bootstrap.min.js"></script>
-    <script src="../../core/js/plugins.js"></script>
-    <script src="../../core/js/active.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/popper.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/select2/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/active.js"></script>
+
     
 
 </body>

@@ -13,13 +13,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>MedAssistant | Profilo Medico</title>
-<link rel="icon" href="../../core/img/core-img/favicon.ico">
-<link rel="stylesheet" href="../../core/css/style.css">
-<link rel="stylesheet" type="text/css" href="../../core/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="../../core/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="../../core/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<link rel="stylesheet" type="text/css" href="../../core/css/table_util.css">
-<link rel="stylesheet" type="text/css" href="../../core/css/table_main.css">
+<link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_util.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_main.css">
 <script type="text/javascript" src="js/ajaxsendemail.js"></script>
 </head>
 <body>
@@ -45,7 +45,7 @@
 
 	<div class="container mt-5">
 	    <h1>Profilo del dott. <c:out value="${accDoc.surname}"/></h1>
-	    <img src="GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
+	    <img src="presentation/profilo/GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
 		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(),'${infoDoc.email}','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei: http://localhost:8080/MEDASSISTANT/visualizzaCollegamento.jsp?email=',6000)">
 		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Vota</a>
  
@@ -145,15 +145,14 @@
 
 
 	<%@ include file="../generali/footer.jsp" %> 
-
-	<script src="../../core/vendor/bootstrap/js/popper.js"></script>
-	<script src="../../core/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../../core/vendor/select2/select2.min.js"></script>
-    <script src="../../core/js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="../../core/js/popper.min.js"></script>
-    <script src="../../core/js/bootstrap.min.js"></script>
-    <script src="../../core/js/plugins.js"></script>
-    <script src="../../core/js/active.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/popper.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/select2/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/active.js"></script>
     <script>
 	function displayResults(listXML, id) {
 		try {

@@ -13,8 +13,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>MedAssistant | Appuntamento</title>
-<link rel="icon" href="../../core/img/core-img/favicon.ico">
-<link rel="stylesheet" href="../../core/css/style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css">
 
 </head>
@@ -110,16 +110,16 @@
 
 	<%@ include file="../generali/footer.jsp" %> 
 
-	<script src="../../core/js/jquery/jquery-2.2.4.min.js"></script>
-	<script src="../../core/vendor/bootstrap/js/popper.js"></script>
-	<script src="../../core/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../../core/vendor/select2/select2.min.js"></script>
-    <script src="../../core/js/popper.min.js"></script>
-    <script src="../../core/js/bootstrap.min.js"></script>
-    <script src="../../core/js/plugins.js"></script>
-    <script src="../../core/js/active.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/popper.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/select2/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/active.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../core/js/datapicker_it.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/core/js/datapicker_it.js"></script>
     
     <script>
     $(function() {

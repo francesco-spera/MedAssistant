@@ -13,7 +13,7 @@
 		chiave = request.getParameter("doctor");
     try {
         Connection con = DriverManagerConnectionPool.getConnection();
-        	ps = con.prepareStatement("select photo from account where patient=? OR doctor=?");
+        ps = con.prepareStatement("select photo from account where patient=? OR doctor=?");
         ps.setString(1, chiave);
         ps.setString(2, chiave);
         ResultSet rs = ps.executeQuery();

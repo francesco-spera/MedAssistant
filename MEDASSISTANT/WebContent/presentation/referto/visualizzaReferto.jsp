@@ -18,14 +18,14 @@ request.removeAttribute("read");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>MedAssistant | Referto</title>
-<link rel="icon" href="../../core/img/core-img/favicon.ico">
-<link rel="stylesheet" href="../../core/css/style.css">
-<link rel="stylesheet" type="text/css" href="../../core/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="../../core/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="../../core/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<link rel="stylesheet" type="text/css" href="../../core/css/table_util.css">
-<link rel="stylesheet" type="text/css" href="../../core/css/table_main.css">
-<script type="text/javascript" src="../../core/js/ajaxsendemail.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_util.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/core/js/ajaxsendemail.js"></script>
 </head>
 <body>
 
@@ -93,7 +93,7 @@ request.removeAttribute("read");
 		           <div class="col-lg-9">
 		           <c:choose>
 		           <c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
-			      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/caricaRicetta.jsp?reportid=${medRep.idReport}&email=${medRep.patient}&response=0">Carica ricetta</a>
+			      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/presentation/ricetta/caricaRicetta.jsp?reportid=${medRep.idReport}&email=${medRep.patient}&response=0">Carica ricetta</a>
 			      	</c:when>
 			      </c:choose>
 		           </div>
@@ -117,7 +117,7 @@ request.removeAttribute("read");
 			<c:when test="${presc.state==-1}">
 			<tr>
 			<td>${presc.date}</td>
-			<td><form target="_blank" action="${pageContext.request.contextPath}/GetPdf.jsp" method="GET">
+			<td><form target="_blank" action="${pageContext.request.contextPath}/presentation/ricetta/GetPdf.jsp" method="GET">
 				<input type="hidden" name="id" value="${presc.ID}">
 				<button type="submit" class="btn btn-primary">Visualizza ricetta</button>											
 				</form></td>
@@ -135,14 +135,14 @@ request.removeAttribute("read");
 
 
 	<%@ include file="../generali/footer.jsp" %>
-	<script src="../../core/js/jquery/jquery-2.2.4.min.js"></script>
-	<script src="../../core/vendor/bootstrap/js/popper.js"></script>
-	<script src="../../core/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../../core/vendor/select2/select2.min.js"></script>
-    <script src="../../core/js/popper.min.js"></script>
-    <script src="../../core/js/bootstrap.min.js"></script>
-    <script src="../../core/js/plugins.js"></script>
-    <script src="../../core/js/active.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/popper.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/vendor/select2/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath}/core/js/active.js"></script>
     <script>
     function displayResults(listXML, id) {
 		try {

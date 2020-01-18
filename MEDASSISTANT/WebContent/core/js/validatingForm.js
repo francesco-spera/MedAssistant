@@ -215,7 +215,7 @@
 	
 	$(document).ready(function(){
 		$("#buttLogin").click(function(){
-			$.post("autenticazione",
+			$.post("../../autenticazione",
 				{	
 					email: $("#email").val(),
 						psw: $("#psw").val()
