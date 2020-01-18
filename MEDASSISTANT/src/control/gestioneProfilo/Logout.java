@@ -20,12 +20,8 @@ public class Logout extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("pazLog")!=null)
-			request.getSession().removeAttribute("pazLog");
-		else if(request.getSession().getAttribute("docLog")!=null)
-			request.getSession().removeAttribute("pazLog");
 		request.getSession().invalidate();
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		response.sendRedirect("presentation/generali/index.jsp");
 	}
 
 	

@@ -17,7 +17,7 @@ public class RicercaManager {
 	 * 
 	 * @param zona la zona in cui si richiede cercare il medico
 	 * @param tipo la specializzazione del medico
-	 * @return null se non è stato trovato alcun medico o doc che mostra i dettagli del medico che proviene dalla zona cercata e del tipo specifico
+	 * @return doc, collezione di doctor, che mostra i dettagli del medico che proviene dalla zona cercata e del tipo specifico, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -57,21 +57,21 @@ public class RicercaManager {
 	/*
 	 * 
 	 * @param name il nome del medico che si vuole cercare
-	 * @param surname  il cognome del medico che si vuole cercare
-	 * @param emailpaz la mail del paziente a cui è associato il medico da cercare
-	 * @return null se non è stato trovato alcun medico o doc che mostra le informazioni del medico cercato
+	 * @param surname il cognome del medico che si vuole cercare
+	 * @param emailPaz la email del paziente a cui è associato il medico da cercare
+	 * @return doc, collezioni di doctor, che mostra le informazioni del medico cercato, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
 	
-	public static ArrayList<Doctor> cercaMedicoNome(String name, String surname, String emailpaz) throws SQLException{
+	public static ArrayList<Doctor> cercaMedicoNome(String name, String surname, String emailPaz) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ArrayList<Doctor> doc = new ArrayList<Doctor>();
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d, account a, link l WHERE d.email = a.doctor AND l.state = 1 AND l.doctor = d.email AND l.patient = ?  AND CONCAT( name,  ' ', surname ) LIKE ?;");
-			ps.setString(1, emailpaz);
+			ps.setString(1, emailPaz);
 			ps.setString(2,"%" + name + " " +surname+ "%") ;
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -98,21 +98,21 @@ public class RicercaManager {
 	/*
 	 * 
 	 * @param name il nome del paziente che si vuole cercare
-	 * @param surname  il cognome del paziente che si vuole cercare
-	 * @param emailmed la mail del medico a cui è associato il paziente da cercare
-	 * @return null se non è stato trovato alcun paziente o pat che mostra le informazioni del paziente cercato
+	 * @param surname il cognome del paziente che si vuole cercare
+	 * @param emailDoc la email del medico a cui è associato il paziente da cercare
+	 * @return pat, collezioni di patient, che mostra le informazioni del paziente cercato, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
 	
-	public static ArrayList<Patient> cercaPazienteNome(String name, String surname,String emaildoc) throws SQLException{
+	public static ArrayList<Patient> cercaPazienteNome(String name, String surname,String emailDoc) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ArrayList<Patient> pat = new ArrayList<Patient>();
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			ps = con.prepareStatement("SELECT email, domicile, residence FROM patient p, account a, link l WHERE p.email = a.patient AND l.state = 1 AND l.patient = p.email AND l.doctor = ?  AND CONCAT( name,  ' ', surname ) LIKE ?;");
-			ps.setString(1, emaildoc);
+			ps.setString(1, emailDoc);
 			ps.setString(2,"%" + name + " " +surname+ "%") ;
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -137,7 +137,7 @@ public class RicercaManager {
 	/*
 	 * 
 	 * @param email l'email del paziente 
-	 * @return null se non è stato trovato alcun medico associato al paziente o doc che mostra la lista con i dettagli dei medici associati al paziente
+	 * @return doc, collezione di account, che mostra la lista con i dettagli dei medici associati al paziente, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -173,8 +173,8 @@ public class RicercaManager {
 	
 	/*
 	 * 
-	 * @param email l'email del paziente 
-	 * @return null se non è stato trovato alcun paziente associato al medico o pat che mostra la lista con i dettagli dei pazienti associati al medico
+	 * @param email l'email del medico 
+	 * @return pat, collezione di account, che mostra la lista con i dettagli dei pazienti associati al medico, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -214,7 +214,7 @@ public class RicercaManager {
 	/*
 	 * 
 	 * @param email l'email del medico legato all'account 
-	 * @return null se non è stato trovato nessun medico o m che mostra l'account associato al medico
+	 * @return m che mostra l'account associato al medico, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -251,7 +251,7 @@ public class RicercaManager {
 	/*
 	 * 
 	 * @param email l'email del medico 
-	 * @return null se non è stato trovato nessun medico o m che mostra il medico cercato
+	 * @return m che mostra le informazioni del medico cercato, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -289,7 +289,7 @@ public class RicercaManager {
 	/*
 	 * 
 	 * @param email l'email del paziente legato all'account 
-	 * @return null se non è stato trovato nessun paziente o p che mostra l'account associato al paziente
+	 * @return p che mostra l'account associato al paziente, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -326,8 +326,8 @@ public class RicercaManager {
 	
 	/*
 	 * 
-	 * @param email l'email del paziente 
-	 * @return null se non è stato trovato nessun paziente o p che mostra il paziente cercato
+	 * @param email l'email del medico 
+	 * @return m che mostra le informazioni del medico cercato, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */

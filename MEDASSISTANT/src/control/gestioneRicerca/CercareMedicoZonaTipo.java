@@ -18,16 +18,13 @@ import model.RicercaManager;
 
 @WebServlet("/CercareMedicoZonaTipo")
 public class CercareMedicoZonaTipo extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-  
+	
     public CercareMedicoZonaTipo() {
         super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		try {
 			ArrayList<Doctor> doctors = RicercaManager.cercaMedicoZonaTipo(request.getParameter("zona"), request.getParameter("tipo"));
 			request.setAttribute("infoDoc", doctors);
@@ -36,20 +33,17 @@ public class CercareMedicoZonaTipo extends HttpServlet {
 				accounts.add(RicercaManager.cercaAccountMedico(doctor.getEmail()));
 			}
 			request.setAttribute("accDoc", accounts);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/risultatiCercaMedico.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("presentation/ricerca/risultatiCercaMedico.jsp");
 			requestDispatcher.forward(request, response);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
-
-	}
-
+	private static final long serialVersionUID = 1L;
 }

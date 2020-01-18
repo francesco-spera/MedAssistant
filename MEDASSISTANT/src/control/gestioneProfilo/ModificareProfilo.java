@@ -1,8 +1,6 @@
 package control.gestioneProfilo;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import bean.Account;
 import bean.Doctor;
@@ -38,10 +35,6 @@ public class ModificareProfilo extends HttpServlet {
 		user.setSurname(request.getParameter("surname"));
 		user.setBirthDate(request.getParameter("birth"));
 		user.setCf(request.getParameter("cf"));
-		Part part = request.getPart("photo");
-		InputStream is = part.getInputStream();
-		Blob blob = (Blob) is;
-		user.setPhoto(blob);;
 		if(request.getSession().getAttribute("pazLog")!=null) {
 			user.setPatient(email);
 			Patient paziente = new Patient();
@@ -51,11 +44,11 @@ public class ModificareProfilo extends HttpServlet {
 			paziente.setResidence(request.getParameter("residence"));
 			try {
 				if(ProfiloManager.modificaProfilo(user, paziente))
-					request.getRequestDispatcher("visualizzaProfiloPersonale.jsp").forward(request, response);
+					request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
+		} else if(request.getSession().getAttribute("docLog")!=null) {
 			user.setDoctor(email);
 			Doctor medico = new Doctor();
 			medico.setEmail(email);
@@ -66,7 +59,7 @@ public class ModificareProfilo extends HttpServlet {
 			medico.setMunicipalityAddress(request.getParameter("munaddr"));
 			try {
 				if(ProfiloManager.modificaProfilo(user, medico))
-					request.getRequestDispatcher("visualizzaProfiloPersonale.jsp").forward(request, response);
+					request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

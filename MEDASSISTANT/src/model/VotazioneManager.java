@@ -1,124 +1,52 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import bean.Doctor;
-import bean.Patient;
 import bean.Voting;
 import connectionPool.DriverManagerConnectionPool;
 
 public class VotazioneManager {
 
-	//Inserire tupla in Review
-	public static boolean doSave(Date date, float vote, String patient, String doctor ) throws SQLException {
+	/*
+	 * 
+	 * @param v il voto da attribuire al medico
+	 * @return true se la votazione è andata a buon fine, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 	
+	public static boolean votaMedico(Voting v) throws SQLException, ParseException {
 		PreparedStatement ps = null;
 		Connection con = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO voting (Date, Vote, Patient, Doctor) VALUES(?,?,?,?)");
-			ps.setDate(1, date);
-			ps.setFloat(2, vote);
-			ps.setString(3, patient);
-			ps.setString(4, doctor);
+			ps = con.prepareStatement("INSERT INTO voting (Date, Vote, Patient, Medico) VALUES(?,?,?,?);");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	        Date parsed = format.parse(v.getDate());
+	        java.sql.Date sql = new java.sql.Date(parsed.getTime());
+			ps.setDate(1, sql);
+			ps.setInt(2, v.getVote());
+			ps.setString(3, v.getPatient());
+			ps.setString(4, v.getDoctor());
 			if (ps.executeUpdate() != 1) 
-				throw new RuntimeException("INSERT error.");
-				else
+				return false;
+			else
 				return true;
-			}
-			finally {
+			} finally {
 				try {
 					if(ps!= null) {
 						ps.close();
 						return false;
 					}
-					}
-				finally {
+				} finally {
 					DriverManagerConnectionPool.releaseConnection(con);
 				}
 			}
-		}
-
-	//Stampare la lista di recensioni dato un paziente
-	public ArrayList<Voting> VisualizzaVotazioniPaziente(Patient p){
-		
-		PreparedStatement ps = null;
-		Connection con = null;
-		
-		try{
-			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM Patient P, Review R WHERE P.email = R.Patient");
-			ArrayList<Voting> recensioni = new ArrayList<>();
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				Voting v = new Voting();
-				v.setDate(rs.getString(1));
-				v.setVote(rs.getFloat(2));
-				recensioni.add(v);
-			}
-			return recensioni;
-		} catch(SQLException e) {
-				throw new RuntimeException(e);
-		}
-
-
 	}
-
-	//Stampare la lista di recensioni dato un medico
-	public ArrayList<Voting> VisualizzaVotiMedico(Doctor m){
-				
-		PreparedStatement ps = null;
-		Connection con = null;
-
-		try{
-			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM Doctor D, Review R WHERE D.email = R.Doctor");
-			ArrayList<Voting> recensioni = new ArrayList<>();
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-			Voting v = new Voting();
-			v.setDate(rs.getString(1));
-			v.setVote(rs.getFloat(2));
-			recensioni.add(v);
-			}
-		return recensioni;
-		}catch(SQLException e) {
-		 throw new RuntimeException(e);
-		}
-	}
-	
-	
-public static boolean controllaVoto(String emailMed, String emailPaz) throws SQLException {
-	PreparedStatement ps = null;
-	Connection con = null;
-
-	try{
-		con = DriverManagerConnectionPool.getConnection();
-		ps = con.prepareStatement("SELECT * FROM voting v WHERE v.Doctor=? and v.Patient=?");
-		ps.setString(1, emailMed);
-		ps.setString(2, emailPaz);
-		ResultSet rs = ps.executeQuery();
-		if(!rs.next()) {
-			return false;
-		}else {
-			return true;
-			
-		}
-	} finally {
-		try {
-			if(ps!= null) {
-				ps.close();
-			}
-		} finally {
-			DriverManagerConnectionPool.releaseConnection(con);
-		}
-	}
-}
-
 
 }

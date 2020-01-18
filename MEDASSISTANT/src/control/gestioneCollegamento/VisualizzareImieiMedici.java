@@ -50,11 +50,11 @@ public class VisualizzareImieiMedici extends HttpServlet {
 					accounts.add(RicercaManager.cercaAccountMedico(doctor.getEmail()));
 				}
 				request.setAttribute("accounts", accounts);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/imieimedici.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("presentation/ricerca/imieimedici.jsp");
 				requestDispatcher.forward(request, response);
 				}
 				else {
-					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp"); //momentaneo 
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("presentation/generali/index.jsp"); //momentaneo 
 					requestDispatcher.forward(request, response);
 				}
 			} catch (SQLException e) {

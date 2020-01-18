@@ -33,12 +33,11 @@ public class VisualizzaProfiloPaziente extends HttpServlet {
 		}	
 		request.getSession().setAttribute("infoPaz", pat);
 		request.getSession().setAttribute("accPaz", account);
-		request.getRequestDispatcher("/visualizzaProfiloPaz.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/ricerca/visualizzaProfiloPaz.jsp").forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		doGet(request, response);
 	}
 

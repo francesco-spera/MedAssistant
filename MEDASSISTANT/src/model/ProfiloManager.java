@@ -12,17 +12,14 @@ import connectionPool.DriverManagerConnectionPool;
 
 public class ProfiloManager {
 
-	
-	
 	/*
 	 * 
-	 * @param email l'email da autenticare
-	 * @param password la password dell'account che serve per l'autenticazione
-	 * @return null se l'autenticazione non è andata a buon fine o user se l'account è stato autenticato con successo
+	 * @param email insieme alla password serviranno per cercare un account
+	 * @param password insieme alla email serviranno per cercare un account
+	 * @return user se l'account è stato autenticato con successo, null altrimenti 
 	 * @throws SQLException
 	 * 
 	 * */
-	
 	
 	public static Account autenticazione(String email, String password) throws SQLException {
 		PreparedStatement ps = null;
@@ -93,7 +90,7 @@ public class ProfiloManager {
 	 * 
 	 * @param account l'account da registrare
 	 * @param patient il paziente da associare all'account da registrare
-	 * @return false se la registrazione non è andata a buon fine o true se la registrazione è avvenuta correttamente
+	 * @return true se la registrazione è avvenuta correttamente, false altrimenti 
 	 * @throws SQLException
 	 * 
 	 * */
@@ -138,7 +135,7 @@ public class ProfiloManager {
 	 * 
 	 * @param account l'account da registrare
 	 * @param patient il medico da associare all'account da registrare
-	 * @return false se la registrazione non è andata a buon fine o true se la registrazione è avvenuta correttamente
+	 * @return true se la registrazione è avvenuta correttamente, false altrimenti
 	 * @throws SQLException 
 	 * 
 	 * */
@@ -183,10 +180,9 @@ public class ProfiloManager {
 	
 	/*
 	 * 
-	 * @param email l'email del paziente da visualizzare
-	 * @return null se la visualizzazione delle informazioni del paziente non è andata a buon fine o true se la visualizzazione delle informazioni del paziente è avvenuta con successo
+	 * @param email l'email delle informazioni del paziente da cercare
+	 * @return true se la ricerca delle informazioni del paziente è avvenuta con successo, false altrimenti
 	 * @throws SQLException
-	 * 
 	 * 
 	 * */
 	
@@ -219,8 +215,8 @@ public class ProfiloManager {
 	
 	/*
 	 * 
-	 * @param email l'email del medico da visualizzare
-	 * @return null se la visualizzazione delle informazioni del medico non è andata a buon fine o true se la visualizzazione delle informazioni del medico è avvenuta con successo
+	 * @param email l'email delle informazioni del medico da cercare
+	 * @return true se la ricerca delle informazioni del medico è avvenuta con successo, false altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -257,9 +253,9 @@ public class ProfiloManager {
 	
 	/*
 	 * 
-	 * @param account l'account associato al paziente 
-	 * @param pazient il paziente di cui si vogliono modificare delle informazioni personali
-	 * @return null se la modifica delle informazioni del paziente non è andata a buon fine o true se la modifica delle informazioni del paziente è avvenuta con successo
+	 * @param account l'account del paziente di cui si vogliono modificare le informazioni personali
+	 * @param patient il paziente di cui si vogliono modificare le informazioni
+	 * @return true se la modifica delle informazioni del paziente è avvenuta con successo, false altrimenti 
 	 * @throws SQLException 
 	 * 
 	 * */
@@ -269,58 +265,58 @@ public class ProfiloManager {
 		Connection con = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			if(account.getName()!=null || !account.getName().isEmpty()) {
-				ps = con.prepareStatement("UPDATE account SET Name = ?;");
+			if(!account.getName().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET Name = ? WHERE patient = ?;");
 				ps.setString(1, account.getName());
+				ps.setString(2, account.getPatient());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(account.getSurname()!=null || !account.getSurname().isEmpty()) {
-				ps = con.prepareStatement("UPDATE account SET Surname = ?;");
+			if(!account.getSurname().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET Surname = ? WHERE patient = ?;");
 				ps.setString(1, account.getSurname());
+				ps.setString(2, account.getPatient());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}			
-			ps.close();
-			if(account.getBirthDate()!=null) {
-				ps = con.prepareStatement("UPDATE account SET BirthDate = ?;");
+			if(!account.getBirthDate().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET BirthDate = ? WHERE patient = ?;");
 				ps.setString(1, account.getBirthDate());
+				ps.setString(2, account.getPatient());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}				
-			ps.close();
-			if(account.getCf()!=null || !account.getCf().isEmpty()) {
-				ps = con.prepareStatement("UPDATE account SET CF = ?;");
+			if(!account.getCf().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET CF = ? WHERE patient = ?;");
 				ps.setString(1, account.getCf());
+				ps.setString(2, account.getPatient());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(account.getPhoto()!=null) {
-				ps = con.prepareStatement("UPDATE account SET Photo = ?;");
-				ps.setBlob(1, account.getPhoto());
-				if (ps.executeUpdate() != 1)
-					return false;				
-			}			
-			ps.close();
-			if(patient.getPassword()!=null || !patient.getPassword().isEmpty()) {
-				ps = con.prepareStatement("UPDATE patient SET Password = ?;");
+			if(!patient.getPassword().isEmpty()) {
+				ps = con.prepareStatement("UPDATE patient SET Password = ? WHERE email = ?;");
 				ps.setString(1, patient.getPassword());
+				ps.setString(2, patient.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(patient.getDomicile()!=null || !patient.getDomicile().isEmpty()) {
-				ps = con.prepareStatement("UPDATE patient SET Domicile = ?;");
+			if(!patient.getDomicile().isEmpty()) {
+				ps = con.prepareStatement("UPDATE patient SET Domicile = ? WHERE email = ?;");
 				ps.setString(1, patient.getDomicile());
+				ps.setString(2, patient.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(patient.getResidence()!=null || !patient.getResidence().isEmpty()) {
-				ps = con.prepareStatement("UPDATE patient SET Residence = ?;");
+			if(!patient.getResidence().isEmpty()) {
+				ps = con.prepareStatement("UPDATE patient SET Residence = ? WHERE email = ?;");
 				ps.setString(1, patient.getResidence());
+				ps.setString(2, patient.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
 			}
@@ -338,11 +334,10 @@ public class ProfiloManager {
 	
 	/*
 	 * 
-	 * @param account l'account associato al medico 
-	 * @param doctor il medico di cui si vogliono modificare delle informazioni personali
-	 * @return null se la modifica delle informazioni del medico non è andata a buon fine o true se la modifica delle informazioni del medico è avvenuta con successo
+	 * @param account l'account del medico di cui si vogliono modificare le informazioni personali
+	 * @param doctor il medico di cui si vogliono modificare le informazioni
+	 * @return true se la modifica delle informazioni del medico è avvenuta con successo, false altrimenti 
 	 * @throws SQLException 
-	 * 
 	 * 
 	 * */
 	
@@ -351,72 +346,78 @@ public class ProfiloManager {
 		Connection con = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			if(account.getName()!=null || !account.getName().isEmpty()) {
-				ps = con.prepareStatement("UPDATE account SET Name = ?;");
+			if(!account.getName().isEmpty()) {
+				System.out.println("ci entro?");
+				ps = con.prepareStatement("UPDATE account SET Name = ? WHERE doctor = ?;");
 				ps.setString(1, account.getName());
+				ps.setString(2, account.getDoctor());
 				if (ps.executeUpdate() != 1)
-					return false;				
+					return false;
+				ps.close();
 			}
-			ps.close();
-			if(account.getSurname()!=null || !account.getSurname().isEmpty()) {
-				ps = con.prepareStatement("UPDATE account SET Surname = ?;");
+			if(!account.getSurname().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET Surname = ? WHERE doctor = ?;");
 				ps.setString(1, account.getSurname());
+				ps.setString(2, account.getDoctor());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}			
-			ps.close();
-			if(account.getBirthDate()!=null) {
-				ps = con.prepareStatement("UPDATE account SET BirthDate = ?;");
+			if(!account.getBirthDate().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET BirthDate = ? WHERE doctor = ?;");
 				ps.setString(1, account.getBirthDate());
+				ps.setString(2, account.getDoctor());
 				if (ps.executeUpdate() != 1)
 					return false;				
-			}				
-			ps.close();
-			if(account.getCf()!=null || !account.getCf().isEmpty()) {
-				ps = con.prepareStatement("UPDATE account SET CF = ?;");
+				ps.close();
+			}		
+			if(!account.getCf().isEmpty()) {
+				ps = con.prepareStatement("UPDATE account SET CF = ? WHERE doctor = ?;");
 				ps.setString(1, account.getCf());
+				ps.setString(2, account.getDoctor());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(account.getPhoto()!=null) {
-				ps = con.prepareStatement("UPDATE account SET Photo = ?;");
-				ps.setBlob(1, account.getPhoto());
-				if (ps.executeUpdate() != 1)
-					return false;				
-			}			
-			ps.close();
-			if(doctor.getPassword()!=null || !doctor.getPassword().isEmpty()) {
-				ps = con.prepareStatement("UPDATE doctor SET Password = ?;");
+			if(!doctor.getPassword().isEmpty()) {
+				System.out.println(doctor.getEmail());
+				System.out.println("psw change");
+				ps = con.prepareStatement("UPDATE doctor SET Password = ? WHERE email = ?;");
 				ps.setString(1, doctor.getPassword());
-				if (ps.executeUpdate() != 1)
-					return false;				
+				ps.setString(2, doctor.getEmail());
+				if (ps.executeUpdate() != 1) {
+					System.out.println("x dvr");
+					return false;				}
+				ps.close();
 			}
-			ps.close();
-			if(doctor.getPhoneNumber()!=null || !doctor.getPhoneNumber().isEmpty()) {
-				ps = con.prepareStatement("UPDATE doctor SET PhoneNumber = ?;");
+			if(!doctor.getPhoneNumber().isEmpty()) {
+				ps = con.prepareStatement("UPDATE doctor SET PhoneNumber = ? WHERE email = ?;");
 				ps.setString(1, doctor.getPhoneNumber());
+				ps.setString(2, doctor.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(doctor.getStudioAddress()!=null || !doctor.getStudioAddress().isEmpty()) {
-				ps = con.prepareStatement("UPDATE doctor SET StudioAddress = ?;");
+			if(!doctor.getStudioAddress().isEmpty()) {
+				ps = con.prepareStatement("UPDATE doctor SET StudioAddress = ? WHERE email = ?;");
 				ps.setString(1, doctor.getStudioAddress());
+				ps.setString(2, doctor.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(doctor.getType()!=null || !doctor.getType().isEmpty()) {
-				ps = con.prepareStatement("UPDATE doctor SET Type = ?;");
+			if(!doctor.getType().isEmpty()) {
+				ps = con.prepareStatement("UPDATE doctor SET Type = ? WHERE email = ?;");
 				ps.setString(1, doctor.getType());
+				ps.setString(2, doctor.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
+				ps.close();
 			}
-			ps.close();
-			if(doctor.getMunicipalityAddress()!=null || !doctor.getMunicipalityAddress().isEmpty()) {
-				ps = con.prepareStatement("UPDATE doctor SET MunicipalityAddress = ?;");
+			if(!doctor.getMunicipalityAddress().isEmpty()) {
+				ps = con.prepareStatement("UPDATE doctor SET MunicipalityAddress = ? WHERE email = ?;");
 				ps.setString(1, doctor.getMunicipalityAddress());
+				ps.setString(2, doctor.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				
 			}
@@ -434,8 +435,8 @@ public class ProfiloManager {
 	
 	/*
 	 * 
-	 * @param email l'email dell'account cercare
-	 * @return null se la ricerca è andata a buon fine o true se la ricerca è avvenuta con successo
+	 * @param email l'email dell'account da cercare
+	 * @return true se la ricerca è avvenuta con successo, null altrimenti 
 	 * @throws SQLException
 	 * 
 	 * */

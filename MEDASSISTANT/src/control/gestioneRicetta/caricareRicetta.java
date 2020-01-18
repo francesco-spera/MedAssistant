@@ -70,7 +70,7 @@ public class caricareRicetta extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("/visualizzaReferto?idReport="+request.getParameter("id")).forward(request, response);
+		request.getRequestDispatcher("presentation/referto/visualizzaReferto?idReport="+request.getParameter("id")).forward(request, response);
 
 		
 	}

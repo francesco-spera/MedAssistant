@@ -29,13 +29,11 @@ public class ImieiMedici extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		request.getSession().setAttribute("allDoc", doctors);
-		request.getRequestDispatcher("/iMieiMedici.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/ricerca/iMieiMedici.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 

@@ -48,7 +48,7 @@ public class RispostaRicetta extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.setAttribute("idReferto", reportid);
-			request.getRequestDispatcher("/caricaRicetta.jsp").forward(request, response);
+			request.getRequestDispatcher("presentation/ricetta/caricaRicetta.jsp").forward(request, response);
 			
 		}else {
 			//rifiuta
@@ -62,7 +62,7 @@ public class RispostaRicetta extends HttpServlet {
 			}
 			
 
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 		}
 	}
 

@@ -42,7 +42,7 @@ public class VisualizzaReferto extends HttpServlet {
 		}
 		request.getSession().setAttribute("medRep", medRep);
 		request.getSession().setAttribute("nameDoc", medico);
-		request.getRequestDispatcher("/visualizzaReferto.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/referto/visualizzaReferto.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

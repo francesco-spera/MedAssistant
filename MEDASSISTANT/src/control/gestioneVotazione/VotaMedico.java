@@ -2,6 +2,7 @@ package control.gestioneVotazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,47 +10,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Account;
+import bean.Voting;
+import model.ProfiloManager;
 import model.VotazioneManager;
 
 @WebServlet("/VotaMedico")
 public class VotaMedico extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
+	
     public VotaMedico() {
-        super();
-        
+        super();   
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Voting vote = new Voting();
+		vote.setDate(request.getParameter("dateVote"));
+		vote.setDoctor(request.getParameter("emailDoc"));
+		vote.setPatient(request.getParameter("emailPatient"));
+		vote.setVote(Integer.parseInt(request.getParameter("selected_rating")));
+		try {
+			VotazioneManager.votaMedico(vote);
+			request.getSession().setAttribute("infoDoc", ProfiloManager.visualizzaMedico(request.getParameter("emailDoc")));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("presentation/ricerca/visualizzaProfiloMed.jsp").forward(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 	
-		
-		
-		float voto = Float.parseFloat(request.getParameter("selected_rating"));
-		String emaildoc = request.getParameter("emaildoc");
-		Account patient = (Account)request.getSession().getAttribute("pazLog");
-		
-		java.util.Date date=new java.util.Date();
-		java.sql.Date sqlDate=new java.sql.Date(date.getTime());
-
-			try {
-
-					
-					VotazioneManager.doSave(sqlDate, voto, patient.getPatient(),emaildoc);
-					
-			
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				request.getRequestDispatcher("visualizzaProfiloMed.jsp").forward(request, response);		
-		
-		
-
-}
+	
+	private static final long serialVersionUID = 1L;
 }

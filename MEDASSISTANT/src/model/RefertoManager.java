@@ -17,7 +17,7 @@ public class RefertoManager {
 
 	/*
 	 * 
-	 * @param r referto da salvare
+	 * @param r referto da caricare
 	 * @return true se il caricamento è avvenuto correttamente, false altrimenti 
 	 * @throws SQLException
 	 * 
@@ -116,42 +116,6 @@ public class RefertoManager {
 				m.setDate(rs.getString(2));
 				int idReport = Integer.parseInt(rs.getString(3));
 				m.setIdReport(idReport);
-				medReps.add(m);
-			}
-		} finally {
-			try {
-				if(ps!= null) {
-					ps.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
-		return medReps;
-	}
-	
-	
-	/*
-	 * 
-	 * @param email l'email del medico
-	 * @return medReps, collezione di medicalReport, se ne è stato trovato almeno uno in base alla email, null altrimenti
-	 * @throws SQLException
-	 * 
-	 * */
-	
-	public ArrayList<MedicalReport> doRetrieveByMedico(String email) throws SQLException{
-		PreparedStatement ps = null;
-		Connection con = null;
-		ArrayList<MedicalReport> medReps = null;
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT object FROM medicalreport m WHERE m.doctor = ?;");
-			ps.setString(1, email);
-			ResultSet rs = ps.executeQuery();
-			medReps = new ArrayList<>();
-			while(rs.next()) {
-				MedicalReport m = new MedicalReport();
-				m.setObject(rs.getString(1));
 				medReps.add(m);
 			}
 		} finally {

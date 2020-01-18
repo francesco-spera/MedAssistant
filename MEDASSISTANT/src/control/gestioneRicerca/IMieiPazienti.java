@@ -17,7 +17,6 @@ import model.RicercaManager;
 public class IMieiPazienti extends HttpServlet {
 
     public IMieiPazienti() {
-    	
         super();
     }
 
@@ -32,12 +31,11 @@ public class IMieiPazienti extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("allPaz", patients);
-		request.getRequestDispatcher("/iMieiPazienti.jsp").forward(request, response);		
+		request.getRequestDispatcher("presentation/ricerca/iMieiPazienti.jsp").forward(request, response);		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doGet(request, response);
 	}
 

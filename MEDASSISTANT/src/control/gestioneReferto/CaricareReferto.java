@@ -36,7 +36,7 @@ public class CaricareReferto extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

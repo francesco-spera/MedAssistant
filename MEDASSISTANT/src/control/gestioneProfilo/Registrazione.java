@@ -38,9 +38,9 @@ public class Registrazione extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("pazLog")!=null)
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 		if(request.getSession().getAttribute("docLog")!=null)
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 		
 		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");

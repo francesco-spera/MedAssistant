@@ -23,7 +23,7 @@ public class VisualizzaProfiloPersonale extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("pazLog")!=null) {
 			if(request.getSession().getAttribute("dettPaz")!=null)
-				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
+				request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
 			else {
 				Account paziente = (Account) request.getSession().getAttribute("pazLog");
 				try {
@@ -31,11 +31,11 @@ public class VisualizzaProfiloPersonale extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
+				request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
 			}
 		} else {
 			if(request.getSession().getAttribute("dettDoc")!=null)
-				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
+				request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
 			else {
 				Account medico = (Account) request.getSession().getAttribute("docLog");
 				try {
@@ -43,13 +43,12 @@ public class VisualizzaProfiloPersonale extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				request.getRequestDispatcher("/visualizzaProfiloPersonale.jsp").forward(request, response);
+				request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
 			}
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doGet(request, response);
 	}
 

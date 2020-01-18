@@ -45,7 +45,7 @@ public class VisualizzareAppuntamento extends HttpServlet {
 		
 		request.getSession().setAttribute("AppointmentPat", pat);
 		request.getSession().setAttribute("Appointment", app);
-		request.getRequestDispatcher("/visualizzaAppuntamento.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/appuntamento/visualizzaAppuntamento.jsp").forward(request, response);
 		
 	}
 

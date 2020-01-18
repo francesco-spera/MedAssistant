@@ -34,7 +34,7 @@ public class CartellaClinica extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.getSession().setAttribute("medReps", medReps);
-		request.getRequestDispatcher("/cartellaClinica.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/referto/cartellaClinica.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

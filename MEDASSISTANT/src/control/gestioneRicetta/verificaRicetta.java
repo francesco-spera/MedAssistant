@@ -40,7 +40,7 @@ public class verificaRicetta extends HttpServlet {
 		}
 		request.setAttribute("read", "true");
 		request.setAttribute("Pres", ricette);
-		request.getRequestDispatcher("/visualizzaReferto.jsp?idReport"+idReport).forward(request, response);
+		request.getRequestDispatcher("presentation/referto/visualizzaReferto.jsp?idReport"+idReport).forward(request, response);
 		
 	}
 

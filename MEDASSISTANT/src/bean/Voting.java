@@ -34,16 +34,15 @@ public class Voting {
 		this.date = date;
 	}
 	
-	public float getVote() {
+	public int getVote() {
 		return vote;
 	}
 	
-	public void setVote(float vote) {
+	public void setVote(int vote) {
 		this.vote = vote;
 	}
 	
 	
-	private int idVoting;
-	private float vote;
+	private int idVoting, vote;
 	private String patient, doctor, date;
 }

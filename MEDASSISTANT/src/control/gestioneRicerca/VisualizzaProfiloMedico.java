@@ -23,7 +23,6 @@ public class VisualizzaProfiloMedico extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String emailDoc = request.getParameter("emaildoc");
-		System.out.println("PORCO DIO " + emailDoc);
 		Account account = new Account();
 		Doctor doc = new Doctor();
 		try {
@@ -35,12 +34,11 @@ public class VisualizzaProfiloMedico extends HttpServlet {
 		
 		request.getSession().setAttribute("infoDoc", doc);
 		request.getSession().setAttribute("accDoc", account);
-		request.getRequestDispatcher("/visualizzaProfiloMed.jsp").forward(request, response);
+		request.getRequestDispatcher("presentation/ricerca/visualizzaProfiloMed.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 	
