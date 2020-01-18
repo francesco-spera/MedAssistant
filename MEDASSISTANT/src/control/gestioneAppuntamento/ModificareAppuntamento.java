@@ -77,7 +77,7 @@ public class ModificareAppuntamento extends HttpServlet {
 					System.out.println("paziente loggato");
 					String oggetto = "Richiesta di appuntamento";
 					String text = "Salve Dott.,\n\nIl paziente email:"+emailpat+"\n\nha richiesto la modifica di appuntamento: \n\nlocalhost:65535/MEDASSISTANT/presentation/appuntamento/visualizzaRicAppuntamento.jsp?date="+date+"&time="+time+"&patient="+emailpat+"&appId="+appId;
-					email.inviaMailAppuntamento("r.caccia@outlook.com", oggetto, text);
+					email.inviaMailAppuntamento(emailmed, oggetto, text);
 					AppuntamentoManager.modificaAppuntamento(0, appId, date, time);
 				}
 				

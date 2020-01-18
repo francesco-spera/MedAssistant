@@ -77,7 +77,7 @@ public class prenotaAppuntamento extends HttpServlet {
 				int id = AppuntamentoManager.ritornoID(emailmed, emailpat, date, 0);
 				text=text.concat("&appId="+id);
 				EmailSender email = new EmailSender();
-				email.inviaMailAppuntamento("r.caccia@outlook.com", oggetto, text);
+				email.inviaMailAppuntamento(emailmed, oggetto, text);
 				request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 				
 			} catch (MessagingException | SQLException e) {
