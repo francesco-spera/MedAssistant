@@ -54,7 +54,7 @@
                                         </li>
 										<li class="nav-item"><h3 class="nav-link" style="visibility:hidden">#######################</h3></li>
 										<li class="nav-item">
-											<a class="nav-link" href="${pageContext.request.contextPath}/cercaMedicoZonaTipo.jsp">Cerca medico</a>
+											<a class="nav-link" href="${pageContext.request.contextPath}/presentation/ricerca/cercaMedicoZonaTipo.jsp">Cerca medico</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="${pageContext.request.contextPath}/ImieiMedici">I miei medici</a>
