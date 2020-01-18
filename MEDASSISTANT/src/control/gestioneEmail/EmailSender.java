@@ -19,6 +19,10 @@ public class EmailSender  {
 	public void inviaMailRicetta(String email, String oggetto, String text) throws MessagingException {
 		EmailSender.send("noreply.medassistant@gmail.com", "CiaoCiao123", email, oggetto, text);
 	}
+	
+	public void inviaMailAppuntamento(String email, String oggetto, String text) throws MessagingException {
+		EmailSender.send("noreply.medassistant@gmail.com", "CiaoCiao123", email, oggetto, text);
+	}
 		
 	public static void send(String from,String password,String to,String sub,String msg){  
 	 

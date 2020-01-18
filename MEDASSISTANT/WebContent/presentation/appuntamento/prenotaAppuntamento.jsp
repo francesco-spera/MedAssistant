@@ -12,11 +12,12 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MedAssistant | Appuntamento</title>
+<title>MedAssistant | Prenota Appuntamento</title>
 <link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
 <style type="text/css">
  .scrollable{
    overflow-y: auto;
@@ -63,18 +64,18 @@
 	<hr>
 	<div class="row">
 		<div class="col align-self-center personal-info mb-5">
-	    <h4>Informazioni generali paziente</h4>
+	    <h4>Informazioni generali medico</h4>
 		    <div class="row">
 			    <div class="form-group">
 		           <label class="col-lg-3 control-label">Nome</label>
 		           <div class="col-lg-8">
-		             <input class="form-control" type="text" value="${AppointmentPat.name}" readonly>
+		             <input class="form-control" type="text" value="${accDoc.name}" readonly>
 		           </div>
 		         </div>
 		         <div class="form-group">
 		           <label class="col-lg-3 control-label">Cognome</label>
 		           <div class="col-lg-8">
-		             <input class="form-control" type="text" value="${AppointmentPat.surname}" readonly>
+		             <input class="form-control" type="text" value="${accDoc.surname}" readonly>
 		           </div>
 		         </div>
 		    </div>
@@ -82,29 +83,27 @@
 			    <div class="form-group">
 		           <label class="col-lg-3 control-label">Email</label>
 		           <div class="col-lg-12">
-		             <input class="form-control" type="text" value="${Appointment.patient}" readonly>
+		             <input class="form-control" type="text" value="${accDoc.doctor}" readonly>
 		           </div>
 		         </div>
 		         <div class="form-group">
-		           <label class="col-lg-12 control-label">Data di Nascita</label>
+		           <label class="col-lg-12 control-label">Tipologia</label>
 		           <div class="col-lg-12">
-		             <input class="form-control" type="date" value="${AppointmentPat.birthDate}" readonly>
+		             <input class="form-control" type="text" value="${infoDoc.type}" readonly>
 		           </div>
 		         </div>
 		    </div>
 		    
 		<hr>
 		<h4>Informazioni generali appuntamento</h4>
-		<div class="row">
-			    <form action="${pageContext.request.contextPath}/ModificareAppuntamento" method="POST">
+		<form action="${pageContext.request.contextPath}/prenotaAppuntamento" method="POST">
 		<input type="hidden" name="doctor" value="${accDoc.doctor}">
-		<input type="hidden" name="patient" value="${Appointment.patient}">
-		<input type="hidden" name="appId" value="${Appointment.idAppointment}">
+		<input type="hidden" name="patient" value="${pazLog.patient}">
 		<div class="row">
 			    <div class="form-group">
 		           <label class="col-lg-3 control-label">Data</label>
 		           <div class="col-lg-12">
-		             <input id="date" name="date" class="form-control" type="date" value="${Appointment.date}" required/>
+		             <input id="date" name="date" class="form-control" type="date" value="" required/>
 		           </div>
 		         </div>
 		         <div class="form-group">
@@ -143,13 +142,12 @@
 		         <div class="form-group">
 		           <div class="col-lg-12">
 		           <br>
-		             <input type="submit" id="date" class="btn btn-primary" value="Modifica"/>
+		             <input type="submit" id="date" class="btn btn-primary" value="prenota"/>
 		             <% if(request.getAttribute("error")!=null) { %> <a>&nbsp&nbsp<%=request.getAttribute("error")  %></a> <%} %>
 		           </div>
 		         </div>
 		    </div>
 		    </form>
-		    </div>
 		</div>
 		</div>
 	</div>
@@ -179,7 +177,7 @@
     <script>
     $(function() {
     	  var holidays = [
-    	    '1.1.2020'
+    	    
     	  ];
     	  function noSundaysOrHolidays(date) {
     	    var day = date.getDay();

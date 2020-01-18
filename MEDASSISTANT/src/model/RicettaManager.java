@@ -12,6 +12,16 @@ import bean.Prescription;
 import connectionPool.DriverManagerConnectionPool;
 
 public class RicettaManager {
+	
+	
+	
+	/*
+	 * 
+	 * @param id l'id della ricetta da cercare
+	 * @return ricetta se la ricetta è stata trovata con successo, null altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 
 	public static ArrayList<Prescription> ricercaRicettabyID(int id) throws SQLException{
 		PreparedStatement ps = null;
@@ -49,6 +59,16 @@ public class RicettaManager {
 		
 	}
 	
+	
+	
+	/*
+	 * 
+	 * @param ricetta la ricetta da caricare
+	 * @return true se la ricetta è stata caricata con successo, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static boolean caricareRicetta(Prescription ricetta) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -77,6 +97,17 @@ public class RicettaManager {
 		}
 	}
 	
+	
+	
+	/*
+	 * 
+	 * @param stato lo stato da modificare
+	 * @param id l'id della ricetta
+	 * @return true se la modifica dello stato è avvenuta con successo, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static boolean modificastato(int stato, int id) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -102,6 +133,19 @@ public class RicettaManager {
 			}
 		}
 	}
+	
+	
+	
+	/*
+	 * 
+	 * @param report l'id del referto
+	 * @param doctor l'email del dottore
+	 * @param patient l'email del paziente
+	 * @param state lo stato della ricetta
+	 * @return ret se l'id della ricetta è stato recuperato con successo, null altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	public static int ritornoID(int report, String doctor, String patient, int state) throws SQLException{
 		PreparedStatement ps = null;
@@ -133,6 +177,19 @@ public class RicettaManager {
 		return ret;
 		
 	}
+	
+	
+	
+	
+	/*
+	 * 
+	 * @param id l'id della ricetta da caricare
+	 * @param ricetta il blob  
+	 * @param date la data di caricamento della ricetta
+	 * @return true se la ricetta è stata caricata con successo, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	
 	public static boolean updatericetta(int id, Blob ricetta, String date) throws SQLException{

@@ -40,11 +40,24 @@
 		           <h1>Appuntamento </h1>
 		           </div>
 		         </div>
+		         <c:choose>
+		         <c:when test="${Appointment.state!=2}">
 		         <div class="form-group">
 		           <div class="col-lg-9">
-					<a href="${pageContext.request.contextPath}/presentation/appuntamento/modificaAppuntamento.jsp"><input class="btn btn-primary" type="submit" value="MODIFICA APPUNTAMENTO"></a>	
+					<a href="${pageContext.request.contextPath}/presentation/appuntamento/modificaAppuntamento.jsp?appId=${Appointment.idAppointment}"><input class="btn btn-primary" type="submit" value="MODIFICA APPUNTAMENTO"></a>	
 		           </div>
 		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+					<form method="POST" action="${pageContext.request.contextPath}/completaAppuntamento">
+					<input type="hidden" name="appId" value="${Appointment.idAppointment}">
+		           <input class="btn btn-primary" type="submit" value="COMPLETA APPUNTAMENTO">
+		           </form>
+		           </div>
+		         </div>
+		         </c:when>
+		         </c:choose>
+		         
 		    </div>
 		</div>
 	
