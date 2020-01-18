@@ -112,6 +112,72 @@ public class AppuntamentoManager {
 	}
 	
 	
+	public static boolean controlloAppDisponibile(String doctor, String date, String time) throws SQLException {
+		
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("SELECT * FROM appointment WHERE Doctor=? AND Date=? AND Time=?");
+			ps.setString(1, doctor);
+			ps.setString(2, date);
+			ps.setString(3, time);
+
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				System.out.println(rs.getInt("IDAppointment")); 
+				return true;
+			}
+				
+				
+			return false;
+				
+		
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		
+
+	}
+	
+	
+public static boolean inserisciApp(Appointment appuntamento) throws SQLException {
+		
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("INSERT INTO appointment (Date,Time,Doctor,Patient,State) VALUES (?,?,?,?,?)");
+			ps.setString(1, appuntamento.getDate());
+			ps.setString(2, appuntamento.getTime());
+			ps.setString(3, appuntamento.getDoctor());
+			ps.setString(4, appuntamento.getPatient());
+			ps.setInt(5, appuntamento.getState());
+
+			
+			if (ps.executeUpdate() != 1)
+				return false;
+			return true;
+				
+		
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+
+	}
+	
 	
 
 	

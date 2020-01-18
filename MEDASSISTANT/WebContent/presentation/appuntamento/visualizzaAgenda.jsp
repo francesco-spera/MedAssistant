@@ -82,8 +82,8 @@
 			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
 			selectable: false,
 			defaultView: 'month',
-			minTime: "00:00:00",
-			maxTime: "24:00:00",
+			minTime: "06:00:00",
+			maxTime: "22:00:00",
 
 
 			axisFormat: 'h:mm',
@@ -150,9 +150,12 @@
 						Appointment bean = (Appointment) it.next();
 						String[] date = bean.getDate().split("-");
 						Account pat = RicercaManager.cercaAccountPaziente(bean.getPatient());
+						
+						String[] ora = bean.getTime().split(":");
+						
 					%>
 				
-					<%= ", { title: '"+pat.getName()+" "+pat.getSurname()+"',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", 10, 0), allDay: false, url: '"+request.getContextPath()+"/VisualizzareAppuntamento?id="+bean.getIdAppointment()+"', className: 'success'}" %>
+					<%= ", { title: '"+pat.getName()+" "+pat.getSurname()+"',start: new Date("+ date[0]+", "+ (Integer.parseInt(date[1])-1)+", "+ date[2]+", "+ ora[0]+", "+ ora[1]+"), allDay: false, url: '"+request.getContextPath()+"/VisualizzareAppuntamento?id="+bean.getIdAppointment()+"', className: 'success'}" %>
 					<%}%>
 				
 
