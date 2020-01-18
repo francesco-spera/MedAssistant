@@ -30,7 +30,7 @@ public class RichiedereCollegamento extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("pazLog")==null)
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		
