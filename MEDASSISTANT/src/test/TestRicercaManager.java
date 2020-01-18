@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,35 +9,85 @@ import org.junit.jupiter.api.Test;
 import bean.Account;
 import bean.Doctor;
 import bean.Patient;
+import junit.framework.*;
 import model.RicercaManager;
 
-class TestRicercaManager {
-
+public class TestRicercaManager extends TestCase {
 	
+
+
+	@Override
+	protected void setUp() throws Exception {
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
 	public void testcercaMedicoZonaTipo() throws SQLException{
 		
 	}
 	
 	public void testcercaMedicoNome() throws SQLException{
 		
+		
+		
 		ArrayList<Doctor> risult= RicercaManager.cercaMedicoNome("pietro", "neri", "paziente@gmail.com");
 		assertTrue(risult.isEmpty());
+		
+		
 		
 		risult = RicercaManager.cercaMedicoNome("", "", "paziente@gmail.com");
 		assertTrue(!risult.isEmpty());
 		assertNotNull(risult);
+		for (Doctor doctor : risult) {
+			assertNotNull(doctor.getEmail());
+			assertNotNull(doctor.getPhoneNumber());
+			assertNotNull(doctor.getStudioAddress());
+			assertNotNull(doctor.getAvgReviews());
+			assertNotNull(doctor.getType());
+		
+		}
+		
+		
+		
+		
 		
 		risult = RicercaManager.cercaMedicoNome("maria", "", "paziente@gmail.com");
 		assertTrue(!risult.isEmpty());
 		assertNotNull(risult);
+		for (Doctor doctor : risult) {
+			assertNotNull(doctor.getEmail());
+			assertNotNull(doctor.getPhoneNumber());
+			assertNotNull(doctor.getStudioAddress());
+			assertNotNull(doctor.getAvgReviews());
+			assertNotNull(doctor.getType());
+		
+		}
 		
 		risult = RicercaManager.cercaMedicoNome("", "verde", "paziente@gmail.com");
 		assertTrue(!risult.isEmpty());
 		assertNotNull(risult);
+		for (Doctor doctor : risult) {
+			assertNotNull(doctor.getEmail());
+			assertNotNull(doctor.getPhoneNumber());
+			assertNotNull(doctor.getStudioAddress());
+			assertNotNull(doctor.getAvgReviews());
+			assertNotNull(doctor.getType());
+		
+		}
 		
 		risult = RicercaManager.cercaMedicoNome("maria", "verde", "paziente@gmail.com");
 		assertTrue(!risult.isEmpty());
 		assertNotNull(risult);
+		for (Doctor doctor : risult) {
+			assertNotNull(doctor.getEmail());
+			assertNotNull(doctor.getPhoneNumber());
+			assertNotNull(doctor.getStudioAddress());
+			assertNotNull(doctor.getAvgReviews());
+			assertNotNull(doctor.getType());
+		
+		}
 		
 		
 	}
@@ -59,6 +107,11 @@ class TestRicercaManager {
 		risult = RicercaManager.getMedici("paziente@gmail.com");
 		assertNotNull(risult);
 		assertTrue(!risult.isEmpty());
+		for (Account account : risult) {
+			assertNotNull(account.getName());
+			assertNotNull(account.getSurname());
+			assertNotNull(account.getDoctor());
+		}
 		
 	}
 	
@@ -72,6 +125,13 @@ class TestRicercaManager {
 		risult = RicercaManager.getPazienti("medico@gmail.com");
 		assertNotNull(risult);
 		assertTrue(!risult.isEmpty());
+		for (Account account : risult) {
+			assertNotNull(account.getName());
+			assertNotNull(account.getSurname());
+			assertNotNull(account.getPatient());
+			assertNotNull(account.getBirthDate());
+
+		}
 	}
 	
 	public void testcercaAccountMedico() throws SQLException{
@@ -143,7 +203,7 @@ class TestRicercaManager {
 	
 	
 	@Test
-	void test() throws SQLException {
+	public void test() throws SQLException {
 		testcercaMedicoNome();
 		testgetMedici();
 		testgetPazienti();

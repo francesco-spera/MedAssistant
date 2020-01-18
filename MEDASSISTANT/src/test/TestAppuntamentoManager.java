@@ -1,14 +1,27 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-class TestAppuntamentoManager {
+import junit.framework.*;
 
+public class TestAppuntamentoManager extends TestCase {
+
+	public TestAppuntamentoManager(String name) {
+		super(name);
+	}
+
+
+	@Override
+	protected void setUp() throws Exception {
+	}
 	
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
 	
 	public void testvisualizzaAPPmedico() throws SQLException{
 		
