@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +11,13 @@ import connectionPool.DriverManagerConnectionPool;
 
 public class AppuntamentoManager {
 
+	/*
+	 * 
+	 * @param email l'email del dottore per cercare gli appuntamenti a lui legatio
+	 * @return app se gli appuntamenti sono stati trovati con successo null altrimenti
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	public static ArrayList<Appointment> visualizzaAPPmedico(String email) throws SQLException{
 		PreparedStatement ps = null;
@@ -46,6 +52,14 @@ public class AppuntamentoManager {
 		
 	}
 	
+	/*
+	 * 
+	 * @param email l'email del paziente per cercare gli appuntamenti a lui legatio
+	 * @return app se gli appuntamenti sono stati trovati con successo null altrimenti
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static ArrayList<Appointment> visualizzaAPPpaziente(String email) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -79,6 +93,14 @@ public class AppuntamentoManager {
 		
 	}
 	
+	/*
+	 * 
+	 * @param id l'id dell'appuntamento da cercare
+	 * @return app se l'appuntamento è stato trovato con successo null altrimenti
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static Appointment visualizzaAppuntamento(int id) throws SQLException {
 		
 		PreparedStatement ps = null;
@@ -111,6 +133,16 @@ public class AppuntamentoManager {
 		
 
 	}
+	
+	/*
+	 * 
+	 * @param doctor l'email del dottore
+	 * @param date la data dell'appuntamento
+	 * @param time l'ora dell'appuntamento
+	 * @return true se la data e l'ora sono disponibili, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	
 	public static boolean controlloAppDisponibile(String doctor, String date, String time) throws SQLException {
@@ -147,6 +179,13 @@ public class AppuntamentoManager {
 
 	}
 	
+	/*
+	 * 
+	 * @param appuntamento l'appuntamento da inserire
+	 * @return true se l'appuntamento è stato caricato con successo, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 	
 	public static boolean inserisciApp(Appointment appuntamento) throws SQLException {
 			
@@ -178,6 +217,17 @@ public class AppuntamentoManager {
 			}
 	
 		}
+	
+	/*
+	 *
+	 * @param doctor l'email del dottore
+	 * @param patient l'email del paziente
+	 * @param date la data dell'appuntamento
+	 * @param state lo stato dell'appuntamento
+	 * @return ret se l'id dell'appuntamento è stato recuperato con successo, null altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
 
 	public static int ritornoID(String doctor, String patient, String date, int state) throws SQLException{
 		PreparedStatement ps = null;
@@ -210,6 +260,15 @@ public class AppuntamentoManager {
 		
 	}
 	
+	/*
+	 * 
+	 * @param stato lo stato da modificare
+	 * @param id l'id dell'appuntamento
+	 * @return true se la modifica dello stato è avvenuta con successo, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static boolean updateAppuntamentoState(int state,int id) throws SQLException{
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -236,6 +295,20 @@ public class AppuntamentoManager {
 			}
 		}
 	}
+	
+	
+	/*
+	 * 
+	 * @param state lo stato da modificare
+	 * @param id l'id dell'appuntamento
+	 * @param date la data da modificare
+	 * @param time l'ora da modificare
+	 * @return true se la modifica dello stato è avvenuta con successo, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
+	
+	
 	
 	public static boolean modificaAppuntamento(int state,int id, String date, String time) throws SQLException{
 		PreparedStatement ps = null;
