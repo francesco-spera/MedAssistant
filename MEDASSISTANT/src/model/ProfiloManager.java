@@ -181,7 +181,7 @@ public class ProfiloManager {
 	/*
 	 * 
 	 * @param email l'email delle informazioni del paziente da cercare
-	 * @return true se la ricerca delle informazioni del paziente è avvenuta con successo, false altrimenti
+	 * @return patient se la ricerca delle informazioni del paziente è avvenuta con successo, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
@@ -216,7 +216,7 @@ public class ProfiloManager {
 	/*
 	 * 
 	 * @param email l'email delle informazioni del medico da cercare
-	 * @return true se la ricerca delle informazioni del medico è avvenuta con successo, false altrimenti
+	 * @return doctor se la ricerca delle informazioni del medico è avvenuta con successo, null altrimenti
 	 * @throws SQLException
 	 * 
 	 * */
