@@ -73,7 +73,7 @@
 
 	<%@ include file="../generali/footer.jsp" %>   
 	
-	<script src="../../core/js/extention/choices.js"></script>
+	<script src="${pageContext.request.contextPath}/core/js/extention/choices.js"></script>
     <script>
       const customSelects = document.querySelectorAll("select");
       const deleteBtn = document.getElementById('delete')

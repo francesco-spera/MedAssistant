@@ -63,7 +63,7 @@
 										<td class="column1">${info.name}</td>  
 										<td class="column2">${info.surname}</td>
 										<td class="column3">${infoDoc[status.index].avgReviews}</td>
-										<td class="column4"><img src="GetProfileImage.jsp?doctor=${info.doctor}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
+										<td class="column4"><img src="${pageContext.request.contextPath}/presentation/profilo/GetProfileImage.jsp?doctor=${info.doctor}" width="230px" height="140px" class="img-responsive" style="width:250px"></td>
 										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloMedico">
 										<input type="hidden" name="emaildoc" value="${info.doctor}">
 										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>											
