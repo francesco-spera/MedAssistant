@@ -92,7 +92,7 @@ request.removeAttribute("read");
 		         <div class="form-group">
 		           <div class="col-lg-9">
 		           <c:choose>
-		           <c:when test="${tipoDoc!='medico di base' && tipoDoc!=null}">
+		           <c:when test="${tipoDoc=='medico di base' && tipoDoc!=null}">
 			      		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/presentation/ricetta/caricaRicetta.jsp?reportid=${medRep.idReport}&email=${medRep.patient}&response=0">Carica ricetta</a>
 			      	</c:when>
 			      </c:choose>

@@ -56,6 +56,15 @@
 						</c:choose>
 		           </div>
 		         </div>
+		         <div class="form-group">
+		           <div class="col-lg-9">
+						<c:choose>
+				   		 <c:when test="${pazLog!=null}">
+							 <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/VisualizzaAgenda">Agenda Appuntamenti</a>	
+						</c:when>
+						</c:choose>
+		           </div>
+		         </div>
 		    </div>
 	
 

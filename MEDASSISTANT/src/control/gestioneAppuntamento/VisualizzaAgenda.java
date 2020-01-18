@@ -29,17 +29,24 @@ public class VisualizzaAgenda extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Account doctor = (Account) request.getSession().getAttribute("docLog");
+		Account acc = (Account) request.getSession().getAttribute("docLog");
+		if (acc==null) {
+			acc = (Account) request.getSession().getAttribute("pazLog");
+		}
 		ArrayList<Appointment> app = new ArrayList<Appointment>();
-		System.out.println(doctor.getDoctor());
+		System.out.println(acc.getDoctor());
 		try {
-			app = AppuntamentoManager.visualizzaAPPmedico(doctor.getDoctor());
+			if(acc.getDoctor()!=null) {
+				app = AppuntamentoManager.visualizzaAPPmedico(acc.getDoctor());
+			}else {
+				app = AppuntamentoManager.visualizzaAPPpaziente(acc.getPatient());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		request.getSession().setAttribute("allApp", app);
-		request.getRequestDispatcher("presentation/appuntamento/visualizzaAgendaMed.jsp").forward(request, response);	
+		request.getRequestDispatcher("presentation/appuntamento/visualizzaAgenda.jsp").forward(request, response);	
 	}
 
 
