@@ -347,7 +347,6 @@ public class ProfiloManager {
 		try {
 			con = DriverManagerConnectionPool.getConnection();
 			if(!account.getName().isEmpty()) {
-				System.out.println("ci entro?");
 				ps = con.prepareStatement("UPDATE account SET Name = ? WHERE doctor = ?;");
 				ps.setString(1, account.getName());
 				ps.setString(2, account.getDoctor());
@@ -380,14 +379,11 @@ public class ProfiloManager {
 				ps.close();
 			}
 			if(!doctor.getPassword().isEmpty()) {
-				System.out.println(doctor.getEmail());
-				System.out.println("psw change");
 				ps = con.prepareStatement("UPDATE doctor SET Password = ? WHERE email = ?;");
 				ps.setString(1, doctor.getPassword());
 				ps.setString(2, doctor.getEmail());
-				if (ps.executeUpdate() != 1) {
-					System.out.println("x dvr");
-					return false;				}
+				if (ps.executeUpdate() != 1)
+					return false;
 				ps.close();
 			}
 			if(!doctor.getPhoneNumber().isEmpty()) {
@@ -401,14 +397,6 @@ public class ProfiloManager {
 			if(!doctor.getStudioAddress().isEmpty()) {
 				ps = con.prepareStatement("UPDATE doctor SET StudioAddress = ? WHERE email = ?;");
 				ps.setString(1, doctor.getStudioAddress());
-				ps.setString(2, doctor.getEmail());
-				if (ps.executeUpdate() != 1)
-					return false;				
-				ps.close();
-			}
-			if(!doctor.getType().isEmpty()) {
-				ps = con.prepareStatement("UPDATE doctor SET Type = ? WHERE email = ?;");
-				ps.setString(1, doctor.getType());
 				ps.setString(2, doctor.getEmail());
 				if (ps.executeUpdate() != 1)
 					return false;				

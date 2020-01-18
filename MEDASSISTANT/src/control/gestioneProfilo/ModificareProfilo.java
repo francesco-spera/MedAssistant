@@ -14,6 +14,7 @@ import bean.Account;
 import bean.Doctor;
 import bean.Patient;
 import model.ProfiloManager;
+import model.RicercaManager;
 
 @WebServlet("/ModificareProfilo")
 @MultipartConfig(maxFileSize = 32354432)//1.5mb 32.354.432 32354432
@@ -29,37 +30,47 @@ public class ModificareProfilo extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Account user = new Account();
-		String email = request.getParameter("email");
-		user.setName(request.getParameter("name"));
-		user.setSurname(request.getParameter("surname"));
-		user.setBirthDate(request.getParameter("birth"));
-		user.setCf(request.getParameter("cf"));
 		if(request.getSession().getAttribute("pazLog")!=null) {
-			user.setPatient(email);
+			Account user = new Account();
+			user.setName(request.getParameter("name"));
+			user.setSurname(request.getParameter("surname"));
+			user.setBirthDate(request.getParameter("birth"));
+			user.setCf(request.getParameter("cf"));
+			user.setPatient(request.getParameter("email"));
 			Patient paziente = new Patient();
-			paziente.setEmail(email);
+			paziente.setEmail(request.getParameter("email"));
 			paziente.setPassword(request.getParameter("psw"));
 			paziente.setDomicile(request.getParameter("domicile"));
 			paziente.setResidence(request.getParameter("residence"));
 			try {
-				if(ProfiloManager.modificaProfilo(user, paziente))
+				if(ProfiloManager.modificaProfilo(user, paziente)) {
+					request.getSession().setAttribute("pazLog", RicercaManager.cercaAccountPaziente(user.getPatient()));
+					request.getSession().setAttribute("dettPaz", ProfiloManager.visualizzaPaziente(paziente.getEmail()));
 					request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else if(request.getSession().getAttribute("docLog")!=null) {
-			user.setDoctor(email);
+			Account user = new Account();
+			user.setName(request.getParameter("nameM"));
+			user.setSurname(request.getParameter("surnameM"));
+			user.setBirthDate(request.getParameter("birthM"));
+			user.setCf(request.getParameter("cfM"));
+			user.setDoctor(request.getParameter("emailM"));
 			Doctor medico = new Doctor();
-			medico.setEmail(email);
-			medico.setPassword(request.getParameter("psw"));
+			medico.setEmail(request.getParameter("emailM"));
+			medico.setPassword(request.getParameter("pswM"));
 			medico.setPhoneNumber(request.getParameter("mobilep"));
 			medico.setStudioAddress(request.getParameter("studioaddr"));
 			medico.setType(request.getParameter("type"));
 			medico.setMunicipalityAddress(request.getParameter("munaddr"));
 			try {
-				if(ProfiloManager.modificaProfilo(user, medico))
+				if(ProfiloManager.modificaProfilo(user, medico)) {
+					request.getSession().setAttribute("docLog", RicercaManager.cercaAccountMedico(user.getDoctor()));
+					request.getSession().setAttribute("dettDoc", ProfiloManager.visualizzaMedico(medico.getEmail()));
 					request.getRequestDispatcher("presentation/profilo/visualizzaProfiloPersonale.jsp").forward(request, response);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -2,7 +2,6 @@ package control.gestioneProfilo;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -41,29 +40,17 @@ public class Registrazione extends HttpServlet {
 			request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 		if(request.getSession().getAttribute("docLog")!=null)
 			request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
-		
-		PrintWriter out = response.getWriter();
-		String email = request.getParameter("email");
-		try {
-			if(ProfiloManager.cercaAccount(email)) {
-				out.write("false");
-				return;
-			} else {
-				out.write("true");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(20*60);
+		String email = (String) request.getSession().getAttribute("emailDaRegistrare");
 		
 		Account user = new Account();
 		user.setName(request.getParameter("name"));
 		user.setSurname(request.getParameter("surname"));
 		user.setBirthDate(request.getParameter("birth"));
 		user.setCf(request.getParameter("cf"));
-		/*Part part = request.getPart("photo");
+		Part part = request.getPart("photo");
 		InputStream is = part.getInputStream();
 		byte[] content = IOUtils.toByteArray(is);
 		Blob blob = null;
@@ -72,7 +59,7 @@ public class Registrazione extends HttpServlet {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		user.setPhoto(blob);*/
+		user.setPhoto(blob);
 		String type = request.getParameter("type");
 		if(type!=null) {
 			user.setDoctor(email);
@@ -87,6 +74,7 @@ public class Registrazione extends HttpServlet {
 				if(ProfiloManager.registrazione(user, medico)) {
 					session.setAttribute("docLog", user);
 					session.setAttribute("dettDoc", medico);
+					request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -102,12 +90,12 @@ public class Registrazione extends HttpServlet {
 				if(ProfiloManager.registrazione(user, paziente)) {
 					session.setAttribute("pazLog", user);
 					session.setAttribute("dettPaz", paziente);
+					request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		out.close();
 	}
 
 	

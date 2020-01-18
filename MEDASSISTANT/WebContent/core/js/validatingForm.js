@@ -237,12 +237,12 @@
 	function canRegister(flag){
 		//sleep(1500);
 		if(!flag){
-			$("#outCred").html("Account gia' registrato, riprovare");
+			$("#outEmail").html("Account gia' registrato, riprovare");
 			return false;
 		} else if(flag){
-			$("#buttRegister").css("display", "none");
-			$("#outCred").css("display", "none");
-			$("#buttRegister2").css("display", "block");
+			$("#outEmail").css("display", "none");
+			$("#regFormP1").css("display", "none");
+			$("#regFormP2").css("display", "block");
 			return true;
 		}
 	}
@@ -254,33 +254,25 @@
 	function canRegisterM(flag){
 		//sleep(1500);
 		if(!flag){
-			$("#outCredM").html("Account già registrato, riprovare");
+			$("#outEmailM").html("Account già registrato, riprovare");
 			return false;
 		} else if(flag){
-			$("#buttRegisterM").css("display", "none");
-			$("#outCredM").css("display", "none");
-			$("#buttRegister2M").css("display", "block");
+			$("#outEmailM").css("display", "none");
+			$("#regFormM").css("display", "none");
+			$("#regFormM2").css("display", "block");
 			return true;
 		}
 	}
 	
 	/*
-	 *	controllo credenziali registrazione paziente
+	 *	controllo email registrazione paziente
 	 */
 	
 	$(document).ready(function(){
 		$("#buttRegister").click(function(){
-			$.post("registrazione",
+			$.post("../../controlloEmail",
 				{	
-					email: $("#email").val(),
-					psw: $("#psw").val(),
-					name: $("#name").val(),
-					surname: $("#surname").val(),
-					birth: $("#birth").val(),
-					cf: $("#cf").val(),
-					photo: $("#img").val(),
-					residence: $("#residence").val(),
-					domicile: $("#domicile").val()
+					email: $("#email").val()
 				},
 					function(data){
 					if(data == 'false'){
@@ -298,19 +290,9 @@
 	
 	$(document).ready(function(){
 		$("#buttRegisterM").click(function(){
-			$.post("registrazione",
+			$.post("../../controlloEmail",
 				{	
 					email: $("#emailM").val(),
-					psw: $("#pswM").val(),
-					name: $("#nameM").val(),
-					surname: $("#surnameM").val(),
-					birth: $("#birthM").val(),
-					cf: $("#cfM").val(),
-					photo: $("#imgM").val(),
-					mobilep: $("#mobilep").val(),
-					studioaddr: $("#studioaddr").val(),
-					munaddr: $("#munaddr").val(),
-					type: $("#type").val()
 				},
 					function(data){
 					if(data == 'false'){

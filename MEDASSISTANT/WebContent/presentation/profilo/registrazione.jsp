@@ -64,12 +64,15 @@
 			    
 					<div id="regPaz">
 						<h4>Registrazione paziente</h4>
-						<form enctype='multipart/form-data' method="POST" name="regForm" id="regForm" onsubmit="return canRegister()">
+						<form method="POST" name="regForm" id="regFormP1" onsubmit="return canRegister()">
 						   	<input type="text" id="email" class="form-control" name="email" placeholder="Email">
 						   	<p id="outEmail" style="color: red"></p>
+							<input type="submit" class="btn btn-primary btn-block" id="buttRegister" value="Controlla email">
+						</form>
+						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" id="regFormP2" style="display:none">
+						<h4>Informazioni personali</h4>
 							<input type="password"  class="form-control" name="psw" id="psw" placeholder="Password">
 							<p id="outPsw" style="color: red"></p>
-						<h4>Informazioni personali</h4>
 							<input type="text"  class="form-control" name="name" id="name" placeholder="Nome">
 							<p id="outName" style="color: red"></p>
 							<input type="text"  class="form-control" name="surname" id="surname" placeholder="Cognome">
@@ -82,35 +85,34 @@
 							<p id="outDom" style="color: red"></p>
 							<input type="text"  class="form-control" name="residence" id="residence" placeholder="Residenza">
 							<p id="outRes" style="color: red"></p>
-							<p id="outCred" style="color: red"></p>
-							<input type="submit" class="btn btn-primary btn-block" id="buttRegister" value="Crea account">
-						</form>
-						<form action="index.jsp" method="GET">
-                    		<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegister2" style="display: none">Accedi</button>
+							<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegister2">Crea account</button>
 						</form>
 					</div>
 														
 					<div id="regMed" style="display:none">
 						<h4>Registrazione medico</h4>
-						<form enctype='multipart/form-data' method="POST" name="regFormM" onsubmit="return canRegisterM()">
-							<input type="text" id="emailM" class="form-control" name="email" placeholder="email">
+						<form method="POST" name="regFormM" id="regFormM" onsubmit="return canRegisterM()">
+							<input type="text" id="emailM" class="form-control" name="email" placeholder="Email">
 							<p id="outEmailM" style="color: red"></p>
-							<input type="password" class="form-control" name="psw" id="pswM" placeholder="password">
-							<p id="outPswM" style="color: red"></p>
+							<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegisterM">Controlla email</button>
+						</form>
 						<h4>Informazioni personali</h4>
-							<input type="text" class="form-control" name="name" id="nameM" placeholder="nome">
+						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" id="regFormM2" style="display:none">
+							<input type="password" class="form-control" name="psw" id="pswM" placeholder="Password">
+							<p id="outPswM" style="color: red"></p>
+							<input type="text" class="form-control" name="name" id="nameM" placeholder="Nome">
 							<p id="outNameM" style="color: red"></p>
-							<input type="text" class="form-control" name="surname" id="surnameM" placeholder="cognome">
+							<input type="text" class="form-control" name="surname" id="surnameM" placeholder="Cognome">
 							<p id="outSurnameM" style="color: red"></p>
-							<input type="date" class="form-control" name="birth" id="birthM" placeholder="data di nascita">
-							<input type="text" class="form-control" name="cf" id="cfM" placeholder="codice fiscale">
+							<input type="date" class="form-control" name="birth" id="birthM" placeholder="Data di nascita">
+							<input type="text" class="form-control" name="cf" id="cfM" placeholder="Codice fiscale">
 							<p id="outCfM" style="color: red"></p>
-							<input id="imgM" type="file"  class="form-control" name="photoM" placeholder="foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
-							<input type="tel" class="form-control" name="mobilep" id="mobilep" placeholder="mobilephone">
+							<input id="img" type="file" class="form-control" name="photo" placeholder="Foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
+							<input type="tel" class="form-control" name="mobilep" id="mobilep" placeholder="Numero di telefono">
 							<p id="outMobile" style="color: red"></p>
-							<input type="text" class="form-control" name="studioaddr" id="studioaddr" placeholder="indirizzo studio">
+							<input type="text" class="form-control" name="studioaddr" id="studioaddr" placeholder="Indirizzo studio">
 							<p id="outStudio" style="color: red"></p>
-							<input type="text" class="form-control" name="munaddr" id="munaddr" placeholder="comune studio">
+							<input type="text" class="form-control" name="munaddr" id="munaddr" placeholder="Comune studio">
 							<p id="outMun" style="color: red"></p>
 							<select name="type" id="type">
 								<option value="medico di base">Medico di base</option>
@@ -119,11 +121,7 @@
 							  	<option value="neurologo">Neurologo</option>
 							  	<option value="podologo">Podologo</option>
 							</select>
-							<p id="outCredM" style="color: red"></p>
-							<br><br><br><input type="submit" class="btn btn-primary btn-block" id="buttRegisterM" value="Crea account"><br><br><br>
-						</form>
-						<form action="index.jsp" method="GET">
-                    		<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegister2M" style="display: none">Accedi</button>
+							<br><br><br><input type="submit" class="btn btn-primary btn-block" id="buttRegister2M" value="Crea account"><br><br><br>
 						</form>
 					</div> 
 					<br>
