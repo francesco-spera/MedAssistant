@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_util.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_main.css">
-<script type="text/javascript" src="js/ajaxsendemail.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/core/js/ajaxsendemail.js"></script>
 </head>
 <body>
 
@@ -46,11 +46,21 @@
 	<div class="container mt-5">
 	    <h1>Profilo del dott. <c:out value="${accDoc.surname}"/></h1>
 	    <img src="presentation/profilo/GetProfileImage.jsp?doctor=${accDoc.doctor}" width="230px" height="140px"/>
+		
+		<% boolean linkstate = (boolean) request.getAttribute("linkstate");
+	    if (linkstate){
+	    %>
 		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(),'${infoDoc.email}','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei: http://localhost:8080/MEDASSISTANT/visualizzaCollegamento.jsp?email=',6000)">
-		
+		<%} %>
 		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/presentation/appuntamento/prenotaAppuntamento.jsp">Prenota appuntamento</a>	
-		
+		<%
+		boolean state = (boolean) request.getAttribute("votestate");
+
+		if (!state){
+			%>
 		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Vota</a>
+		
+		<%} %>
  
 <div class="container">
 <div class="row" style="margin-top:40px;">

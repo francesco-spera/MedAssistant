@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import bean.Patient;
 import bean.Doctor;
@@ -228,4 +229,34 @@ public class CollegamentoManager {
 
 
 	}
+	
+	public static boolean controlloCollegamento(String patient, String doctor) throws SQLException, ParseException {
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("SELECT * FROM link WHERE Doctor=? AND Patient=?");
+			ps.setString(1, doctor);
+			ps.setString(2, patient);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getInt("State")==0 && rs.getInt("State")==1) {
+					return true;
+				}
+			}
+				
+			return false;
+			
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	}
+	
 }

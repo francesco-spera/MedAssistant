@@ -24,34 +24,52 @@ public class RicercaManager {
 	
 	public static ArrayList<Doctor> cercaMedicoZonaTipo(String zona, String tipo) throws SQLException{
 		PreparedStatement ps = null;
-		Connection con = null;
-		ArrayList<Doctor> doc = null; 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ? AND d.municipalityAddress = ?;");
-			ps.setString(1, tipo);
-			ps.setString(2, zona);
-			ResultSet rs = ps.executeQuery();
-			doc = new ArrayList<Doctor>();
-			while(rs.next()) {
-				Doctor m = new Doctor();
-				m.setEmail(rs.getString(1));
-				m.setPhoneNumber(rs.getString(2));
-				m.setStudioAddress(rs.getString(3));
-				m.setAvgReviews(rs.getFloat(4));
-				m.setType(rs.getString(5));
-				doc.add(m);
-			}
-		} finally {
-			try {
-				if(ps!= null) {
-					ps.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
-		return doc;
+        Connection con = null;
+        ArrayList<Doctor> doc = null;
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            if(zona.isEmpty()) {
+                ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ?");
+                ps.setString(1, tipo);
+            }
+            else if(tipo.isEmpty()) {
+                      ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.municipalityAddress = ?;");
+                        ps.setString(1, zona);
+                  }
+            else if(tipo.isEmpty() && zona.isEmpty()) {
+                  ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d;");
+            }
+            else if(tipo.equalsIgnoreCase("medico specialista") && zona.isEmpty() ) {
+                ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d where d.type <> 'medico di base';");
+          
+            }
+            else {
+                      ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ? AND d.municipalityAddress = ?;");
+                        ps.setString(1, tipo);
+                        ps.setString(2, zona);
+            }
+
+            ResultSet rs = ps.executeQuery();
+            doc = new ArrayList<Doctor>();
+            while(rs.next()) {
+                Doctor m = new Doctor();
+                m.setEmail(rs.getString(1));
+                m.setPhoneNumber(rs.getString(2));
+                m.setStudioAddress(rs.getString(3));
+                m.setAvgReviews(rs.getFloat(4));
+                m.setType(rs.getString(5));
+                doc.add(m);
+            }
+        } finally {
+            try {
+                if(ps!= null) {
+                    ps.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
+        return doc;
 	}
 	
 	/*

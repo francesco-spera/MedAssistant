@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Voting;
+import model.CollegamentoManager;
 import model.ProfiloManager;
 import model.VotazioneManager;
 
@@ -28,14 +29,23 @@ public class VotaMedico extends HttpServlet {
 		vote.setDoctor(request.getParameter("emailDoc"));
 		vote.setPatient(request.getParameter("emailPatient"));
 		vote.setVote(Integer.parseInt(request.getParameter("selected_rating")));
+		
+		boolean votestate = false;
+		boolean linkstate = false;
+		
 		try {
 			VotazioneManager.votaMedico(vote);
 			request.getSession().setAttribute("infoDoc", ProfiloManager.visualizzaMedico(request.getParameter("emailDoc")));
+			votestate = VotazioneManager.controlloVoto(request.getParameter("emailPatient"), request.getParameter("emailDoc"));
+			linkstate = CollegamentoManager.controlloCollegamento(request.getParameter("emailPatient"), request.getParameter("emailDoc"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("linkstate", linkstate);
+		request.setAttribute("votestate", votestate);
 		request.getRequestDispatcher("presentation/ricerca/visualizzaProfiloMed.jsp").forward(request, response);
 	}
 

@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,5 +49,34 @@ public class VotazioneManager {
 				}
 			}
 	}
+	
+	public static boolean controlloVoto(String patient, String doctor) throws SQLException, ParseException {
+		PreparedStatement ps = null;
+		Connection con = null;
+		System.out.println("sono qui");
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			ps = con.prepareStatement("SELECT * FROM voting WHERE Medico=? AND Patient=?");
+			ps.setString(1, doctor);
+			ps.setString(2, patient);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			return false;
+			
+		}finally {
+			try {
+				if(ps!= null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+	}
+	
+	
 
 }

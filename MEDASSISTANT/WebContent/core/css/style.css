@@ -2722,27 +2722,27 @@ input:checked + .slider:before {
 /* MODIFICA Bottoni Risposta Collegamento */
 
 
-#rating-star-1{
+#Accettabtn{
 	
 	color: #fff;
 	
 }
 
-#rating-star-2{
+#Rifiutabtn{
 	
 	color: #fff;
 	
 }
 
 
-#rating-star-1:hover{
+#Accettabtn:hover{
 	
 	background-color: #081f3e;
 	color: #68b3fd;
 	
 }
 
-#rating-star-2:hover{
+#Rifiutabtn:hover{
 	
 	background-color: #081f3e;
 	color: #68b3fd;

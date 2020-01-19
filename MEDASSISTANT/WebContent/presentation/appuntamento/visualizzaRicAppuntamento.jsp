@@ -73,7 +73,7 @@
 						  
 						  <br>
 						  <div class="form-group text-center">
-						    <label>Vuoi accettare , modificare o rifiutare l'appuntamento?</label>
+						    <label>Vuoi accettare o rinviare l'appuntamento?</label>
 						  </div>
 						  <br>
 					<input type="hidden" id="response" name="response" value="" required="required">
@@ -81,7 +81,7 @@
 					<input type="hidden" id="response" name="date" value="<%=request.getParameter("date")%>" required="required">
 					<input type="hidden" id="response" name="time" value="<%=request.getParameter("time")%>" required="required">
 					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="1" id="Accettabtn"> Accetta</button>
-					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="modificabtn"> Modifica</button>
+					<button type="submit" class="btnresponse btn btn-default btn-lg" data-attr="2" id="modificabtn"> Rinvia</button>
 			        <input type="hidden" id="email" name="email" value="<%=request.getParameter("patient") %>" required="required">
 					
 					</form>
