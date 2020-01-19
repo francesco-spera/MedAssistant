@@ -27,41 +27,42 @@ public class TestVotazioneManager extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-	
+	 
 	public void testvotaMedico() throws SQLException, ParseException{
+		//I CAMPI SONO PREIMPOSTATI QUINDI NON E' POSSIBILE UN CASO DI FAULT
+		Voting v = new Voting();
 		
-		Voting v = null;
-		assertFalse(VotazioneManager.votaMedico(v));
-		
-		v = new Voting();
-		v.setVote(10000);
-		v.setDoctor("");
-		v.setPatient("");
-		v.setDate(null);
-		assertFalse(VotazioneManager.votaMedico(v));
-		
-		v = new Voting();
-		v.setVote(0);
-		v.setDoctor("");
-		v.setPatient("");
-		v.setDate(null);
-		assertFalse(VotazioneManager.votaMedico(v));
-		
-		
-		v = new Voting();
+		//caso di successo inserendo il campo con valore 1
+		v.setVote(1);
+		v.setDoctor("medico.medassistant@gmail.com");
+		v.setPatient("paziente@gmail.com");
+		v.setDate("2020-15-01");
+		assertTrue(VotazioneManager.votaMedico(v));
+		//caso di successo inserendo il campo con valore 2
+		v.setVote(2);
+		v.setDoctor("medico.medassistant@gmail.com");
+		v.setPatient("paziente@gmail.com");
+		v.setDate("2020-15-01");
+		assertTrue(VotazioneManager.votaMedico(v));
+		//caso di successo inserendo il campo con valore 3
+		v.setVote(3);
+		v.setDoctor("medico.medassistant@gmail.com");
+		v.setPatient("paziente@gmail.com");
+		v.setDate("2020-15-01");
+		assertTrue(VotazioneManager.votaMedico(v));
+		//caso di successo inserendo il campo con valore 4
+		v.setVote(4);
+		v.setDoctor("medico.medassistant@gmail.com");
+		v.setPatient("paziente@gmail.com");
+		v.setDate("2020-15-01");
+		assertTrue(VotazioneManager.votaMedico(v));
+		//caso di successo inserendo il campo con valore 5
 		v.setVote(5);
 		v.setDoctor("medico.medassistant@gmail.com");
 		v.setPatient("paziente@gmail.com");
 		v.setDate("2020-15-01");
 		assertTrue(VotazioneManager.votaMedico(v));
-		
-		
-		
-		//controllare
 	}
-
-	
-	
 	
 	
 	@Test

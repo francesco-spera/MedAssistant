@@ -1,7 +1,7 @@
 package test;
 
-
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,6 @@ public class TestRefertoManager extends TestCase {
 		super(name);
 	}
 
-
 	@Override
 	protected void setUp() throws Exception {
 	}
@@ -28,62 +27,94 @@ public class TestRefertoManager extends TestCase {
 	
 	
 	
-	public void testcaricaReferto() throws SQLException{
+	public void testCaricaReferto() throws SQLException{
+		//I CAMPI DATA, DOCTOR E PATIENT SARANNO AUTOMATICAMENTE CORRETTI POICHE' GESTITI IN MODO AUTOMATICO
+		//ASSUMIAMO CHE IL REFERTO CON OBJECT E DESCRIPTION VUOTI VOGLIANO DIRE CHE IL PAZIENTE NON HA AVUTO
+		//BISOGNO DI CURE
 		
+		MedicalReport r = new MedicalReport();
+		
+		//caso di successo inserendo tutti i campi in modo corretto
+		r.setDate("2010-01-01");
+		r.setObject("malattia veneria");
+		r.setDescription("prendersi il caspocazzalin per 8 gg mattina e sera");
+		r.setDoctor("medico@gmail.com");
+		r.setPatient("paziente@gmail.com");
+		try {
+			assertTrue(RefertoManager.caricaReferto(r));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		//caso di successo inserendo tutti i campi tranne l'oggetto
+		r.setDate("2010-01-01");
+		r.setObject("");
+		r.setDescription("prendersi il caspocazzalin per 8 gg mattina e sera");
+		r.setDoctor("medico@gmail.com");
+		r.setPatient("paziente@gmail.com");
+		try {
+			assertTrue(RefertoManager.caricaReferto(r));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		//caso di successo inserendo tutti i campi tranne l'oggetto e la descrizione
+		r.setDate("2010-01-01");
+		r.setObject("");
+		r.setDescription("");
+		r.setDoctor("medico@gmail.com");
+		r.setPatient("paziente@gmail.com");
+		try {
+			assertTrue(RefertoManager.caricaReferto(r));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		//caso di successo inserendo tutti i campi tranne la descrizione
+		r.setDate("2010-01-01");
+		r.setObject("malattia veneria");
+		r.setDescription("");
+		r.setDoctor("medico@gmail.com");
+		r.setPatient("paziente@gmail.com");
+		try {
+			assertTrue(RefertoManager.caricaReferto(r));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	
-	
-	public void testgetRefertoById() throws SQLException{
-		
-		MedicalReport rep = RefertoManager.getRefertoById(0);
-		assertNull(rep);
-		
-		rep = RefertoManager.getRefertoById(1);
+	public void testGetRefertoById() throws SQLException{
+		//L'ID PASSATO AL METODO E' PASSATO IN MODO AUTOMATICO QUINDI ASSUMIAMO CHE SARA'
+		//SEMPRE VERIFICATA LA QUERY
+		MedicalReport rep = RefertoManager.getRefertoById(1);
+		assertNotNull(rep);
 		assertNotNull(rep.getIdReport());
 		assertNotNull(rep.getDate());
 		assertNotNull(rep.getDescription());
 		assertNotNull(rep.getObject());
 		assertNotNull(rep.getDoctor());
 		assertNotNull(rep.getPatient());
-
-		
 	}
 	
-	public void testgetRefertoByPaziente() throws SQLException{
+	public void testGetRefertoByPaziente() throws SQLException{
+		//IL CAMPO PASSATO AL METODO E' PASSATO IN MODO AUTOMATICA QUINDI ASSUMIAMO CHE
+		//NON SARA' MAI VUOTO
 		
-		ArrayList<MedicalReport> risult= RefertoManager.getRefertoByPaziente("medico@gmail.com");
-		assertTrue(risult.isEmpty());
-
+		ArrayList<MedicalReport> risult= null;
 		
-		risult= RefertoManager.getRefertoByPaziente("");
-		assertTrue(risult.isEmpty());
-		
-	
+		//caso di non successo inserendo un paziente che non ha ancora referti associati
 		risult= RefertoManager.getRefertoByPaziente("paziente98@gmail.com");
 		assertTrue(risult.isEmpty());
 		
+		//caso di successo inserendo un paziente che ha referti associati
 		risult = RefertoManager.getRefertoByPaziente("paziente@gmail.com");
 		assertNotNull(risult);
 		assertTrue(!risult.isEmpty());
-		for (MedicalReport medicalReport : risult) {
-			assertNotNull(medicalReport.getDate());
-			assertNotNull(medicalReport.getIdReport());
-			assertNotNull(medicalReport.getObject());
-		
-		}
-		
 	}
-	
-	
-	
-	
-	
+
 	
 	@Test
 	void test() throws SQLException {
-		testgetRefertoById();
-		testgetRefertoByPaziente();
+		testCaricaReferto();
+		testGetRefertoById();
+		testGetRefertoByPaziente();
 	}
 
 }
