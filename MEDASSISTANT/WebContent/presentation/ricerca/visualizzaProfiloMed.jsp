@@ -100,7 +100,7 @@
           </button>
           <hr>
 
-        <input type="submit" class="btn btn-primary btn-block" value="Salva">
+        <input id="save" type="submit" class="btn btn-primary btn-block" value="Salva" hidden="true">
       </div>
       </form>
             </div>
@@ -235,11 +235,13 @@
   		for (i = 1; i <= selected_value; ++i) {
   		$("#rating-star-"+i).toggleClass('btn-warning');
   		$("#rating-star-"+i).toggleClass('btn-default');
+  		$("#save").attr("hidden",false);
   		}
   		
   		for (ix = 1; ix <= previous_value; ++ix) {
   		$("#rating-star-"+ix).toggleClass('btn-warning');
   		$("#rating-star-"+ix).toggleClass('btn-default');
+  		$("#save").attr("hidden",false);
   		}
   		
   		}));
