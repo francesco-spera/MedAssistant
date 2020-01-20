@@ -241,7 +241,7 @@ public class CollegamentoManager {
 			
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				if(rs.getInt("State")==0 && rs.getInt("State")==1) {
+				if(rs.getInt("State")==0 || rs.getInt("State")==1) {
 					return true;
 				}
 			}
