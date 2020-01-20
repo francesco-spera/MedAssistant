@@ -11,12 +11,12 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/javax.mail-1.6.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/junit-jupiter-api-5.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/junit-platform-engine-1.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/junit-platform-launcher-1.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/mockito-all-1.10.19.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/spring-core-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/spera/Desktop/agony/3° anno/IS/MEDASSISTANT/jar testing/spring-test-5.2.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-jupiter-api-5.4.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-platform-engine-1.5.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-platform-launcher-1.5.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mockito-all-1.10.19.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-5.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-5.2.3.RELEASE.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
