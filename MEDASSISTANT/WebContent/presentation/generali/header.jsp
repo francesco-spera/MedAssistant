@@ -57,7 +57,7 @@
 											<a class="nav-link" href="${pageContext.request.contextPath}/presentation/ricerca/cercaMedicoZonaTipo.jsp">Cerca medico</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="${pageContext.request.contextPath}/ImieiMedici">I miei medici</a>
+                                            <a class="nav-link" href="${pageContext.request.contextPath}/IMieiMedici">I miei medici</a>
                                         </li>
 										<li class="nav-item">
                                         	<a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>

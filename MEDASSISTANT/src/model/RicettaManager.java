@@ -29,7 +29,7 @@ public class RicettaManager {
 		ArrayList<Prescription> ricetta = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ? ORDER BY ID DESC");
+			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ? ORDER BY ID DESC;");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			ricetta = new ArrayList<Prescription>();
@@ -75,7 +75,7 @@ public class RicettaManager {
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO prescription (MedicalReport, prescription,date,Doctor,Patient,state) VALUES (?,?,?,?,?,?)");
+			ps = con.prepareStatement("INSERT INTO prescription (MedicalReport, prescription,date,Doctor,Patient,state) VALUES (?,?,?,?,?,?);");
 			ps.setInt(1,ricetta.getMedicalreport());
 			ps.setBlob(2, ricetta.getPrescription());
 			ps.setString(3, ricetta.getDate());
@@ -114,7 +114,7 @@ public class RicettaManager {
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("UPDATE prescription SET state = ? WHERE ID = ?");
+			ps = con.prepareStatement("UPDATE prescription SET state = ? WHERE ID = ?;");
 			ps.setInt(1, stato);
 			ps.setInt(2, id);
 			
@@ -153,7 +153,7 @@ public class RicettaManager {
 		int ret = 0;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ? AND doctor = ? AND patient = ? AND state = ?");
+			ps = con.prepareStatement("SELECT * FROM prescription WHERE MedicalReport = ? AND doctor = ? AND patient = ? AND state = ?;");
 			ps.setInt(1, report);
 			ps.setString(2, doctor);
 			ps.setString(3, patient);
@@ -198,7 +198,7 @@ public class RicettaManager {
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("UPDATE prescription SET state = -1, prescription = ?,date = ? WHERE ID = ?");
+			ps = con.prepareStatement("UPDATE prescription SET state = -1, prescription = ?,date = ? WHERE ID = ?;");
 			ps.setBlob(1, ricetta);
 			ps.setString(2, date);
 			ps.setInt(3, id);

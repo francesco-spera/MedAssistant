@@ -17,13 +17,13 @@ import model.RicettaManager;
  * Servlet implementation class verificaRicetta
  */
 @WebServlet("/verificaRicetta")
-public class verificaRicetta extends HttpServlet {
+public class VerificaRicetta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public verificaRicetta() {
+    public VerificaRicetta() {
         super();
         
     }

@@ -17,11 +17,11 @@ import model.CollegamentoManager;
 import model.RicercaManager;
 
 @WebServlet("/VisualizzareImieiMedici")
-public class VisualizzareImieiMedici extends HttpServlet {
+public class VisualizzareIMieiMedici extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public VisualizzareImieiMedici() {
+    public VisualizzareIMieiMedici() {
         super();
     }
 

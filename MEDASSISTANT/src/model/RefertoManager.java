@@ -28,8 +28,7 @@ public class RefertoManager {
 		Connection con = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("INSERT INTO medicalreport(Object, Description, Doctor, Patient, Date)"
-					+ "VALUES(?, ?, ?, ?, ?);");
+			ps = con.prepareStatement("INSERT INTO medicalreport(Object, Description, Doctor, Patient, Date) VALUES(?, ?, ?, ?, ?);");
 			ps.setString(1, r.getObject());
 			ps.setString(2, r.getDescription());
 			ps.setString(3, r.getDoctor());

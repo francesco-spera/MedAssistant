@@ -61,6 +61,6 @@ public class Prescription {
 	}
 
 	private String doctor,patient,date;
-	private int ID, medicalreport,state;
+	private int ID, medicalreport, state;
 	private Blob prescription;
 }

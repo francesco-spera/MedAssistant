@@ -24,13 +24,13 @@ import model.RicettaManager;
  */
 @WebServlet("/caricareRicetta")
 @MultipartConfig(maxFileSize = 32354432)//1.5mb 32.354.432 32354432 //ESSENZIALE
-public class caricareRicetta extends HttpServlet {
+public class CaricareRicetta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public caricareRicetta() {
+    public CaricareRicetta() {
         super();
         // TODO Auto-generated constructor stub
     }

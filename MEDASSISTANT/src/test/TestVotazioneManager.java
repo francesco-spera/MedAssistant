@@ -27,7 +27,7 @@ public class TestVotazioneManager extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-	 
+	
 	public void testvotaMedico() throws SQLException, ParseException{
 		//I CAMPI SONO PREIMPOSTATI QUINDI NON E' POSSIBILE UN CASO DI FAULT
 		Voting v = new Voting();

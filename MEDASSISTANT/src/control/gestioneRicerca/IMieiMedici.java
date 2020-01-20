@@ -14,9 +14,9 @@ import bean.Account;
 import model.RicercaManager;
 
 @WebServlet("/ImieiMedici")
-public class ImieiMedici extends HttpServlet {
+public class IMieiMedici extends HttpServlet {
 	
-    public ImieiMedici() {
+    public IMieiMedici() {
         super();
     }
     
