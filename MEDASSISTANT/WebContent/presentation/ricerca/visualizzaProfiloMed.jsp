@@ -59,7 +59,7 @@
 		<%}
 		boolean state = (boolean) request.getAttribute("votestate");
 
-		if (!state){
+		if (!state && linkstate){
 			%>
 		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Vota</a>
 		
