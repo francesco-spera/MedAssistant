@@ -64,7 +64,7 @@ public class RispostaCollegamento extends HttpServlet {
 
 	
 	
-	
+		request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
 	
 	}
 	

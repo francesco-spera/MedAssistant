@@ -50,7 +50,7 @@
 				<div class="card card-signin my-5">
 					<div class="card-body">
 						<h5 class="card-title text-center">Compila i campi</h5><hr>
-                    		<form action="${pageContext.request.contextPath}/caricareReferto" method="POST">
+                    		<form action="${pageContext.request.contextPath}/CaricareReferto" method="POST">
 								<h4>Informazioni generali</h4><br><br>
 								<div class="form-label-group">
 									<label>Paziente</label>
