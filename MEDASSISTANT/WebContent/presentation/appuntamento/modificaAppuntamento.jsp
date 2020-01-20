@@ -16,7 +16,6 @@
 <link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
  .scrollable{
    overflow-y: auto;
