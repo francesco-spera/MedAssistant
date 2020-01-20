@@ -5,7 +5,7 @@
 
 <% 
 if(request.getAttribute("Pres")==null && request.getAttribute("read")!="true"){
-			request.getRequestDispatcher("/verificaRicetta").forward(request, response);
+			request.getRequestDispatcher("/VerificaRicetta").forward(request, response);
 		}
 request.removeAttribute("read");
 %>
@@ -84,7 +84,7 @@ request.removeAttribute("read");
 		           <div class="col-lg-9">
 					<c:choose>
 		      		<c:when test="${pazLog!=null}">
-			      		<a type="submit" class="btn btn-primary" onclick="ajaxCall('load','<%=request.getContextPath()%>/richiedereRicetta', displayResults(),'${medRep.doctor}','Richiesta Ricetta','Salve Dottor,\nL\'utente, email: \n\nha richiesto l\'invio di una ricetta: http://localhost:8080/MEDASSISTANT/visualizzaRicRicetta.jsp?email=',6000)">Richiedi ricetta</a>
+			      		<a type="submit" class="btn btn-primary" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereRicetta', displayResults(),'${medRep.doctor}','Richiesta Ricetta','Salve Dottor,\nL\'utente, email: \n\nha richiesto l\'invio di una ricetta: http://localhost:8080/MEDASSISTANT/visualizzaRicRicetta.jsp?email=',6000)">Richiedi ricetta</a>
 			      	</c:when>
 		      		</c:choose>
 		           </div>

@@ -17,7 +17,7 @@ import model.RicercaManager;
 /**
  * Servlet implementation class completaAppuntamento
  */
-@WebServlet("/completaAppuntamento")
+@WebServlet("/CompletaAppuntamento")
 public class CompletaAppuntamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

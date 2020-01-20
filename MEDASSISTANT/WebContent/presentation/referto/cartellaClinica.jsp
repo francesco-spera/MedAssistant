@@ -77,7 +77,7 @@
 									<tr>
 										<td class="column1">${rep.object}</td>  
 										<td class="column2">${rep.date}</td>
-										<td><form action="${pageContext.request.contextPath}/visualizzaReferto" method="GET">
+										<td><form action="${pageContext.request.contextPath}/VisualizzaReferto" method="GET">
 										<input type="hidden" name="idReport" value="${rep.idReport}">
 										<button type="submit" class="btn btn-primary">Visualizza Referto</button>											
 										</form></td>

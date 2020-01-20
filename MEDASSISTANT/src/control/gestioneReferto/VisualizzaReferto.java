@@ -16,7 +16,7 @@ import model.ProfiloManager;
 import model.RefertoManager;
 import model.RicercaManager;
 
-@WebServlet("/visualizzaReferto")
+@WebServlet("/VisualizzaReferto")
 public class VisualizzaReferto extends HttpServlet {
 
     public VisualizzaReferto() {

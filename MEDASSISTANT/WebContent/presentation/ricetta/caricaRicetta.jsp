@@ -52,7 +52,7 @@
 					<div class="card-body">
 						<h5 class="card-title text-center">Compila i campi</h5><hr>
 							
-                    		<form action="${pageContext.request.contextPath}/caricareRicetta" enctype='multipart/form-data' method="POST">
+                    		<form action="${pageContext.request.contextPath}/CaricareRicetta" enctype='multipart/form-data' method="POST">
                     			<input type="hidden" name="res" value="<%=request.getParameter("response") %>">
                     			<input type="hidden" name="id" value="<%=request.getParameter("reportid") %>">
 								<div class="form-label-group">

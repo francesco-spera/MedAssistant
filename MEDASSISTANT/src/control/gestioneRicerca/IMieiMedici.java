@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Account;
 import model.RicercaManager;
 
-@WebServlet("/ImieiMedici")
+@WebServlet("/IMieiMedici")
 public class IMieiMedici extends HttpServlet {
 	
     public IMieiMedici() {

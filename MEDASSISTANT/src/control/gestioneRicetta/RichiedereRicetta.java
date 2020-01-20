@@ -22,7 +22,7 @@ import model.RicettaManager;
 /**
  * Servlet implementation class richiedereRicetta
  */
-@WebServlet("/richiedereRicetta")
+@WebServlet("/RichiedereRicetta")
 public class RichiedereRicetta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

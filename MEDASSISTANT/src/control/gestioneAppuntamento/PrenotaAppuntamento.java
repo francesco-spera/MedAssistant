@@ -17,7 +17,7 @@ import model.AppuntamentoManager;
 /**
  * Servlet implementation class prenotaAppuntamento
  */
-@WebServlet("/prenotaAppuntamento")
+@WebServlet("/PrenotaAppuntamento")
 public class PrenotaAppuntamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -16,7 +16,7 @@ import model.RicettaManager;
 /**
  * Servlet implementation class verificaRicetta
  */
-@WebServlet("/verificaRicetta")
+@WebServlet("/VerificaRicetta")
 public class VerificaRicetta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

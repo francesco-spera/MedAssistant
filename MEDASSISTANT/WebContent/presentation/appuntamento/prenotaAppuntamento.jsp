@@ -96,7 +96,7 @@
 		    
 		<hr>
 		<h4>Informazioni generali appuntamento</h4>
-		<form action="${pageContext.request.contextPath}/prenotaAppuntamento" method="POST">
+		<form action="${pageContext.request.contextPath}/PrenotaAppuntamento" method="POST">
 		<input type="hidden" name="doctor" value="${accDoc.doctor}">
 		<input type="hidden" name="patient" value="${pazLog.patient}">
 		<div class="row">
