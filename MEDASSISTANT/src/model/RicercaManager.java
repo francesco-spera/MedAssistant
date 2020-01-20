@@ -28,26 +28,26 @@ public class RicercaManager {
         ArrayList<Doctor> doc = null;
         try {
             con = DriverManagerConnectionPool.getConnection();
-            if(zona.isEmpty()) {
-                ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ?");
+            
+            
+            if (tipo.isEmpty() && zona.isEmpty()) {
+            	ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor;");
+            } else if(tipo.equalsIgnoreCase("medico specialista") && zona.isEmpty() ) {
+            	 ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d where d.type <> 'medico di base';");
+            }else if(tipo.equalsIgnoreCase("medico di base") && zona.isEmpty() ) {
+            	ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = 'medico di base'");
+            }else if(tipo.isEmpty()){
+            	 ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.municipalityAddress = ?;");
+                 ps.setString(1, zona);
+            }else if(zona.isEmpty()) {
+            	 ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ?");
+                 ps.setString(1, tipo);
+            }else {
+            	ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ? AND d.municipalityAddress = ?;");
                 ps.setString(1, tipo);
+                ps.setString(2, zona);
             }
-            else if(tipo.isEmpty()) {
-                      ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.municipalityAddress = ?;");
-                        ps.setString(1, zona);
-                  }
-            else if(tipo.isEmpty() && zona.isEmpty()) {
-                  ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d;");
-            }
-            else if(tipo.equalsIgnoreCase("medico specialista") && zona.isEmpty() ) {
-                ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d where d.type <> 'medico di base';");
-          
-            }
-            else {
-                      ps = con.prepareStatement("SELECT email, phonenumber, studioaddress, avgreviews, type FROM doctor d WHERE d.type = ? AND d.municipalityAddress = ?;");
-                        ps.setString(1, tipo);
-                        ps.setString(2, zona);
-            }
+
 
             ResultSet rs = ps.executeQuery();
             doc = new ArrayList<Doctor>();
