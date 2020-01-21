@@ -78,6 +78,7 @@
 							<input type="text"  class="form-control" name="surname" id="surname" placeholder="Cognome">
 							<p id="outSurname" style="color: red"></p>
 							<input type="date"  class="form-control" name="birth" id="birth" placeholder="Data di nascita">
+							<p id="outDate" style="color: red"></p>
 							<input type="text"  class="form-control" name="cf" id="cf" placeholder="Codice fiscale">
 							<p id="outCf" style="color: red"></p>
 							<label>Foto</label>
