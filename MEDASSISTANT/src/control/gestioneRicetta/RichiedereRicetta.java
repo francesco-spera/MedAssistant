@@ -54,7 +54,7 @@ public class RichiedereRicetta extends HttpServlet {
 		text=text.concat(patient.getPatient());
 		
 		MedicalReport report = (MedicalReport) request.getSession().getAttribute("medRep");
-		text=text.concat("&repobj="+report.getObject()+"&desc="+URLEncoder.encode(report.getDescription(), StandardCharsets.UTF_8.toString())+"&idReport="+report.getIdReport());
+		text=text.concat("&repobj="+URLEncoder.encode(report.getObject(), StandardCharsets.UTF_8.toString())+"&desc="+URLEncoder.encode(report.getDescription(), StandardCharsets.UTF_8.toString())+"&idReport="+report.getIdReport());
 		
 try {
 			

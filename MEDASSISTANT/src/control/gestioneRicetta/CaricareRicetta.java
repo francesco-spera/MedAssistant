@@ -16,6 +16,7 @@ import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.commons.io.IOUtils;
 
+import bean.Account;
 import bean.Prescription;
 import model.RicettaManager;
 
@@ -39,7 +40,7 @@ public class CaricareRicetta extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Account medico = null;
 		int resp = Integer.parseInt(request.getParameter("res"));
 		Prescription ricetta = new Prescription();
 		ricetta.setMedicalreport(Integer.parseInt(request.getParameter("id")));
@@ -62,7 +63,6 @@ public class CaricareRicetta extends HttpServlet {
 			if (resp==0) {
 				RicettaManager.caricareRicetta(ricetta);	
 			}else {
-				System.out.println("qui ci va update");
 				RicettaManager.updatericetta(RicettaManager.ritornoID(ricetta.getMedicalreport(), ricetta.getDoctor(), ricetta.getPatient(), 0), ricetta.getPrescription(), ricetta.getDate());
 			}
 			
@@ -70,7 +70,9 @@ public class CaricareRicetta extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("presentation/referto/visualizzaReferto?idReport="+request.getParameter("id")).forward(request, response);
+		request.getSession().setAttribute("medRep", request.getParameter("id"));
+		request.getSession().setAttribute("nameDoc", medico);
+		request.getRequestDispatcher("presentation/referto/visualizzaReferto.jsp?idReport="+request.getParameter("id")).forward(request, response);
 
 		
 	}

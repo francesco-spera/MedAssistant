@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import bean.Account;
 import bean.MedicalReport;
 import connectionPool.DriverManagerConnectionPool;
 
@@ -104,6 +105,7 @@ public class RefertoManager {
 		Connection con = null;
 		ArrayList<MedicalReport> medReps = null;
 		try {
+			medico = (Account) request.getSession().getAttribute("docLog");
 			con = DriverManagerConnectionPool.getConnection();
 			ps = con.prepareStatement("SELECT object, date, idreport FROM medicalreport m WHERE m.patient = ? ORDER BY IDReport DESC;;");
 			ps.setString(1, email);
