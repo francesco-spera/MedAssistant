@@ -19,7 +19,6 @@ import control.gestioneProfilo.ModificareProfilo;
 
 public class TestModificaProfiloPaziente {
 
-
 	@Test
 	public void TC1_4_1() throws IOException, SQLException{
 		request = Mockito.mock(HttpServletRequest.class);
@@ -30,7 +29,6 @@ public class TestModificaProfiloPaziente {
 		Mockito.when(response.getWriter()).thenReturn(print);
 		Mockito.when(request.getSession()).thenReturn(session);
 		
-		Mockito.when(request.getParameter("email")).thenReturn("paziente@gmail.com");
 		Mockito.when(request.getParameter("name")).thenReturn("");
 		Mockito.when(request.getParameter("surname")).thenReturn("Armeno");
 		Mockito.when(request.getParameter("psw")).thenReturn("prova1234");
@@ -38,6 +36,7 @@ public class TestModificaProfiloPaziente {
 		Mockito.when(request.getParameter("domicile")).thenReturn("via delle puglie");
 		Mockito.when(request.getParameter("residence")).thenReturn("via delle puglie");
 		Mockito.when(request.getParameter("birth")).thenReturn("2000-01-01");
+		Mockito.when(request.getParameter("email")).thenReturn("paziente@gmail.com");
 		try{
 			modificareProfiloServlet.doPost(request, response);
 		}catch(Exception e) {
