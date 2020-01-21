@@ -80,6 +80,7 @@
 							<input type="date"  class="form-control" name="birth" id="birth" placeholder="Data di nascita">
 							<input type="text"  class="form-control" name="cf" id="cf" placeholder="Codice fiscale">
 							<p id="outCf" style="color: red"></p>
+							<label>Foto</label>
 							<input id="img" type="file" class="form-control" name="photo" placeholder="Foto" accept="image/png, image/jpeg" data-multiple-caption="{count} files selected">
 							<input type="text"  class="form-control" name="domicile" id="domicile" placeholder="Domicilio">
 							<p id="outDom" style="color: red"></p>

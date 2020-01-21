@@ -109,17 +109,31 @@ public class ProfiloManager {
 			if (ps.executeUpdate() != 1)
 				return false;
 			ps.close();
-			ps = con.prepareStatement("INSERT INTO account(Name, Surname, BirthDate, CF, Photo, Patient)"
-				+ "VALUES(?, ?, ?, ?, ?, ?);");
-			ps.setString(1, account.getName());
-			ps.setString(2, account.getSurname());
-			ps.setString(3, account.getBirthDate());
-			ps.setString(4, account.getCf());
-			ps.setBlob(5, account.getPhoto());
-			ps.setString(6, account.getPatient());
-			if (ps.executeUpdate() != 1)
-				return false;
-			return true;
+			if(account.getPhoto()!=null) {
+				ps = con.prepareStatement("INSERT INTO account(Name, Surname, BirthDate, CF, Photo, Patient)"
+						+ "VALUES(?, ?, ?, ?, ?, ?);");
+					ps.setString(1, account.getName());
+					ps.setString(2, account.getSurname());
+					ps.setString(3, account.getBirthDate());
+					ps.setString(4, account.getCf());
+					ps.setBlob(5, account.getPhoto());
+					ps.setString(6, account.getPatient());
+					if (ps.executeUpdate() != 1)
+						return false;
+					return true;
+			} else {
+				ps = con.prepareStatement("INSERT INTO account(Name, Surname, BirthDate, CF, Patient)"
+						+ "VALUES(?, ?, ?, ?, ?);");
+					ps.setString(1, account.getName());
+					ps.setString(2, account.getSurname());
+					ps.setString(3, account.getBirthDate());
+					ps.setString(4, account.getCf());
+					ps.setString(5, account.getPatient());
+					if (ps.executeUpdate() != 1)
+						return false;
+					return true;
+			}
+			
 		} finally {
 			try {
 				if(ps!= null) {

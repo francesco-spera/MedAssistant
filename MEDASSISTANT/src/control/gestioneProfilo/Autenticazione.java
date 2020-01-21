@@ -3,6 +3,8 @@ package control.gestioneProfilo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +28,7 @@ public class Autenticazione extends HttpServlet {
 		doPost(request, response);
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("pazLog")!=null)
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		if(request.getSession().getAttribute("docLog")!=null)
@@ -36,20 +38,27 @@ public class Autenticazione extends HttpServlet {
 		String email = request.getParameter("email");
 		String psw = request.getParameter("psw");
 		Account user = null;
-		try {
-			user = ProfiloManager.autenticazione(email, psw);
-			if(user!=null)
-				out.write("true");
-			else
-				out.write("false");
-		} catch (SQLException e) {
-			e.printStackTrace();
+		
+		Pattern emailPattern = Pattern.compile(EMAILREGEX);
+		Matcher m = emailPattern.matcher(email);
+		if(!m.find() || psw.length()<6) {
+			out.write("false");
+			return;
+		} else {
+			try {
+				user = ProfiloManager.autenticazione(email, psw);
+				if(user!=null)
+					out.write("true");
+				else
+					out.write("false");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(30*60);
-		
-		if(user.getPatient()!=null)
+		if(user != null && user.getPatient()!=null)
 			session.setAttribute("pazLog", user);
 		else
 			session.setAttribute("docLog", user);
@@ -58,4 +67,5 @@ public class Autenticazione extends HttpServlet {
 
 	
 	private static final long serialVersionUID = 1L;
+	private static String EMAILREGEX = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)+$";
 }
