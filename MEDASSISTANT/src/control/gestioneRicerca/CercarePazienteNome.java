@@ -39,8 +39,6 @@ public class CercarePazienteNome extends HttpServlet {
 			return;
 		}
 		
-		System.out.println("1");
-		
 		String emaildoc = doctor.getDoctor();
 		Pattern pattern = Pattern.compile(EMAILREGEX);
 		Matcher m = pattern.matcher(emaildoc);
@@ -48,8 +46,6 @@ public class CercarePazienteNome extends HttpServlet {
 			out.write("false");
 			return;
 		}
-		
-		System.out.println("2");
 		
 		String name = request.getParameter("name");
 		pattern = Pattern.compile(NAMEREGEX);
@@ -59,8 +55,6 @@ public class CercarePazienteNome extends HttpServlet {
 			return;
 		}
 		
-		System.out.println("3");
-		
 		String surname = request.getParameter("surname");
 		pattern = Pattern.compile(NAMEREGEX);
 		m = pattern.matcher(surname);
@@ -69,23 +63,16 @@ public class CercarePazienteNome extends HttpServlet {
 			return;
 		}
 		
-		System.out.println(name+" "+surname+" "+emaildoc);
-		
-		System.out.println("4");
-		
 		try {
-			System.out.println("5");
 			ArrayList<Patient> patient = RicercaManager.cercaPazienteNome(name, surname, emaildoc);
 			request.setAttribute("infoPaz", patient);
 			ArrayList<Account> account = new ArrayList<Account>();
 			System.out.println("size: "+ patient.size());
 			for(Patient pat: patient) {
-				System.out.println("6");
 				 account.add(RicercaManager.cercaAccountPaziente(pat.getEmail()));
 			}
 			if(account.size()>0) {
 				out.write("true");
-				System.out.println("true");
 			}else {
 				out.write("false");
 				return;
