@@ -36,7 +36,8 @@
 	                             <div class="widget-title">
 	                                <h6 style="color: #68b3fd">Contact</h6>
 	                            </div>
-									<p>Massa di Sassari, CRACK 80034, IT</p>
+									<p>Università degli Studi di Salerno, Fisciano 84084
+									, IT</p>
 									<p>medassistant@gmail.com</p>
 									<p><a href="#" style="color: #68b3fd">More</a></p>
                             </div>
