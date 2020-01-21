@@ -53,8 +53,8 @@
         						<div class="inner-form">
           							<div class="basic-search">
             							<div class="input-field">
-              								<input name="name" type="text" placeholder="Nome">
-  			 								<input name="surname" type="text" placeholder="Cognome">
+              								<input name="name" type="text" placeholder="Nome" required>
+  			 								<input name="surname" type="text" placeholder="Cognome" required>
             							</div>
             						</div>
   									<div class="input-field">
