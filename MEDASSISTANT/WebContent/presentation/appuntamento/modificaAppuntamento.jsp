@@ -96,7 +96,7 @@
 		<h4>Informazioni generali appuntamento</h4>
 		<div class="row">
 			    <form action="${pageContext.request.contextPath}/ModificareAppuntamento" method="POST">
-		<input type="hidden" name="doctor" value="${accDoc.doctor}">
+		<input type="hidden" name="doctor" value="${Appointment.doctor}">
 		<input type="hidden" name="patient" value="${Appointment.patient}">
 		<input type="hidden" name="appId" value="${Appointment.idAppointment}">
 		<div class="row">

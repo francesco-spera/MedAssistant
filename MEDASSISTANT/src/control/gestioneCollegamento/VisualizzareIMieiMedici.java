@@ -50,7 +50,7 @@ public class VisualizzareIMieiMedici extends HttpServlet {
 					accounts.add(RicercaManager.cercaAccountMedico(doctor.getEmail()));
 				}
 				request.setAttribute("accounts", accounts);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("presentation/ricerca/imieimedici.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("presentation/ricerca/iMieiMedici.jsp");
 				requestDispatcher.forward(request, response);
 				}
 				else {

@@ -230,6 +230,19 @@ public class CollegamentoManager {
 
 	}
 	
+	
+	/*
+	 * 
+	 * 
+	 * @param paziente il paziente da collegare al medico
+	 * @param doctor il medico da collegare al paziente
+	 * @return false se il collegamento tra i due non esiste o true se il collegamento tra i due esiste
+	 * @throws SQLException 
+	 * 
+	 * 
+	 * */
+	
+	
 	public static boolean controlloCollegamento(String patient, String doctor) throws SQLException, ParseException {
 		PreparedStatement ps = null;
 		Connection con = null;

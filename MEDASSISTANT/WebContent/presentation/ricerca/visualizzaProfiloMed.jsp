@@ -50,11 +50,8 @@
 		<% boolean linkstate = (boolean) request.getAttribute("linkstate");
 	    if (!linkstate){
 	    %>
-		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(),'${infoDoc.email}','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei: http://localhost:8080/MEDASSISTANT/visualizzaCollegamento.jsp?email=',6000)">
-		<%} 
-		if (linkstate){
-		%>
-		
+		<input type="submit" class="btn btn-primary" value="Richiedi Collegamento" onclick="ajaxCall('load','<%=request.getContextPath()%>/RichiedereCollegamento', displayResults(),'${infoDoc.email}','prova oggetto','Salve Dottor,\nL\'utente, email: \n\nha richiesto di effettuare un collegamento con lei: http://localhost:8080/MEDASSISTANT/presentation/collegamento/visualizzaCollegamento.jsp?email=',6000)">
+		<%} if (linkstate){%>
 		<a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/presentation/appuntamento/prenotaAppuntamento.jsp">Prenota appuntamento</a>	
 		<%}
 		boolean state = (boolean) request.getAttribute("votestate");

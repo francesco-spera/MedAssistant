@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.MedicalReport;
 import model.RefertoManager;
 
-@WebServlet("/caricareReferto")
+@WebServlet("/CaricareReferto")
 public class CaricareReferto extends HttpServlet {
 
     public CaricareReferto() {

@@ -49,10 +49,14 @@
 		         </div>
 		         <div class="form-group">
 		           <div class="col-lg-9">
-					<form method="POST" action="${pageContext.request.contextPath}/CompletaAppuntamento">
-					<input type="hidden" name="appId" value="${Appointment.idAppointment}">
-		           <input class="btn btn-primary" type="submit" value="COMPLETA APPUNTAMENTO">
-		           </form>
+				           <c:choose>
+							<c:when test="${docLog!=null}">
+							<form method="POST" action="${pageContext.request.contextPath}/CompletaAppuntamento">
+							<input type="hidden" name="appId" value="${Appointment.idAppointment}">
+				           <input class="btn btn-primary" type="submit" value="COMPLETA APPUNTAMENTO">
+		          		 </form>
+		           </c:when>
+				 </c:choose>
 		           </div>
 		         </div>
 		         </c:when>

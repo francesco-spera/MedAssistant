@@ -50,6 +50,16 @@ public class VotazioneManager {
 			}
 	}
 	
+	
+	/*
+	 * 
+	 * @param patient il paziente che ha espresso il voto
+	 * @param doctor il dottore che ha ricevuto il voto
+	 * @return true se il controllo è andato a buon fine, false altrimenti 
+	 * @throws SQLException
+	 * 
+	 * */
+	
 	public static boolean controlloVoto(String patient, String doctor) throws SQLException, ParseException {
 		PreparedStatement ps = null;
 		Connection con = null;

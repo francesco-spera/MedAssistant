@@ -29,7 +29,6 @@
                             <div class="hero-slides-content">
                                 <h2 data-animation="fadeInUp" data-delay="100ms">Semplifica <br> il tuo studio medico</h2>
                                 <h6 data-animation="fadeInUp" data-delay="400ms">La piattaforma che semplifica l'interazione tra medici e pazienti.</h6>
-                                <a href="" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Scopri MedAssistant <span>+</span></a>
                             </div>
                         </div>
                     </div>	
@@ -42,7 +41,6 @@
                             <div class="hero-slides-content">
                                 <h2 data-animation="fadeInUp" data-delay="100ms">Pensata per i medici <br>e per i pazienti</h2>
                                 <h6 data-animation="fadeInUp" data-delay="400ms">Facilita il carico lavorativo.</h6>
-                                <a href="" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Scopri MedAssistant<span>+</span></a>
                             </div>
                         </div>
                     </div>
@@ -55,7 +53,6 @@
                             <div class="hero-slides-content">
                                 <h2 data-animation="fadeInUp" data-delay="100ms">Cosa aspetti?<br>Registrati subito!</h2>
                                 <h6 data-animation="fadeInUp" data-delay="400ms">Rapida, veloce, sicura.</h6>
-                                <a href="" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Scopri MedAssistant<span>+</span></a>
                             </div>
                         </div>
                     </div>

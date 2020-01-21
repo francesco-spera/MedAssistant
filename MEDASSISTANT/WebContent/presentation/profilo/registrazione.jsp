@@ -97,7 +97,6 @@
 							<p id="outEmailM" style="color: red"></p>
 							<button class="btn btn-lg btn-primary btn-block" type="submit" id="buttRegisterM">Controlla email</button>
 						</form>
-						<h4>Informazioni personali</h4>
 						<form action="${pageContext.request.contextPath}/registrazione" enctype='multipart/form-data' method="POST" id="regFormM2" style="display:none">
 							<input type="password" class="form-control" name="psw" id="pswM" placeholder="Password">
 							<p id="outPswM" style="color: red"></p>

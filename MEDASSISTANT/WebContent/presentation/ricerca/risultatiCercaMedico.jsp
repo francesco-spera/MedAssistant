@@ -78,7 +78,7 @@
 		</div>
 	</div>
     
-
+	<br><br>
 	<%@ include file="../generali/footer.jsp" %>  
 	
     <script src="${pageContext.request.contextPath}/core/js/jquery/jquery-2.2.4.min.js"></script>

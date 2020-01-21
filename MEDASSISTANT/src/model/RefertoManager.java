@@ -105,7 +105,7 @@ public class RefertoManager {
 		ArrayList<MedicalReport> medReps = null;
 		try {
 			con = DriverManagerConnectionPool.getConnection();
-			ps = con.prepareStatement("SELECT object, date, idreport FROM medicalreport m WHERE m.patient = ?;");
+			ps = con.prepareStatement("SELECT object, date, idreport FROM medicalreport m WHERE m.patient = ? ORDER BY IDReport DESC;;");
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			medReps = new ArrayList<>();
