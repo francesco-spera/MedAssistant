@@ -12,6 +12,8 @@
 <title>MedAssistant</title>
 <link rel="icon" href="${pageContext.request.contextPath}/core/img/core-img/favicon.ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/core/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_util.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/core/css/table_main.css">	
 </head>
 <body>
 
@@ -72,27 +74,31 @@
 	                    		<h2>NESSUN PAZIENTE COLLEGATO</h2>
 	                    	</c:when>
 	                    	<c:otherwise>
+	                    		<table>
+	                    		<thead>
+									<tr class="table100-head" style="background-color: #081f3e">
+										<th class="column1">Anagrafica</th>
+										<th class="column2">Data</th>
+										<th class="column5"></th>
+									</tr>
+								</thead>
 	                    		<c:forEach items="${allPaz}" var="paz">
-	                    		
-	                        	<div class="panel single-accordion">
-									 <h6><a role="button" class="" aria-expanded="true" aria-controls="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-									 <c:out value="${paz.surname}"/> <c:out value="${paz.name}"/> <c:out value="Data di nascita:"/> <c:out value="${paz.birthDate}"/>
-									<span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-	                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-	                                </a></h6>
-	                            </div>
-	                            
-	                              <div id="collapseOne" class="accordion-content collapse show">
-									<form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloPaziente">
+	                    		<tbody>
+									<tr>
+										<td class="column1">${paz.name} ${paz.surname}</td>  
+										<td class="column2">${paz.birthDate}</td>
+										<td><form method="post" action="${pageContext.request.contextPath}/VisualizzaProfiloPaziente">
 										<input type="hidden" name="emailpaz" value="${paz.patient}">
 										<button type="submit" class="btn btn-primary">Visualizza Profilo</button>									
-									</form>
-									
-	                        	</div>
+									</form></td>
+									</tr>
+								</tbody>
+	                        	
 	                        
 	                        	
 	                        	
-	                        </c:forEach>                   
+	                        </c:forEach> 
+	                        </table>                  
 	                    	</c:otherwise>
 	                    </c:choose>
 					</div>
