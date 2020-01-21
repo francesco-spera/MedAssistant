@@ -1,6 +1,7 @@
 package control.gestioneVotazione;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -24,11 +25,20 @@ public class VotaMedico extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		PrintWriter out = response.getWriter();
 		Voting vote = new Voting();
 		vote.setDate(request.getParameter("dateVote"));
 		vote.setDoctor(request.getParameter("emailDoc"));
 		vote.setPatient(request.getParameter("emailPatient"));
-		vote.setVote(Integer.parseInt(request.getParameter("selected_rating")));
+		if(request.getParameter("selected_rating").isEmpty()) {
+			out.write("false");
+			return;
+		}else out.write("true");
+		
+		int ratings = Integer.parseInt(request.getParameter("selected_rating"));
+		vote.setVote(ratings);
 		
 		boolean votestate = false;
 		boolean linkstate = false;
@@ -38,6 +48,7 @@ public class VotaMedico extends HttpServlet {
 			request.getSession().setAttribute("infoDoc", ProfiloManager.visualizzaMedico(request.getParameter("emailDoc")));
 			votestate = VotazioneManager.controlloVoto(request.getParameter("emailPatient"), request.getParameter("emailDoc"));
 			linkstate = CollegamentoManager.controlloCollegamento(request.getParameter("emailPatient"), request.getParameter("emailDoc"));
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -49,7 +60,7 @@ public class VotaMedico extends HttpServlet {
 		request.getRequestDispatcher("presentation/ricerca/visualizzaProfiloMed.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 	

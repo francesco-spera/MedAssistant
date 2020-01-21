@@ -1,6 +1,7 @@
 package control.gestioneAppuntamento;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
@@ -37,7 +38,7 @@ public class PrenotaAppuntamento extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String emailmed = request.getParameter("doctor");
 		String emailpat= request.getParameter("patient");
@@ -46,7 +47,8 @@ public class PrenotaAppuntamento extends HttpServlet {
 		
 		String oggetto = "Richiesta di appuntamento";
 		String text = "Salve Dott.,\n\nIl paziente email:"+emailpat+"\n\nha richiesto un appuntamento: \n\nlocalhost:65535/MEDASSISTANT/presentation/appuntamento/visualizzaRicAppuntamento.jsp?date="+date+"&time="+time+"&patient="+emailpat;
-		
+		PrintWriter out = response.getWriter();
+
 		Appointment app = new Appointment();
 		app.setDate(date);
 		app.setTime(time);
@@ -68,6 +70,8 @@ public class PrenotaAppuntamento extends HttpServlet {
 
 			System.out.println("presente");
 			request.setAttribute("error", "Orario non disponibile");
+			
+			out.write("false");
 			request.getRequestDispatcher("presentation/appuntamento/prenotaAppuntamento.jsp").forward(request, response);
 		}else {
 			System.out.println("non presente");
@@ -76,6 +80,7 @@ public class PrenotaAppuntamento extends HttpServlet {
 				AppuntamentoManager.inserisciApp(app);
 				int id = AppuntamentoManager.ritornoID(emailmed, emailpat, date, 0);
 				text=text.concat("&appId="+id);
+				out.write("true");
 				EmailSender email = new EmailSender();
 				email.inviaMailAppuntamento(emailmed, oggetto, text);
 				request.getRequestDispatcher("presentation/generali/index.jsp").forward(request, response);
@@ -83,7 +88,7 @@ public class PrenotaAppuntamento extends HttpServlet {
 			} catch (MessagingException | SQLException e) {
 				e.printStackTrace();
 			}
-			
+			out.close();
 
 		}
 		

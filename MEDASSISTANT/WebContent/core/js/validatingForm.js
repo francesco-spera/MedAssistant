@@ -159,13 +159,13 @@
 	});
 	
 	/*
-	 *	controllo lunghezza indirizzo comune
+	 *	controllo lunghezza comune
 	 */
 	
 	$(document).ready(function(){
 		  $("#munaddr").blur(function(){
-		    if($("#munaddr").val().length==0){
-		    	$("#outMun").html("Indirizzo comune non valido");
+			  if(!$("#munaddr").val().match(/^[A-Za-z]+$/)){
+		    	$("#outMun").html("comune non valido");
 		    }
 		  });
 	});
@@ -182,6 +182,17 @@
 		  });
 	});
 	
+	/*
+	 *	controllo esistenza data di nascita
+	 */
+	
+	$(document).ready(function(){
+		  $("#birth").blur(function(){
+		    if($("#birth").val()==null){
+		    	$("#outData").html("Inserisci Data di nascita");
+		    }
+		  });
+	});
 	
 	function sleep(milliseconds) {
 		  var start = new Date().getTime();

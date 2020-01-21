@@ -78,7 +78,7 @@ public class Registrazione extends HttpServlet {
 		}
 		System.out.println("post surname");
 		String birth = request.getParameter("birth");
-		if(birth==null) {
+		if(birth.length()<1) {
 			out.write("false");
 			return;
 		}
@@ -119,14 +119,16 @@ public class Registrazione extends HttpServlet {
 			}
 			medico.setPhoneNumber(mobilep);
 			String studioAddr = request.getParameter("studioaddr");
-			if(studioAddr==null) {
+			if(studioAddr.length()<1) {
 				out.write("false");
 				return;
 			}
 			medico.setStudioAddress(studioAddr);
 			medico.setType(type);
 			String munAddr = request.getParameter("munaddr");
-			if(munAddr==null) {
+			pattern = Pattern.compile(NAMEREGEX);
+			m = pattern.matcher(munAddr);
+			if(!m.find()) {
 				out.write("false");
 				return;
 			}
